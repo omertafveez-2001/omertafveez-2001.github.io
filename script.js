@@ -45,4 +45,5 @@ document.addEventListener('DOMContentLoaded', () => {
     setTimeout(() => {
         animateTextCycle();
     }, animationDuration + pauseDuration);
+
 });

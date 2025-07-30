@@ -1,5 +1,6 @@
 /* Custom CSS for ML Portfolio Page */
 
+
 body {
     font-family: 'Inter', sans-serif;
     background-color: #f8fafc; /* Light blue-gray background */
@@ -70,7 +71,7 @@ html {
 
 
 .dynamic-text-container { /* New class for the wrapper div */
-    height: 2.5rem; /* Adjust based on your text size, e.g., text-3xl is around 2.25rem */
+    height: 3.5rem; /* Adjust based on your text size, e.g., text-3xl is around 2.25rem */
     overflow: hidden;
     perspective: 1000px; /* For 3D transform */
     display: flex; /* Use flexbox to center the text vertically if needed */
@@ -82,6 +83,8 @@ html {
     display: inline-block;
     transform-origin: bottom;
     backface-visibility: hidden; /* Prevent flickering during 3D transform */
+    height: 100%; /* Ensure it fills the container */
+    text-align: center;
 }
 
 .dynamic-text.flip-in {
@@ -122,4 +125,85 @@ html {
 .interest-item .icon {
     margin-right: 0.5rem; /* Space between icon and text */
     color: #3b82f6; /* blue-500 */
+}
+
+/* For medium screens and up, use the original height */
+@media (min-width: 768px) {
+    .dynamic-text-container {
+        height: 4rem; /* md:h-12 in Tailwind is 3rem, but 4rem works better with text-5xl */
+    }
+}
+
+/* Floating Navigation Menu */
+.floating-nav {
+    position: fixed;
+    bottom: 2rem; /* Distance from bottom */
+    left: 50%; /* Center horizontally */
+    transform: translateX(-50%); /* Adjust for centering */
+    z-index: 100; /* Ensure it's above other content */
+    background-color: rgba(255, 255, 255, 0.9); /* Semi-transparent white */
+    backdrop-filter: blur(8px); /* Frosted glass effect */
+    padding: 0.75rem 1.5rem; /* Vertical and horizontal padding */
+    border-radius: 9999px; /* Fully rounded capsule shape */
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15); /* Soft shadow */
+    display: flex;
+    gap: 1.5rem; /* Space between icons */
+    align-items: center;
+    justify-content: center;
+    border: 1px solid rgba(226, 232, 240, 0.5); /* Light border */
+}
+
+.floating-nav .nav-item {
+    display: flex;
+    flex-direction: column; /* Stack icon and tooltip vertically */
+    align-items: center;
+    color: #475569; /* Slate 600 */
+    text-decoration: none;
+    transition: all 0.2s ease-in-out;
+    position: relative; /* For tooltip positioning */
+}
+
+.floating-nav .nav-item:hover {
+    color: #2563eb; /* Blue 600 */
+    transform: translateY(-2px); /* Slight lift on hover */
+}
+
+.floating-nav .nav-item i {
+    margin-bottom: 0.25rem; /* Space between icon and tooltip */
+}
+
+.floating-nav .nav-item .tooltip {
+    position: absolute;
+    bottom: 120%; /* Position above the icon */
+    background-color: #334155; /* Dark background for tooltip */
+    color: white;
+    padding: 0.25rem 0.5rem;
+    border-radius: 0.25rem;
+    font-size: 0.75rem; /* text-xs */
+    white-space: nowrap; /* Prevent text wrap */
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.2s ease-in-out, visibility 0.2s ease-in-out;
+}
+
+.floating-nav .nav-item:hover .tooltip {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* Adjust for smaller screens if items get too crowded */
+@media (max-width: 640px) {
+    .floating-nav {
+        padding: 0.5rem 1rem;
+        gap: 1rem;
+        bottom: 1rem;
+    }
+    .floating-nav .nav-item i {
+        width: 1.25rem; /* Smaller icons on small screens */
+        height: 1.25rem;
+    }
+    .floating-nav .nav-item .tooltip {
+        /* Hide tooltips on very small screens to save space */
+        display: none;
+    }
 }
