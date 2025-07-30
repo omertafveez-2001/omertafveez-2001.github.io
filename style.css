@@ -1,0 +1,19 @@
+/* Custom CSS for ML Portfolio Page */
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: #f8fafc; /* Light blue-gray background */
+    color: #334155; /* Slate 700 */
+}
+
+/* Custom scroll-behavior for smooth scrolling */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Style for Lucide icons */
+.icon {
+    display: inline-block;
+    vertical-align: middle;
+    margin-right: 8px;
+}

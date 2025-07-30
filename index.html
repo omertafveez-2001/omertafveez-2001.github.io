@@ -1,14 +1,364 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>My Github Page</title>
-    </head>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Name - ML Portfolio</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Inter Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Lucide Icons (for professional icons) -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="antialiased">
 
-    <body>
-        <div class="container">
-            <h1>Welcome to My GitHub Page.</h1>
+    <!-- Header and Navigation -->
+    <header class="bg-gray-900 text-white p-4 shadow-lg rounded-b-lg">
+        <nav class="container mx-auto flex justify-between items-center">
+            <a href="#" class="text-2xl font-bold text-indigo-400 hover:text-indigo-300 transition-colors duration-300">Your Name</a>
+            <ul class="flex space-x-6">
+                <li><a href="#about" class="hover:text-indigo-400 transition-colors duration-300">About</a></li>
+                <li><a href="#skills" class="hover:text-indigo-400 transition-colors duration-300">Skills</a></li>
+                <li><a href="#projects" class="hover:text-indigo-400 transition-colors duration-300">Projects</a></li>
+                <li><a href="#research-interests" class="hover:text-indigo-400 transition-colors duration-300">Research</a></li>
+                <li><a href="#experience" class="hover:text-indigo-400 transition-colors duration-300">Experience</a></li>
+                <li><a href="#contact" class="hover:text-indigo-400 transition-colors duration-300">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="hero" class="relative bg-gradient-to-r from-indigo-600 to-purple-700 text-white py-20 md:py-32 flex items-center justify-center rounded-lg m-4 shadow-xl">
+        <div class="container mx-auto text-center px-4">
+            <img src="https://placehold.co/150x150/6366f1/ffffff?text=Profile" alt="Your Profile Picture" class="w-36 h-36 rounded-full mx-auto mb-6 border-4 border-white shadow-lg object-cover">
+            <h1 class="text-4xl md:text-6xl font-extrabold mb-4 leading-tight">
+                Hi, I'm <span class="text-yellow-300">Your Name</span>
+            </h1>
+            <p class="text-xl md:text-2xl mb-8 opacity-90">
+                A Passionate <span id="dynamic-text" class="font-bold"></span>
+            </p>
+            <a href="#projects" class="bg-yellow-400 text-gray-900 hover:bg-yellow-300 px-8 py-3 rounded-full text-lg font-semibold shadow-lg transform hover:scale-105 transition-all duration-300 inline-flex items-center">
+                <i data-lucide="brain" class="icon w-6 h-6"></i> View My Projects
+            </a>
         </div>
-    </body>
+    </section>
+
+    <!-- About Me Section -->
+    <section id="about" class="container mx-auto my-16 p-8 bg-white shadow-lg rounded-lg">
+        <h2 class="text-4xl font-bold text-gray-800 mb-8 text-center">About Me</h2>
+        <div class="flex flex-col md:flex-row items-center md:space-x-8">
+            <div class="md:w-1/3 mb-8 md:mb-0">
+                <img src="https://placehold.co/300x300/e2e8f0/64748b?text=About+Image" alt="About Me" class="w-full h-auto rounded-lg shadow-md object-cover">
+            </div>
+            <div class="md:w-2/3 text-lg leading-relaxed text-gray-700">
+                <p class="mb-4">
+                    I'm a dedicated Machine Learning Engineer with a strong background in data science and a passion for building intelligent systems. My journey in the world of AI began with a fascination for how data can be transformed into actionable insights and predictive models. I thrive on tackling complex problems and delivering innovative solutions that leverage the power of machine learning.
+                </p>
+                <p class="mb-4">
+                    Over the years, I've gained hands-on experience in various aspects of the ML lifecycle, from data preprocessing and feature engineering to model training, evaluation, and deployment. I'm proficient in a range of tools and frameworks, always eager to learn new technologies and apply them to real-world challenges.
+                </p>
+                <p>
+                    Outside of coding, I enjoy staying updated with the latest AI research, contributing to open-source projects, and exploring new datasets. I'm always looking for opportunities to collaborate on exciting projects and make a meaningful impact.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="container mx-auto my-16 p-8 bg-white shadow-lg rounded-lg">
+        <h2 class="text-4xl font-bold text-gray-800 mb-8 text-center">My Skills</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <!-- Programming Languages -->
+            <div class="bg-indigo-50 p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300">
+                <h3 class="text-2xl font-semibold text-indigo-700 mb-4 flex items-center">
+                    <i data-lucide="code" class="icon w-6 h-6"></i> Programming
+                </h3>
+                <ul class="list-disc list-inside text-gray-700 space-y-2">
+                    <li>Python (NumPy, Pandas, Scikit-learn)</li>
+                    <li>R</li>
+                    <li>SQL</li>
+                    <li>JavaScript (Basic)</li>
+                </ul>
+            </div>
+            <!-- ML Frameworks & Libraries -->
+            <div class="bg-purple-50 p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300">
+                <h3 class="text-2xl font-semibold text-purple-700 mb-4 flex items-center">
+                    <i data-lucide="layers" class="icon w-6 h-6"></i> ML Frameworks
+                </h3>
+                <ul class="list-disc list-inside text-gray-700 space-y-2">
+                    <li>TensorFlow / Keras</li>
+                    <li>PyTorch</li>
+                    <li>Scikit-learn</li>
+                    <li>XGBoost, LightGBM</li>
+                    <li>NLTK, SpaCy</li>
+                </ul>
+            </div>
+            <!-- Data & Tools -->
+            <div class="bg-green-50 p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300">
+                <h3 class="text-2xl font-semibold text-green-700 mb-4 flex items-center">
+                    <i data-lucide="database" class="icon w-6 h-6"></i> Data & Tools
+                </h3>
+                <ul class="list-disc list-inside text-gray-700 space-y-2">
+                    <li>Data Preprocessing & Cleaning</li>
+                    <li>Feature Engineering</li>
+                    <li>Data Visualization (Matplotlib, Seaborn, Plotly)</li>
+                    <li>Git & GitHub</li>
+                    <li>Docker</li>
+                </ul>
+            </div>
+            <!-- Cloud & Deployment -->
+            <div class="bg-blue-50 p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300">
+                <h3 class="text-2xl font-semibold text-blue-700 mb-4 flex items-center">
+                    <i data-lucide="cloud" class="icon w-6 h-6"></i> Cloud & Deployment
+                </h3>
+                <ul class="list-disc list-inside text-gray-700 space-y-2">
+                    <li>AWS (S3, EC2, SageMaker - Basic)</li>
+                    <li>Google Cloud Platform (GCP - Basic)</li>
+                    <li>REST APIs</li>
+                    <li>Streamlit / Flask</li>
+                </ul>
+            </div>
+            <!-- Machine Learning Concepts -->
+            <div class="bg-red-50 p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300">
+                <h3 class="text-2xl font-semibold text-red-700 mb-4 flex items-center">
+                    <i data-lucide="cpu" class="icon w-6 h-6"></i> ML Concepts
+                </h3>
+                <ul class="list-disc list-inside text-gray-700 space-y-2">
+                    <li>Supervised/Unsupervised Learning</li>
+                    <li>Deep Learning (CNNs, RNNs, Transformers)</li>
+                    <li>Natural Language Processing (NLP)</li>
+                    <li>Computer Vision</li>
+                    <li>Reinforcement Learning (Basic)</li>
+                </ul>
+            </div>
+            <!-- Other Skills -->
+            <div class="bg-yellow-50 p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300">
+                <h3 class="text-2xl font-semibold text-yellow-700 mb-4 flex items-center">
+                    <i data-lucide="sparkles" class="icon w-6 h-6"></i> Other
+                </h3>
+                <ul class="list-disc list-inside text-gray-700 space-y-2">
+                    <li>Statistical Analysis</li>
+                    <li>Model Evaluation & Optimization</li>
+                    <li>A/B Testing</li>
+                    <li>Problem Solving</li>
+                    <li>Communication</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Research Interests Section -->
+    <section id="research-interests" class="container mx-auto my-16 p-8 bg-white shadow-lg rounded-lg">
+        <h2 class="text-4xl font-bold text-gray-800 mb-8 text-center">Research Interests</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <!-- Research Area 1 -->
+            <div class="bg-orange-50 p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300">
+                <h3 class="text-2xl font-semibold text-orange-700 mb-4 flex items-center">
+                    <i data-lucide="message-circle" class="icon w-6 h-6"></i> Large Language Models (LLMs)
+                </h3>
+                <ul class="list-disc list-inside text-gray-700 space-y-2">
+                    <li>Pre-training & Fine-tuning</li>
+                    <li>Prompt Engineering</li>
+                    <li>Retrieval-Augmented Generation (RAG)</li>
+                    <li>Model Evaluation for LLMs</li>
+                </ul>
+            </div>
+            <!-- Research Area 2 -->
+            <div class="bg-teal-50 p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300">
+                <h3 class="text-2xl font-semibold text-teal-700 mb-4 flex items-center">
+                    <i data-lucide="image" class="icon w-6 h-6"></i> Computer Vision
+                </h3>
+                <ul class="list-disc list-inside text-gray-700 space-y-2">
+                    <li>Object Detection & Segmentation</li>
+                    <li>Image Generation (GANs, Diffusion Models)</li>
+                    <li>Medical Image Analysis</li>
+                    <li>Self-supervised Learning</li>
+                </ul>
+            </div>
+            <!-- Research Area 3 -->
+            <div class="bg-cyan-50 p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300">
+                <h3 class="text-2xl font-semibold text-cyan-700 mb-4 flex items-center">
+                    <i data-lucide="activity" class="icon w-6 h-6"></i> Reinforcement Learning
+                </h3>
+                <ul class="list-disc list-inside text-gray-700 space-y-2">
+                    <li>Deep Reinforcement Learning</li>
+                    <li>Multi-Agent Systems</li>
+                    <li>Robotics & Control</li>
+                    <li>Exploration-Exploitation Strategies</li>
+                </ul>
+            </div>
+            <!-- Add more research areas as needed -->
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="container mx-auto my-16 p-8 bg-white shadow-lg rounded-lg">
+        <h2 class="text-4xl font-bold text-gray-800 mb-8 text-center">My ML Projects</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+
+            <!-- Project Card 1 -->
+            <div class="bg-gray-50 p-6 rounded-lg shadow-md border border-gray-200 transform hover:scale-105 transition-transform duration-300">
+                <img src="https://placehold.co/400x250/cbd5e1/475569?text=Project+1" alt="Project 1 Thumbnail" class="w-full h-48 object-cover rounded-md mb-4 shadow-sm">
+                <h3 class="text-2xl font-semibold text-gray-800 mb-2">Sentiment Analysis with Transformers</h3>
+                <p class="text-gray-600 mb-4">Developed a deep learning model using Hugging Face Transformers for fine-grained sentiment analysis on customer reviews, achieving 92% accuracy.</p>
+                <div class="flex flex-wrap gap-2 text-sm mb-4">
+                    <span class="bg-blue-200 text-blue-800 px-3 py-1 rounded-full">Python</span>
+                    <span class="bg-blue-200 text-blue-800 px-3 py-1 rounded-full">PyTorch</span>
+                    <span class="bg-blue-200 text-blue-800 px-3 py-1 rounded-full">Transformers</span>
+                    <span class="bg-blue-200 text-blue-800 px-3 py-1 rounded-full">NLP</span>
+                </div>
+                <div class="flex justify-between items-center mt-4">
+                    <a href="https://github.com/your-username/sentiment-analysis-project" target="_blank" class="text-indigo-600 hover:text-indigo-800 font-medium flex items-center">
+                        <i data-lucide="github" class="icon w-5 h-5"></i> GitHub
+                    </a>
+                    <a href="http://your-live-demo.com/sentiment" target="_blank" class="text-green-600 hover:text-green-800 font-medium flex items-center">
+                        <i data-lucide="external-link" class="icon w-5 h-5"></i> Live Demo
+                    </a>
+                </div>
+            </div>
+
+            <!-- Project Card 2 -->
+            <div class="bg-gray-50 p-6 rounded-lg shadow-md border border-gray-200 transform hover:scale-105 transition-transform duration-300">
+                <img src="https://placehold.co/400x250/cbd5e1/475569?text=Project+2" alt="Project 2 Thumbnail" class="w-full h-48 object-cover rounded-md mb-4 shadow-sm">
+                <h3 class="text-2xl font-semibold text-gray-800 mb-2">Customer Churn Prediction</h3>
+                <p class="text-gray-600 mb-4">Built an end-to-end churn prediction system using XGBoost, including data pipeline, model training, and a Flask API for predictions.</p>
+                <div class="flex flex-wrap gap-2 text-sm mb-4">
+                    <span class="bg-purple-200 text-purple-800 px-3 py-1 rounded-full">Python</span>
+                    <span class="bg-purple-200 text-purple-800 px-3 py-1 rounded-full">XGBoost</span>
+                    <span class="bg-purple-200 text-purple-800 px-3 py-1 rounded-full">Flask</span>
+                    <span class="bg-purple-200 text-purple-800 px-3 py-1 rounded-full">Deployment</span>
+                </div>
+                <div class="flex justify-between items-center mt-4">
+                    <a href="https://github.com/your-username/churn-prediction-project" target="_blank" class="text-indigo-600 hover:text-indigo-800 font-medium flex items-center">
+                        <i data-lucide="github" class="icon w-5 h-5"></i> GitHub
+                    </a>
+                    <a href="http://your-live-demo.com/churn" target="_blank" class="text-green-600 hover:text-green-800 font-medium flex items-center">
+                        <i data-lucide="external-link" class="icon w-5 h-5"></i> Live Demo
+                    </a>
+                </div>
+            </div>
+
+            <!-- Project Card 3 -->
+            <div class="bg-gray-50 p-6 rounded-lg shadow-md border border-gray-200 transform hover:scale-105 transition-transform duration-300">
+                <img src="https://placehold.co/400x250/cbd5e1/475569?text=Project+3" alt="Project 3 Thumbnail" class="w-full h-48 object-cover rounded-md mb-4 shadow-sm">
+                <h3 class="text-2xl font-semibold text-gray-800 mb-2">Image Classification with CNNs</h3>
+                <p class="text-gray-600 mb-4">Developed a Convolutional Neural Network (CNN) using TensorFlow/Keras for classifying images from a custom dataset, achieving high accuracy.</p>
+                <div class="flex flex-wrap gap-2 text-sm mb-4">
+                    <span class="bg-green-200 text-green-800 px-3 py-1 rounded-full">Python</span>
+                    <span class="bg-green-200 text-green-800 px-3 py-1 rounded-full">TensorFlow</span>
+                    <span class="bg-green-200 text-green-800 px-3 py-1 rounded-full">Keras</span>
+                    <span class="bg-green-200 text-green-800 px-3 py-1 rounded-full">Computer Vision</span>
+                </div>
+                <div class="flex justify-between items-center mt-4">
+                    <a href="https://github.com/your-username/image-classification-project" target="_blank" class="text-indigo-600 hover:text-indigo-800 font-medium flex items-center">
+                        <i data-lucide="github" class="icon w-5 h-5"></i> GitHub
+                    </a>
+                    <a href="http://your-live-demo.com/image-classifier" target="_blank" class="text-green-600 hover:text-green-800 font-medium flex items-center">
+                        <i data-lucide="external-link" class="icon w-5 h-5"></i> Live Demo
+                    </a>
+                </div>
+            </div>
+
+            <!-- Add more project cards as needed -->
+
+        </div>
+    </section>
+
+    <!-- Experience & Education Section -->
+    <section id="experience" class="container mx-auto my-16 p-8 bg-white shadow-lg rounded-lg">
+        <h2 class="text-4xl font-bold text-gray-800 mb-8 text-center">Experience & Education</h2>
+
+        <!-- Experience -->
+        <div class="mb-12">
+            <h3 class="text-3xl font-semibold text-gray-700 mb-6 flex items-center">
+                <i data-lucide="briefcase" class="icon w-7 h-7"></i> Professional Experience
+            </h3>
+            <div class="relative pl-8 border-l-4 border-indigo-500">
+                <div class="mb-8">
+                    <div class="absolute w-4 h-4 bg-indigo-500 rounded-full -left-2 top-0"></div>
+                    <p class="text-gray-500 text-sm">Jan 2023 - Present</p>
+                    <h4 class="text-xl font-bold text-gray-800">Machine Learning Engineer</h4>
+                    <p class="text-indigo-600 font-medium">Tech Solutions Inc.</p>
+                    <ul class="list-disc list-inside text-gray-700 mt-2 space-y-1">
+                        <li>Developed and deployed predictive models for customer behavior analysis, improving retention by 15%.</li>
+                        <li>Implemented MLOps practices, reducing model deployment time by 50%.</li>
+                        <li>Collaborated with cross-functional teams to integrate ML solutions into production systems.</li>
+                    </ul>
+                </div>
+                <div class="mb-8">
+                    <div class="absolute w-4 h-4 bg-indigo-500 rounded-full -left-2 top-0"></div>
+                    <p class="text-gray-500 text-sm">Jun 2021 - Dec 2022</p>
+                    <h4 class="text-xl font-bold text-gray-800">Data Scientist Intern</h4>
+                    <p class="text-indigo-600 font-medium">Innovate Data Co.</p>
+                    <ul class="list-disc list-inside text-gray-700 mt-2 space-y-1">
+                        <li>Performed exploratory data analysis on large datasets to identify key trends and insights.</li>
+                        <li>Built and evaluated classification models for fraud detection.</li>
+                        <li>Created interactive dashboards for data visualization using Plotly.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Education -->
+        <div>
+            <h3 class="text-3xl font-semibold text-gray-700 mb-6 flex items-center">
+                <i data-lucide="graduation-cap" class="icon w-7 h-7"></i> Education
+            </h3>
+            <div class="relative pl-8 border-l-4 border-purple-500">
+                <div class="mb-8">
+                    <div class="absolute w-4 h-4 bg-purple-500 rounded-full -left-2 top-0"></div>
+                    <p class="text-gray-500 text-sm">Sep 2019 - May 2023</p>
+                    <h4 class="text-xl font-bold text-gray-800">Master of Science in Artificial Intelligence</h4>
+                    <p class="text-purple-600 font-medium">University of Tech & AI</p>
+                    <p class="text-gray-700 mt-2">Specialized in Deep Learning and Natural Language Processing. Thesis on "Generative Models for Text Synthesis."</p>
+                </div>
+                <div class="mb-8">
+                    <div class="absolute w-4 h-4 bg-purple-500 rounded-full -left-2 top-0"></div>
+                    <p class="text-gray-500 text-sm">Sep 2015 - May 2019</p>
+                    <h4 class="text-xl font-bold text-gray-800">Bachelor of Science in Computer Science</h4>
+                    <p class="text-purple-600 font-medium">State University</p>
+                    <p class="text-gray-700 mt-2">Focused on algorithms, data structures, and software engineering principles.</p>
+                </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="container mx-auto my-16 p-8 bg-white shadow-lg rounded-lg text-center">
+        <h2 class="text-4xl font-bold text-gray-800 mb-8">Get In Touch</h2>
+        <p class="text-lg text-gray-700 mb-8">
+            I'm always open to new opportunities, collaborations, and interesting discussions. Feel free to reach out!
+        </p>
+        <div class="flex flex-col items-center space-y-4">
+            <a href="mailto:your.email@example.com" class="bg-indigo-600 text-white hover:bg-indigo-700 px-6 py-3 rounded-full text-lg font-semibold shadow-lg transform hover:scale-105 transition-all duration-300 inline-flex items-center">
+                <i data-lucide="mail" class="icon w-6 h-6"></i> your.email@example.com
+            </a>
+            <div class="flex space-x-6 mt-4">
+                <a href="https://github.com/your-username" target="_blank" class="text-gray-700 hover:text-gray-900 transform hover:scale-110 transition-transform duration-300">
+                    <i data-lucide="github" class="w-8 h-8"></i>
+                </a>
+                <a href="https://linkedin.com/in/your-linkedin" target="_blank" class="text-blue-700 hover:text-blue-900 transform hover:scale-110 transition-transform duration-300">
+                    <i data-lucide="linkedin" class="w-8 h-8"></i>
+                </a>
+                <a href="https://twitter.com/your-twitter" target="_blank" class="text-blue-400 hover:text-blue-600 transform hover:scale-110 transition-transform duration-300">
+                    <i data-lucide="twitter" class="w-8 h-8"></i>
+                </a>
+                <!-- Add more social links as needed -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white p-6 text-center rounded-t-lg mt-8">
+        <p>&copy; 2025 Your Name. All rights reserved.</p>
+        <p class="text-sm mt-2">Built with Javascript, HTML5 and Tailwind CSS.</p>
+    </footer>
+
+    <!-- Custom JavaScript -->
+    <script src="script.js" defer></script>
+</body>
 </html>
