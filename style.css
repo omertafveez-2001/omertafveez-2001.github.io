@@ -17,3 +17,109 @@ html {
     vertical-align: middle;
     margin-right: 8px;
 }
+
+/* Keyframes for the sliding star background animation */
+@keyframes slideStars {
+    0% {
+        background-position: 0% 0%;
+    }
+    100% {
+        background-position: 100% 0%; /* Slide from right to left */
+    }
+}
+
+/* Styling for the sliding background element */
+.sliding-stars {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    /* Using radial gradients to create subtle star-like dots with blue tones */
+    background: radial-gradient(circle at 10% 20%, rgba(59,130,246,0.1) 1px, transparent 1px), /* blue-500 */
+                radial-gradient(circle at 30% 70%, rgba(96,165,250,0.08) 1.5px, transparent 1.5px), /* blue-400 */
+                radial-gradient(circle at 50% 40%, rgba(37,99,235,0.12) 0.8px, transparent 0.8px), /* blue-600 */
+                radial-gradient(circle at 70% 90%, rgba(147,197,253,0.07) 1.2px, transparent 1.2px), /* blue-300 */
+                radial-gradient(circle at 90% 10%, rgba(29,78,216,0.09) 1px, transparent 1px); /* blue-700 */
+    background-size: 200% 100%; /* Make it wider than container for sliding */
+    animation: slideStars 40s linear infinite; /* Adjust duration for speed */
+    will-change: background-position; /* Optimize for animation performance */
+}
+
+/* Keyframes for dynamic text flip-in animation */
+@keyframes textFlipIn {
+    0% {
+        transform: translateY(100%) rotateX(-90deg);
+        opacity: 0;
+    }
+    100% {
+        transform: translateY(0) rotateX(0deg);
+        opacity: 1;
+    }
+}
+
+/* Keyframes for dynamic text flip-out animation */
+@keyframes textFlipOut {
+    0% {
+        transform: translateY(0) rotateX(0deg);
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(-100%) rotateX(90deg);
+        opacity: 0;
+    }
+}
+
+
+.dynamic-text-container { /* New class for the wrapper div */
+    height: 2.5rem; /* Adjust based on your text size, e.g., text-3xl is around 2.25rem */
+    overflow: hidden;
+    perspective: 1000px; /* For 3D transform */
+    display: flex; /* Use flexbox to center the text vertically if needed */
+    align-items: center; /* Center vertically */
+    justify-content: center; /* Center horizontally */
+}
+
+.dynamic-text { /* Class for the span/p element itself */
+    display: inline-block;
+    transform-origin: bottom;
+    backface-visibility: hidden; /* Prevent flickering during 3D transform */
+}
+
+.dynamic-text.flip-in {
+    animation: textFlipIn 0.7s ease-out forwards; /* Shorter duration for flip */
+}
+.dynamic-text.flip-out {
+    animation: textFlipOut 0.7s ease-in forwards; /* Shorter duration for flip */
+}
+
+
+/* Sliding Interests Bar */
+@keyframes slideInterests {
+    0% {
+        transform: translateX(0%);
+    }
+    100% {
+        transform: translateX(-50%); /* Slide to the left by half its width */
+    }
+}
+
+.sliding-interests-track {
+    white-space: nowrap; /* Keep all items on one line */
+    display: inline-block; /* Allow transform */
+    animation: slideInterests 30s linear infinite; /* Adjust speed as needed */
+    will-change: transform;
+    padding-left: 100%; /* Start items off-screen to the right */
+}
+
+.interest-item {
+    display: inline-flex; /* Use flex for icon and text alignment */
+    align-items: center;
+    margin-right: 2rem; /* Space between items */
+    font-size: 1.125rem; /* text-lg */
+    color: black; /* slate-500 */
+    opacity: 0.8;
+}
+
+.interest-item .icon {
+    margin-right: 0.5rem; /* Space between icon and text */
+    color: #3b82f6; /* blue-500 */
+}

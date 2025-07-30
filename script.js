@@ -1,12 +1,9 @@
 // Initialize Lucide Icons
-// This script ensures all `data-lucide` attributes are converted to SVG icons.
-// It should be placed at the end of the body or after the content where icons are used.
 lucide.createIcons();
 
-// Dynamic Typing Effect for Hero Section Description
+// Dynamic Text Flip/Move Up Effect for Hero Section Description
 document.addEventListener('DOMContentLoaded', () => {
     const dynamicTextElement = document.getElementById('dynamic-text');
-    // Ensure the element exists before trying to manipulate it
     if (!dynamicTextElement) {
         console.error("Element with ID 'dynamic-text' not found. Dynamic typing effect cannot be applied.");
         return;
@@ -14,38 +11,38 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const descriptions = ["Machine Learning Engineer", "ML Researcher", "LLM Specialist", "Data Scientist"];
     let descriptionIndex = 0;
-    let charIndex = 0;
-    let isDeleting = false;
-    let typingSpeed = 100; // milliseconds per character
-    let deletingSpeed = 50; // milliseconds per character
-    let pauseBeforeNext = 1500; // milliseconds to pause before typing next description
+    const animationDuration = 700; // Match CSS animation duration in ms (for both flip-in and flip-out)
+    const pauseDuration = 1500; // Pause after flip-in, before next flip-out starts
 
-    function typeEffect() {
-        const currentDescription = descriptions[descriptionIndex];
-        if (isDeleting) {
-            // Deleting text
-            dynamicTextElement.textContent = currentDescription.substring(0, charIndex - 1);
-            charIndex--;
-            if (charIndex === 0) {
-                isDeleting = false;
-                descriptionIndex = (descriptionIndex + 1) % descriptions.length; // Move to next description
-                setTimeout(typeEffect, 500); // Pause before typing next
-            } else {
-                setTimeout(typeEffect, deletingSpeed);
-            }
-        } else {
-            // Typing text
-            dynamicTextElement.textContent = currentDescription.substring(0, charIndex + 1);
-            charIndex++;
-            if (charIndex === currentDescription.length) {
-                isDeleting = true;
-                setTimeout(typeEffect, pauseBeforeNext); // Pause before deleting
-            } else {
-                setTimeout(typeEffect, typingSpeed);
-            }
-        }
+    function animateTextCycle() {
+        // Step 1: Trigger flip-out animation
+        dynamicTextElement.classList.remove('flip-in');
+        dynamicTextElement.classList.add('flip-out');
+
+        // Step 2: After flip-out animation completes, update content and trigger flip-in
+        setTimeout(() => {
+            // Move to the next description
+            descriptionIndex = (descriptionIndex + 1) % descriptions.length;
+            dynamicTextElement.textContent = descriptions[descriptionIndex];
+
+            // Trigger flip-in animation
+            dynamicTextElement.classList.remove('flip-out'); // Remove flip-out before adding flip-in
+            dynamicTextElement.classList.add('flip-in');
+
+            // Step 3: After flip-in animation completes, pause and then start the next cycle
+            setTimeout(() => {
+                animateTextCycle(); // Loop
+            }, pauseDuration); // Pause after the flip-in
+        }, animationDuration); // Wait for the flip-out animation to finish
     }
 
-    // Start the typing effect when the DOM is fully loaded
-    typeEffect();
+    // Initial setup: display the first text and immediately flip it in
+    dynamicTextElement.textContent = descriptions[0];
+    dynamicTextElement.classList.add('flip-in');
+
+    // Start the continuous cycle after the initial flip-in completes and a pause
+    // We need to wait for the first 'flip-in' animation to finish AND then the pauseDuration
+    setTimeout(() => {
+        animateTextCycle();
+    }, animationDuration + pauseDuration);
 });
