@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', () => {
         return;
     }
 
-    const descriptions = ["Machine Learning Engineer", "ML Researcher", "LLM Specialist", "Data Scientist"];
+    const descriptions = ["ML Engineer", "ML Researcher", "LLM Specialist", "Data Scientist"];
     let descriptionIndex = 0;
     const animationDuration = 700; // Match CSS animation duration in ms (for both flip-in and flip-out)
     const pauseDuration = 1500; // Pause after flip-in, before next flip-out starts
