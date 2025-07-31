@@ -1,11 +1,87 @@
 /* Custom CSS for ML Portfolio Page */
 
+.research-entry {
+    color: white;
+    font-family: 'Bricolage Grotesque', 'Inter'; /* Use Bricolage Grotesque font */
+}
+
+.entry-title {
+    font-weight: 700;
+    font-size: 1.7rem;
+    margin-bottom: 12px;
+}
+
+.custom-heading {
+    font-family: 'Bricolage Grotesque', 'Inter'; /* Use Bricolage Grotesque font */
+}
 
 body {
-    font-family: 'Inter', sans-serif;
-    background-color: #f8fafc; /* Light blue-gray background */
+    font-family: 'Inter', 'sans-serif'; /* Use Bricolage Grotesque font */
+    /*background-color: #f8fafc; Light blue-gray background */
     color: #334155; /* Slate 700 */
 }
+
+.glass-card {
+  background: rgba(255, 255, 255, 0.25);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  box-shadow: 
+    0 8px 32px rgba(0, 0, 0, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.5),
+    inset 0 -1px 0 rgba(255, 255, 255, 0.1),
+    inset 0 0 8px 4px rgba(255, 255, 255, 0.4);
+  position: relative;
+  overflow: hidden;
+}
+
+.glass-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.8),
+    transparent
+  );
+}
+
+.glass-card::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 1px;
+  height: 100%;
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.8),
+    transparent,
+    rgba(255, 255, 255, 0.3)
+  );
+}
+
+
+.project-bg {
+    background-image: url("./imgs/project-image.jpg");
+    background-size: cover;
+}
+
+.project {
+    justify-content: center;
+    align-items: center;
+}
+
+li {
+  list-style-position: outside;
+  padding-left: 0.3rem;     /* Reserve space for bullet */
+}
+
 
 /* Custom scroll-behavior for smooth scrolling */
 html {
@@ -17,6 +93,10 @@ html {
     display: inline-block;
     vertical-align: middle;
     margin-right: 8px;
+}
+
+.text-icon {
+    font-family: 'Bricolage Grotesque', 'Inter'; /* Ensure text icons use the same font */
 }
 
 /* Keyframes for the sliding star background animation */
@@ -43,6 +123,7 @@ html {
     background-size: 200% 100%; /* Make it wider than container for sliding */
     animation: slideStars 40s linear infinite; /* Adjust duration for speed */
     will-change: background-position; /* Optimize for animation performance */
+    font-family: 'Bricolage Grotesque'; /* Ensure font consistency */
 }
 
 /* Keyframes for dynamic text flip-in animation */
@@ -85,6 +166,7 @@ html {
     backface-visibility: hidden; /* Prevent flickering during 3D transform */
     height: 100%; /* Ensure it fills the container */
     text-align: center;
+    font-family: 'Bricolage Grotesque';
 }
 
 .dynamic-text.flip-in {
@@ -120,6 +202,7 @@ html {
     font-size: 1.125rem; /* text-lg */
     color: black; /* slate-500 */
     opacity: 0.8;
+    font-family: 'Bricolage Grotesque', 'Inter'; /* Ensure font consistency */
 }
 
 .interest-item .icon {
@@ -207,3 +290,98 @@ html {
         display: none;
     }
 }
+
+/* Zoom-in animation for Projects */
+@keyframes scaleIn {
+  from {
+    transform: scale(0.9);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+.card-animate {
+  animation: scaleIn 0.4s ease-out both;
+  animation-timeline: view();
+  animation-range: entry 25% cover 35%;
+}
+
+/* removing scrollbars/hiding them*/
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+.scrollbar-hide {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+
+
+/* Slide in from left for About, Skills, and Research sections */
+.slide-in-left-about, .slide-in-left-about-p, 
+.slide-left-skills, .slide-left-research {
+  opacity: 0;
+  transform: translateX(-30px);
+  animation: slideInLeft 0.6s ease-out forwards;
+  animation-timeline: view();
+  animation-range: entry 5% cover 17%;
+}
+.slide-left-skills {
+    animation-timeline: view();
+    animation-range: entry 30% cover 50%;
+}
+.slide-left-research {
+    animation-timeline: view();
+    animation-range: entry 0% cover 70%;
+}
+.slide-in-left-about-p{
+  animation-delay: 0.2s; /* Delay for paragraph to create staggered effect */
+}
+@keyframes slideInLeft {
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+
+/* like a loadbar on the top of the page */
+@keyframes scroll-watcher-bar {
+  0% {
+    transform: scaleX(0);
+  }
+  100% {
+    transform: scaleX(1);
+  }
+}
+.scroll-watcher-bar {
+  height: 10px;
+  position: fixed;
+  top: 0;
+  z-index: 1000;
+  background: linear-gradient(to right, lightsteelblue, lightgray);
+  width: 100%;
+  transform-origin: left;
+  transform: scaleX(0); /* initial state */
+
+  animation: scroll-watcher-bar linear;
+  animation-timeline: scroll(); /* experimental */
+  animation-duration: auto;
+  
+  border-radius: 5px;
+}
+
+
+/* Fading of about me page picture*/
+.fade-me {
+    animation: fade-in linear;
+    animation-range: entry 0% cover 17%;
+    animation-timeline: scroll();
+}
+
+@keyframes fade-in {
+    from {transform: scale(0.8); opacity: 0;}
+    to {transform: scale(1); opacity: 1;}
+}
+
