@@ -1,5 +1,6 @@
 /* Custom CSS for ML Portfolio Page */
 
+/* These CSS properties are used in Research Section */
 .research-entry {
     color: white;
     font-family: 'Bricolage Grotesque', 'Inter'; /* Use Bricolage Grotesque font */
@@ -11,72 +12,32 @@
     margin-bottom: 12px;
 }
 
+/* I am using this property to make some headings have Bricolage Grotesque */
 .custom-heading {
     font-family: 'Bricolage Grotesque', 'Inter'; /* Use Bricolage Grotesque font */
 }
 
+/* General styles for the body */
 body {
     font-family: 'Inter', 'sans-serif'; /* Use Bricolage Grotesque font */
     /*background-color: #f8fafc; Light blue-gray background */
     color: #334155; /* Slate 700 */
 }
 
-.glass-card {
-  background: rgba(255, 255, 255, 0.25);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  border-radius: 20px;
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  box-shadow: 
-    0 8px 32px rgba(0, 0, 0, 0.1),
-    inset 0 1px 0 rgba(255, 255, 255, 0.5),
-    inset 0 -1px 0 rgba(255, 255, 255, 0.1),
-    inset 0 0 8px 4px rgba(255, 255, 255, 0.4);
-  position: relative;
-  overflow: hidden;
-}
-
-.glass-card::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 1px;
-  background: linear-gradient(
-    90deg,
-    transparent,
-    rgba(255, 255, 255, 0.8),
-    transparent
-  );
-}
-
-.glass-card::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 1px;
-  height: 100%;
-  background: linear-gradient(
-    180deg,
-    rgba(255, 255, 255, 0.8),
-    transparent,
-    rgba(255, 255, 255, 0.3)
-  );
-}
-
-
-.project-bg {
+/* These CSS properties are used in the Projects Section */
+.project-bg { /* setting background image for the project section */
     background-image: url("./imgs/project-image.jpg");
     background-size: cover;
 }
+
 
 .project {
     justify-content: center;
     align-items: center;
 }
 
+
+/* Aligning text with the bullets for multiline lists */
 li {
   list-style-position: outside;
   padding-left: 0.3rem;     /* Reserve space for bullet */
@@ -98,6 +59,8 @@ html {
 .text-icon {
     font-family: 'Bricolage Grotesque', 'Inter'; /* Ensure text icons use the same font */
 }
+
+/* Sliding Star Background Animation for Hero Section */
 
 /* Keyframes for the sliding star background animation */
 @keyframes slideStars {
@@ -125,6 +88,8 @@ html {
     will-change: background-position; /* Optimize for animation performance */
     font-family: 'Bricolage Grotesque'; /* Ensure font consistency */
 }
+
+/* Dynamic Text Flip Animation for Hero Section */
 
 /* Keyframes for dynamic text flip-in animation */
 @keyframes textFlipIn {
@@ -318,9 +283,9 @@ html {
 }
 
 
-/* Slide in from left for About, Skills, and Research sections */
+/* Slide in from left for About, Skills section */
 .slide-in-left-about, .slide-in-left-about-p, 
-.slide-left-skills, .slide-left-research {
+.slide-left-skills{
   opacity: 0;
   transform: translateX(-30px);
   animation: slideInLeft 0.6s ease-out forwards;
@@ -331,10 +296,6 @@ html {
     animation-timeline: view();
     animation-range: entry 30% cover 50%;
 }
-.slide-left-research {
-    animation-timeline: view();
-    animation-range: entry 0% cover 70%;
-}
 .slide-in-left-about-p{
   animation-delay: 0.2s; /* Delay for paragraph to create staggered effect */
 }
@@ -343,6 +304,12 @@ html {
     opacity: 1;
     transform: translateX(0);
   }
+}
+
+.skill-flipin {
+    animation: textFlipIn ease-out 0.05s forwards;
+    animation-timeline: view();
+    animation-range: entry 0% cover 50%;
 }
 
 
@@ -385,3 +352,48 @@ html {
     to {transform: scale(1); opacity: 1;}
 }
 
+/* Glass card that I have used in the Projects Section */
+.glass-card {
+  background: rgba(255, 255, 255, 0.25);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.8);
+  box-shadow: 
+    0 8px 32px rgba(0, 0, 0, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.5),
+    inset 0 -1px 0 rgba(255, 255, 255, 0.1),
+    inset 0 0 8px 4px rgba(255, 255, 255, 0.4);
+  position: relative;
+  overflow: hidden;
+}
+
+.glass-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.8),
+    transparent
+  );
+}
+
+.glass-card::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 1px;
+  height: 100%;
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.8),
+    transparent,
+    rgba(255, 255, 255, 0.8)
+  );
+}
