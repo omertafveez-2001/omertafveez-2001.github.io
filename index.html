@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,7 +8,8 @@
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Bricolage Grotesque Font -->
-    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
     <!-- Inter Font -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <!-- Lucide Icons (for professional icons) -->
@@ -15,6 +17,7 @@
     <!-- Custom CSS -->
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body class="subpixel-antialiased leading-none tracking-tight relative bg-gradient-to-r from-blue-100 to-gray-100">
 
     <!-- Header and Navigation
@@ -68,30 +71,32 @@
     <!-- Hero Section -->
     <div class="scroll-watcher-bar"></div>
     <section id="hero" class="relative text-gray-900 py-20 md:py-32 flex items-center justify-center overflow-hidden">
-        <div class ="absolute top-6 left-6 z-20">
-        <a href="#" class="flex items-center gap-2">
+        <div class="absolute top-6 left-6 z-20">
+            <a href="#" class="flex items-center gap-2">
                 <svg width="100" height="40" viewBox="0 0 100 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <defs>
-                    <linearGradient id="professionalGradient" x1="0%" y1="0%" x2="100%" y2="0%">
-                      <stop offset="0%" stop-color="#1A202C" /> <!-- Dark Gray/Almost Black -->
-                      <stop offset="100%" stop-color="#4A5568" /> <!-- Medium Gray -->
-                    </linearGradient>
-                    <linearGradient id="accentGradient" x1="0%" y1="0%" x2="100%" y2="0%">
-                      <stop offset="0%" stop-color="#667EEA" /> <!-- Indigo -->
-                      <stop offset="100%" stop-color="#805AD5" /> <!-- Violet -->
-                    </linearGradient>
-                  </defs>
+                    <defs>
+                        <linearGradient id="professionalGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                            <stop offset="0%" stop-color="#1A202C" /> <!-- Dark Gray/Almost Black -->
+                            <stop offset="100%" stop-color="#4A5568" /> <!-- Medium Gray -->
+                        </linearGradient>
+                        <linearGradient id="accentGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                            <stop offset="0%" stop-color="#667EEA" /> <!-- Indigo -->
+                            <stop offset="100%" stop-color="#805AD5" /> <!-- Violet -->
+                        </linearGradient>
+                    </defs>
 
-                  <!-- 'O' shape - bold and geometric -->
-                  <path d="M20 5 L30 5 C35.5228 5 40 9.47715 40 15 V25 C40 30.5228 35.5228 35 30 35 L20 35 C14.4772 35 10 30.5228 10 25 V15 C10 9.47715 14.4772 5 20 5 Z M20 10 L20 30 L30 30 C32.7614 30 35 27.7614 35 25 V15 C35 12.2386 32.7614 10 30 10 L20 10 Z" fill="url(#professionalGradient)"/>
+                    <!-- 'O' shape - bold and geometric -->
+                    <path
+                        d="M20 5 L30 5 C35.5228 5 40 9.47715 40 15 V25 C40 30.5228 35.5228 35 30 35 L20 35 C14.4772 35 10 30.5228 10 25 V15 C10 9.47715 14.4772 5 20 5 Z M20 10 L20 30 L30 30 C32.7614 30 35 27.7614 35 25 V15 C35 12.2386 32.7614 10 30 10 L20 10 Z"
+                        fill="url(#professionalGradient)" />
 
-                  <!-- 'T' shape - integrated and modern, now overlapping the 'O' -->
-                  <!-- Horizontal bar of T, starting earlier to overlap -->
-                  <rect x="35" y="5" width="30" height="5" rx="1" fill="url(#professionalGradient)"/>
-                  <!-- Vertical bar of T, starting earlier to overlap -->
-                  <rect x="47.5" y="5" width="5" height="30" rx="1" fill="url(#professionalGradient)"/>
+                    <!-- 'T' shape - integrated and modern, now overlapping the 'O' -->
+                    <!-- Horizontal bar of T, starting earlier to overlap -->
+                    <rect x="35" y="5" width="30" height="5" rx="1" fill="url(#professionalGradient)" />
+                    <!-- Vertical bar of T, starting earlier to overlap -->
+                    <rect x="47.5" y="5" width="5" height="30" rx="1" fill="url(#professionalGradient)" />
 
-                  <!-- Removed the connecting line as it's no longer needed with the overlap -->
+                    <!-- Removed the connecting line as it's no longer needed with the overlap -->
                 </svg>
             </a>
         </div>
@@ -103,27 +108,47 @@
                 Hi, I'm <span class="text-black">Omer Tafveez.</span> I work in...
             </h1>
             <div class="overflow-hidden mx-auto mb-8 dynamic-text-container">
-                <p id="dynamic-text" class="text-3xl md:text-5xl font-bold text-indigo-700 inline-block align-bottom dynamic-text"></p>
+                <p id="dynamic-text"
+                    class="text-3xl md:text-5xl font-bold text-indigo-700 inline-block align-bottom dynamic-text"></p>
             </div>
             <p class="text-lg md:text-xl text-gray-700 max-w-6xl mx-auto mb-8">
-                I'm a Machine Learning Engineer deeply passionate about AI research and development. My work blends a strong background in mathematics, data science, 
-                and programming with hands-on experience in LLMs and agent systems. I'm especially drawn to research areas like <strong>model compression, AI safety, 
-                reasoning and mechanistic interpretability, and optimization in ML algorithms.</strong>
+                I'm a Machine Learning Engineer deeply passionate about AI research and development. My work blends a
+                strong background in mathematics, data science, Machine Learning,
+                Agentic Systems. I'm especially drawn to research areas like <strong>model compression, AI safety,
+                    reasoning, mechanistic interpretability, and optimization in ML algorithms.</strong>
             </p>
 
             <!-- Social Media & Contact Links in Hero -->
             <div class="flex justify-center items-center space-x-4 mb-8">
-                <a href="https://www.linkedin.com/in/omer-tafveez-7399761a4/" target="_blank" class="bg-white p-3 rounded-lg shadow-md hover:shadow-lg transform hover:scale-105 transition-all duration-300 text-blue-700">
+                <a href="https://www.linkedin.com/in/omer-tafveez-7399761a4/" target="_blank"
+                    class="bg-white p-3 rounded-lg shadow-md hover:shadow-lg transform hover:scale-105 transition-all duration-300 text-black-600">
                     <i data-lucide="linkedin" class="w-6 h-6"></i>
                 </a>
-                <a href="https://github.com/omertafveez-2001" target="_blank" class="bg-white p-3 rounded-lg shadow-md hover:shadow-lg transform hover:scale-105 transition-all duration-300 text-gray-800">
+                <a href="https://github.com/omertafveez-2001" target="_blank"
+                    class="bg-white p-3 rounded-lg shadow-md hover:shadow-lg transform hover:scale-105 transition-all duration-300 text-black-600">
                     <i data-lucide="github" class="w-6 h-6"></i>
                 </a>
-                <a href="mailto:omertaf@umich.edu" class="bg-white p-3 rounded-lg shadow-md hover:shadow-lg transform hover:scale-105 transition-all duration-300 text-indigo-600 flex items-center gap-2">
-                    <i data-lucide="mail" class="w-6 h-6"></i> <span class="hidden sm:inline text-icon">omertaf@umich.edu</span>
+                <a href="mailto:omertaf@umich.edu"
+                    class="bg-white p-3 rounded-lg shadow-md hover:shadow-lg transform hover:scale-105 transition-all duration-300 text-black-600 flex items-center gap-2">
+                    <i data-lucide="mail" class="w-6 h-6"></i> <span
+                        class="hidden sm:inline text-icon">omertaf@umich.edu</span>
                 </a>
-                <a href="https://drive.google.com/file/d/1KhcCkaa51iWvKmKT9HjIt0ws9ZMw95bh/view?usp=sharing" target="_blank" class="bg-white p-3 rounded-lg shadow-md hover:shadow-lg transform hover:scale-105 transition-all duration-300 text-green-600 flex items-center gap-2">
-                    <i data-lucide="file-text" class="w-6 h-6"></i> <span class="hidden sm:inline text-icon">Resume</span>
+                <a href="https://drive.google.com/file/d/1k2W0EnZKDHaMPiimKEi4wt_enPYoIU67/view?usp=sharing"
+                    target="_blank"
+                    class="bg-white p-3 rounded-lg shadow-md hover:shadow-lg transform hover:scale-105 transition-all duration-300 text-black-600 flex items-center gap-2">
+                    <i data-lucide="file-text" class="w-6 h-6"></i> <span
+                        class="hidden sm:inline text-icon">Resume</span>
+                </a>
+                <a href="https://drive.google.com/file/d/1CRM1jImQ-gt2XwAvXzeC7sHsKv2WzD_s/view?usp=sharing"
+                    target="_blank"
+                    class="bg-white p-3 rounded-lg shadow-md hover:shadow-lg transform hover:scale-105 transition-all duration-300 text-black-600 flex items-center gap-2">
+                    <i data-lucide="file-text" class="w-6 h-6"></i> <span class="hidden sm:inline text-icon">Academic
+                        CV</span>
+                </a>
+                <a href="https://scholar.google.com/citations?user=c-uRNsUAAAAJ&hl=en" target="_blank"
+                    class="bg-white p-3 rounded-lg shadow-md hover:shadow-lg transform hover:scale-105 transition-all duration-300 text-black-600 flex items-center gap-2">
+                    <i data-lucide="pencil" class="w-6 h-6"></i> <span class="hidden sm:inline text-icon">Google
+                        Scholar</span>
                 </a>
             </div>
 
@@ -133,28 +158,35 @@
         </div>
 
         <!-- Sliding Interests Bar -->
-        <div class="absolute inset-x-0 bottom-0 w-full bg-gradient-to-r from-blue-100 to-gray-100 py-3 overflow-hidden z-20 text-gray-800">
+        <div
+            class="absolute inset-x-0 bottom-0 w-full bg-gradient-to-r from-blue-100 to-gray-100 py-3 overflow-hidden z-20 text-gray-800">
             <div class="sliding-interests-track">
                 <span class="interest-item"><i data-lucide="laptop" class="icon w-5 h-5"></i> Deep Learning</span>
-                <span class="interest-item"><i data-lucide="laptop" class="icon w-5 h-5"></i> Natural Language Processing</span>
+                <span class="interest-item"><i data-lucide="laptop" class="icon w-5 h-5"></i> Natural Language
+                    Processing</span>
                 <span class="interest-item"><i data-lucide="laptop" class="icon w-5 h-5"></i> Explainable AI</span>
                 <span class="interest-item"><i data-lucide="laptop" class="icon w-5 h-5"></i> Data Science</span>
-                <span class="interest-item"><i data-lucide="laptop" class="icon w-5 h-5"></i> GeoSpatial Optimisation</span>
+                <span class="interest-item"><i data-lucide="laptop" class="icon w-5 h-5"></i> GeoSpatial
+                    Optimisation</span>
                 <span class="interest-item"><i data-lucide="laptop" class="icon w-5 h-5"></i> LLM Agents</span>
-                <span class="interest-item"><i data-lucide="laptop" class="icon w-5 h-5"></i> Predictive Analytics</span>
+                <span class="interest-item"><i data-lucide="laptop" class="icon w-5 h-5"></i> Predictive
+                    Analytics</span>
                 <span class="interest-item"><i data-lucide="laptop" class="icon w-5 h-5"></i> Generative Ai</span>
                 <!-- Duplicate content to ensure seamless loop -->
                 <span class="interest-item"><i data-lucide="laptop" class="icon w-5 h-5"></i> Deep Learning</span>
-                <span class="interest-item"><i data-lucide="laptop" class="icon w-5 h-5"></i> Natural Language Processing</span>
+                <span class="interest-item"><i data-lucide="laptop" class="icon w-5 h-5"></i> Natural Language
+                    Processing</span>
                 <span class="interest-item"><i data-lucide="laptop" class="icon w-5 h-5"></i> Explainable AI</span>
                 <span class="interest-item"><i data-lucide="laptop" class="icon w-5 h-5"></i> Data Science</span>
-                <span class="interest-item"><i data-lucide="laptop" class="icon w-5 h-5"></i> GeoSpatial Optimisation</span>
+                <span class="interest-item"><i data-lucide="laptop" class="icon w-5 h-5"></i> GeoSpatial
+                    Optimisation</span>
                 <span class="interest-item"><i data-lucide="laptop" class="icon w-5 h-5"></i> LLM Agents</span>
-                <span class="interest-item"><i data-lucide="laptop" class="icon w-5 h-5"></i> Predictive Analytics</span>
+                <span class="interest-item"><i data-lucide="laptop" class="icon w-5 h-5"></i> Predictive
+                    Analytics</span>
                 <span class="interest-item"><i data-lucide="laptop" class="icon w-5 h-5"></i> Generative AI</span>
-                
+
             </div>
-    </div>
+        </div>
     </section>
 
     <!-- About Me Section -->
@@ -162,19 +194,20 @@
         <!--<h2 class="text-4xl font-extrabold text-black-800 mb-2 text-center">About Me</h2>-->
         <div class="flex flex-col md:flex-row items-center md:space-x-8">
             <div class="md:w-1/3 mb-8 md:mb-0">
-                <img class="fade-me" src="./imgs/my-picture.jpg" alt="About Me" class="w-full h-auto rounded-lg shadow-md object-cover">
+                <img class="fade-me" src="./imgs/my-picture.jpg" alt="About Me"
+                    class="w-full h-auto rounded-lg shadow-md object-cover">
             </div>
             <div class="md:w-2/3 text-lg leading-relaxed text-gray-700">
                 <h2 class="text-4xl font-bold text-gray-800 mb-4 custom-heading slide-in-left-about">About Me</h2>
                 <p class="mb-4 slide-in-left-about-p">
-                    Hi, I am Omer Tafveez. I completed my Bachelors in Economics-Mathematics with a minor in Computer Science specialising in Machine Learning.
-                    During my Bachelors, I undertook various interesting projects including Route Optimization for Logistics, designing a Decoupled Gradient Distillation, and developing Dynamic Grouped Query Attention as part of my Undergrad
-                    Thesis. <br>
-                    I am currently pursuing my Masters in Information Science at the University of Michigan, Ann Arbor, where I am focusing on Machine Learning and AI research. <br>
-                </p>
-                <p class="mb-4 slide-in-left-about-p">
-                    Over the years, I've gained hands-on experience in various aspects of the ML literature, from Grouped Query Attention and Sparse Autoencoders to Knowledge Distillation, 
-                    Evaluation, and Agents. I'm proficient in a range of tools and frameworks, always eager to learn new technologies and apply them to real-world challenges.
+                    Hi, I am Omer Tafveez. I completed my Bachelors in Economics-Mathematics and Computer Science from
+                    Lahore University of Management Sciences, specialising in Machine Learning.
+                    During my Bachelors, I undertook various interesting projects including Route Optimization for
+                    Logistics, designing a Decoupled Gradient Distillation, and developing Dynamic Grouped Query
+                    Attention as part of my Undergrad
+                    Thesis.<br>
+                    I am currently pursuing my Masters in Information Science at the University of Michigan, Ann Arbor,
+                    where I am focusing on Machine Learning and AI research. <br>
                 </p>
             </div>
         </div>
@@ -183,7 +216,8 @@
     <!-- Research Interests Section -->
     <section id="research" class="bg-gradient-to-br from-slate-900 to-slate-800 pt-6 pb-12">
         <div class="research-container mx-auto px-2 sm:px-6 lg:px-4">
-            <h1 class="text-4xl font-extrabold text-white mb-4 text-center custom-heading border-b4">Research Interests</h1>
+            <h1 class="text-4xl font-extrabold text-white mb-4 text-center custom-heading border-b4">Research Interests
+            </h1>
             <div class="h-1 bg-white w-64 mx-auto mb-8"></div>
 
             <!-- Top Row: LLMs and Model Compression -->
@@ -193,19 +227,19 @@
                     <h3 class="entry-title">Large Language Models (LLMs)</h3>
                     <ul class="research-list list-disc ml-6 text-white space-y-2">
                         <li>Reasoning and AI Safety <br>
-                            <span class="bg-amber-200 text-black px-2 py-0.5 rounded-md mt-1 text-sm font-semibold inline-block">
+                            <!-- <span class="bg-amber-200 text-black px-2 py-0.5 rounded-md mt-1 text-sm font-semibold inline-block">
                                 (I'm really into Reasoning)
-                            </span>
+                            </span> -->
                         </li>
                         <li>Mechanistic Interpretability: Understanding models, developing and evaluating SAEs. <br>
-                            <span class="bg-pink-200 text-black px-2 py-0.5 rounded-md mt-1 text-sm font-semibold inline-block">
+                            <!-- <span class="bg-pink-200 text-black px-2 py-0.5 rounded-md mt-1 text-sm font-semibold inline-block">
                                 (Awesome Work, Love it!)
-                            </span>
+                            </span> -->
                         </li>
                         <li>Architectural Optimisation & Design
-                            <span class="bg-green-200 text-black px-2 py-0.5 rounded-md mt-1 text-sm font-semibold inline-block">
+                            <!-- <span class="bg-green-200 text-black px-2 py-0.5 rounded-md mt-1 text-sm font-semibold inline-block">
                                 (I could work on this all day!)
-                            </span>
+                            </span> -->
                         </li>
                     </ul>
                 </div>
@@ -215,12 +249,19 @@
                     <h3 class="entry-title">Model Compression</h3>
                     <ul class="research-list list-disc ml-6 text-white space-y-2">
                         <li>Knowledge Distillation <br>
-                            <span class="bg-blue-200 text-black px-2 py-0.5 rounded-md mt-1 text-sm font-semibold inline-block">
+                            <!-- <span class="bg-blue-200 text-black px-2 py-0.5 rounded-md mt-1 text-sm font-semibold inline-block">
                                 (I have worked on this, alot!)
-                            </span>
+                            </span> -->
                         </li>
-                        <li>Model Compression for LLMs <span class="bg-red-200 text-black px-2 py-0.5 rounded-md mt-1 text-sm font-semibold inline-block">(Im still exploring it.)</span></li>
-                        <li>Model Sparsity <span class="bg-orange-200 text-black px-2 py-0.5 rounded-md ml-1 text-sm font-semibold">(I love this area!)</span></li>
+                        <li>Model Compression for LLMs
+                            <!-- <span class="bg-red-200 text-black px-2 py-0.5 rounded-md mt-1 text-sm font-semibold inline-block"> 
+                                (Im still exploring it.)
+                            </span> -->
+                        </li>
+                        <li>Model Sparsity
+                            <!-- <span class="bg-orange-200 text-black px-2 py-0.5 rounded-md ml-1 text-sm font-semibold">(I love this area!)
+                            </span> -->
+                        </li>
                     </ul>
                 </div>
 
@@ -228,9 +269,12 @@
                 <div class="research-entry p-5 bg-slate-800 rounded-xl">
                     <h3 class="entry-title">Core Machine Learning</h3>
                     <ul class="research-list list-disc ml-6 text-white space-y-2">
-                        <li>Developing Optimisers</li>
-                        <li>Mitigating Model's Bias and Fairness</li>
-                        <li>Generalisability: Grokking, Neural Collapse <span class="bg-purple-200 text-black px-2 py-0.3 rounded-md ml-1 text-sm font-semibold">(Super Interesting!)</span></li>
+                        <li>Model's Bias and Fairness</li>
+                        <li>Generalisability: Grokking, Neural Collapse
+                            <!-- <span class="bg-purple-200 text-black px-2 py-0.3 rounded-md ml-1 text-sm font-semibold">(
+                                Super Interesting!)
+                            </span> -->
+                        </li>
                     </ul>
                 </div>
 
@@ -240,7 +284,11 @@
                     <ul class="research-list list-disc ml-6 text-white space-y-2">
                         <li>Diffusion Models, VAEs</li>
                         <li>Unsupervised ML: Recommendations, Detection Anomaly.</li>
-                        <li>Multi-modality, Mixture-of-Experts <span class="bg-stone-200 text-black px-2 py-0.5 rounded-md mt-1 text-sm font-semibold inline-block">(Super Interesting x2!)</span></li>
+                        <li>Multi-modality, Mixture-of-Experts
+                            <!-- <span class="bg-stone-200 text-black px-2 py-0.5 rounded-md mt-1 text-sm font-semibold inline-block">
+                                (Super Interesting x2!)
+                            </span> -->
+                        </li>
                     </ul>
                 </div>
             </div>
@@ -250,11 +298,13 @@
     <!-- Skills Section -->
     <div class="skill-container">
         <section id="skills" class="container mx-auto my-16 p-8 max-w-7xl">
-            <h2 class="text-4xl font-extrabold text-gray-800 mb-8 text-center custom-heading skill-flipin">My Skills</h2>
+            <h2 class="text-4xl font-extrabold text-gray-800 mb-8 text-center custom-heading skill-flipin">My Skills
+            </h2>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 <!-- Programming Languages -->
-                <div class="bg-indigo-50 p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300 skill-flipin">
-                    <h3 class="text-2xl font-semibold text-indigo-700 mb-4 flex items-center">
+                <div
+                    class="bg-indigo-100 p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300 skill-flipin">
+                    <h3 class="text-2xl font-semibold text-black-700 mb-4 flex items-center">
                         <i data-lucide="code" class="icon w-6 h-6"></i> Programming
                     </h3>
                     <ul class="list-disc list-inside text-gray-700 space-y-2">
@@ -264,8 +314,9 @@
                     </ul>
                 </div>
                 <!-- ML Frameworks & Libraries -->
-                <div class="bg-purple-50 p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300 skill-flipin">
-                    <h3 class="text-2xl font-semibold text-purple-700 mb-4 flex items-center">
+                <div
+                    class="bg-purple-50 p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300 skill-flipin">
+                    <h3 class="text-2xl font-semibold text-black-700 mb-4 flex items-center">
                         <i data-lucide="layers" class="icon w-6 h-6"></i> ML Frameworks
                     </h3>
                     <ul class="list-disc list-inside text-gray-700 space-y-2">
@@ -277,8 +328,9 @@
                     </ul>
                 </div>
                 <!-- Data & Tools -->
-                <div class="bg-green-50 p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300 skill-flipin">
-                    <h3 class="text-2xl font-semibold text-green-700 mb-4 flex items-center">
+                <div
+                    class="bg-green-50 p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300 skill-flipin">
+                    <h3 class="text-2xl font-semibold text-black-700 mb-4 flex items-center">
                         <i data-lucide="database" class="icon w-6 h-6"></i> Data & Tools
                     </h3>
                     <ul class="list-disc list-inside text-gray-700 space-y-2">
@@ -301,8 +353,9 @@
                     </ul>
                 </div> -->
                 <!-- Machine Learning Concepts -->
-                <div class="bg-red-50 p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300 skill-flipin">
-                    <h3 class="text-2xl font-semibold text-red-700 mb-4 flex items-center">
+                <div
+                    class="bg-red-50 p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300 skill-flipin">
+                    <h3 class="text-2xl font-semibold text-black-700 mb-4 flex items-center">
                         <i data-lucide="cpu" class="icon w-6 h-6"></i> Development Frameworks
                     </h3>
                     <ul class="list-disc list-inside text-gray-700 space-y-2">
@@ -311,9 +364,10 @@
                     </ul>
                 </div>
                 <!-- Other Skills -->
-                <div class="bg-yellow-50 p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300 skill-flipin">
-                    <h3 class="text-2xl font-semibold text-yellow-700 mb-4 flex items-center">
-                        <i data-lucide="sparkles" class="icon w-6 h-6"></i> Other
+                <div
+                    class="bg-yellow-50 p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300 skill-flipin">
+                    <h3 class="text-2xl font-semibold text-black-700 mb-4 flex items-center">
+                        <i data-lucide="computer" class="icon w-6 h-6"></i> Other
                     </h3>
                     <ul class="list-disc list-inside text-gray-700 space-y-2">
                         <li>Statistical Analysis</li>
@@ -324,33 +378,36 @@
             </div>
         </section>
     </div>
-    
+
     <!-- Projects Section -->
     <div class="w-full px-4">
-        <section id="projects" class="w-full my-5">
-        <h2 class="text-4xl font-bold text-gray-800 mb-8 text-center custom-heading">Projects</h2>
+        <section id="projects" class="w-full my-5 mb-12">
+            <h2 class="text-4xl font-bold text-gray-800 mb-8 text-center custom-heading">Projects</h2>
 
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-3 gap-y-4 ">
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-3 gap-y-4 ">
 
-            <div class="relative bg-white rounded-xl border border-gray-200 shadow-sm hover:ring-4 hover:ring-blue-500 hover:ring-offset-2 transition-all duration-300 overflow-hidden">
-    
+                <div
+                    class="relative bg-white rounded-xl border border-gray-200 shadow-sm hover:ring-4 hover:ring-blue-500 hover:ring-offset-2 transition-all duration-300 overflow-hidden">
+
                     <!-- Image at the top -->
                     <img src="./imgs/project1.jpg" alt="Project Thumbnail" class="w-full h-48 object-cover">
 
                     <!-- Card Content -->
                     <div class="p-6">
-                            <!-- Top Row: Date (left) + Company (right) -->
-                            <div class="flex justify-between items-center mb-2">
-                                <p class="text-sm text-gray-500">2023</p>
-                                <span class="text-xs font-semibold text-purple-600">Data Science Project</span>
-                            </div>
-                        
+                        <!-- Top Row: Date (left) + Company (right) -->
+                        <div class="flex justify-between items-center mb-2">
+                            <p class="text-sm text-gray-500">2023</p>
+                            <span class="text-xs font-semibold text-purple-600">Data Science Project</span>
+                        </div>
+
                         <!-- Title -->
-                        <h3 class="text-2xl font-bold text-gray-900 mb-2">Mobility Pattern Mining: Approximating Urban Development</h3>
+                        <h3 class="text-2xl font-bold text-gray-900 mb-2">Mobility Pattern Mining: Approximating Urban
+                            Development</h3>
 
                         <!-- Subtitle -->
                         <p class="text-gray-600 mb-4">
-                            Designed a Linear Regression model with K-means to approximate Beijing's Urban Development using Transportation data such as travel time, traffic etc.
+                            Modeled Beijing's urban development using regression and clustering on 500k+ mobility data
+                            points, uncovering actionable city planning insights.
                         </p>
                         <!-- Tags -->
                         <div class="flex flex-wrap gap-2 text-sm">
@@ -364,36 +421,39 @@
                         </div>
 
                         <div class="flex justify-between items-center mt-4">
-                            <a href="https://github.com/omertafveez-2001/Mobility-Pattern-Mining-Explaining-Urban-Development" class="text-indigo-600 hover:text-indigo-800 font-medium flex items-center">
+                            <a href="https://github.com/omertafveez-2001/Mobility-Pattern-Mining-Explaining-Urban-Development"
+                                class="text-indigo-600 hover:text-indigo-800 font-medium flex items-center">
                                 <i data-lucide="github" class="icon w-5 h-5"></i> GitHub
                             </a>
-                            <a href="https://medium.com/@omertafveez/mobility-pattern-mining-modelling-spatial-and-temporal-movement-ff1ecdd9ebf9" class="text-green-600 hover:text-green-800 font-medium flex items-center">
+                            <a href="https://medium.com/@omertafveez/mobility-pattern-mining-modelling-spatial-and-temporal-movement-ff1ecdd9ebf9"
+                                class="text-green-600 hover:text-green-800 font-medium flex items-center">
                                 <i data-lucide="newspaper" class="icon w-5 h-5"></i> Medium Article
                             </a>
                         </div>
                     </div>
                 </div>
-                
-                <div class="relative bg-white rounded-xl border border-gray-200 shadow-sm hover:ring-4 hover:ring-blue-500 hover:ring-offset-2 transition-all duration-300 overflow-hidden">
-    
+
+                <div
+                    class="relative bg-white rounded-xl border border-gray-200 shadow-sm hover:ring-4 hover:ring-blue-500 hover:ring-offset-2 transition-all duration-300 overflow-hidden">
+
                     <!-- Image at the top -->
                     <img src="./imgs/project2.jpg" alt="Project Thumbnail" class="w-full h-48 object-cover">
 
                     <!-- Card Content -->
                     <div class="p-6">
-                            <!-- Top Row: Date (left) + Company (right) -->
-                            <div class="flex justify-between items-center mb-2">
-                                <p class="text-sm text-gray-500">2025</p>
-                                <span class="text-xs font-semibold text-purple-600">Research Project with CITY@LUMS</span>
-                            </div>
-                        
+                        <!-- Top Row: Date (left) + Company (right) -->
+                        <div class="flex justify-between items-center mb-2">
+                            <p class="text-sm text-gray-500">2025</p>
+                            <span class="text-xs font-semibold text-purple-600">Research Project with CITY@LUMS</span>
+                        </div>
+
                         <!-- Title -->
                         <h3 class="text-2xl font-bold text-gray-900 mb-2">Decoupled Gradient Knowledge Distillation</h3>
 
                         <!-- Subtitle -->
                         <p class="text-gray-600 mb-4">
-                        Designed a Gradient based decoupled distillation method using Gradient Information (GIs) of Target and Non Target class Gradients. Achieved 6% accuracy boost and 15%
-                        accuracy boost on standard and perturbed datasets respectively.</p>
+                            Improved knowledge distillation by integrating gradients of target and non-target classes,
+                            achieving 6-15% performance gains on CIFAR-100 and TinyImagenet.</p>
                         <!-- Tags -->
                         <div class="flex flex-wrap gap-2 text-sm">
                             <span class="bg-gray-200 text-gray-800 px-3 py-1 rounded-full">Python</span>
@@ -405,32 +465,35 @@
                         </div>
 
                         <div class="flex justify-between items-center mt-4">
-                            <a href="https://github.com/omertafveez-2001/Decoupled-Gradient-Knowledge-Distilation" class="text-indigo-600 hover:text-indigo-800 font-medium flex items-center">
+                            <a href="https://github.com/omertafveez-2001/Decoupled-Gradient-Knowledge-Distilation"
+                                class="text-indigo-600 hover:text-indigo-800 font-medium flex items-center">
                                 <i data-lucide="github" class="icon w-5 h-5"></i> GitHub
                             </a>
                         </div>
                     </div>
                 </div>
 
-                <div class="relative bg-white rounded-xl border border-gray-200 shadow-sm hover:ring-4 hover:ring-blue-500 hover:ring-offset-2 transition-all duration-300 overflow-hidden">
-    
+                <div
+                    class="relative bg-white rounded-xl border border-gray-200 shadow-sm hover:ring-4 hover:ring-blue-500 hover:ring-offset-2 transition-all duration-300 overflow-hidden">
+
                     <!-- Image at the top -->
                     <img src="./imgs/project3.png" alt="Project Thumbnail" class="w-full h-48 object-cover">
 
                     <!-- Card Content -->
                     <div class="p-6">
-                            <!-- Top Row: Date (left) + Company (right) -->
-                            <div class="flex justify-between items-center mb-2">
-                                <p class="text-sm text-gray-500">2024</p>
-                                <span class="text-xs font-semibold text-purple-600">Research Project with CSaLT Lab</span>
-                            </div>
-                        
+                        <!-- Top Row: Date (left) + Company (right) -->
+                        <div class="flex justify-between items-center mb-2">
+                            <p class="text-sm text-gray-500">2024</p>
+                            <span class="text-xs font-semibold text-purple-600">Research Project with CSaLT Lab</span>
+                        </div>
+
                         <!-- Title -->
                         <h3 class="text-2xl font-bold text-gray-900 mb-2">Key-Driven Grouped Query Attention</h3>
 
                         <!-- Subtitle -->
                         <p class="text-gray-600 mb-4">
-                            Devised a novel GQA variant "Dynamic Grouped Query Attention" which assigned keys to query according to their importance computed as norms. Achieved 3% accuracy boost on ViT-Large.
+                            Designed a dynamic attention mechanism using key norms and EMA updates, boosting ViT-Large
+                            accuracy by ~3% with stronger scalability.
                         </p>
                         <!-- Tags -->
                         <div class="flex flex-wrap gap-2 text-sm">
@@ -443,38 +506,45 @@
                         </div>
 
                         <div class="flex justify-between items-center mt-4">
-                            <a href="https://github.com/omertafveez-2001/key-driven-gqa" class="text-indigo-600 hover:text-indigo-800 font-medium flex items-center">
+                            <a href="https://github.com/omertafveez-2001/key-driven-gqa"
+                                class="text-indigo-600 hover:text-indigo-800 font-medium flex items-center">
                                 <i data-lucide="github" class="icon w-5 h-5"></i> GitHub
                             </a>
-                            <a href="https://www.arxiv.org/abs/2408.08454" class="text-green-600 hover:text-green-800 font-medium flex items-center">
+                            <a href="https://www.arxiv.org/abs/2408.08454"
+                                class="text-green-600 hover:text-green-800 font-medium flex items-center">
                                 <i data-lucide="external-link" class="icon w-5 h-5"></i> Arxiv Paper
                             </a>
                         </div>
                     </div>
                 </div>
 
-                
-                <div class="relative bg-white rounded-xl border border-gray-200 shadow-sm hover:ring-4 hover:ring-blue-500 hover:ring-offset-2 transition-all duration-300 overflow-hidden">
-    
+
+                <div
+                    class="relative bg-white rounded-xl border border-gray-200 shadow-sm hover:ring-4 hover:ring-blue-500 hover:ring-offset-2 transition-all duration-300 overflow-hidden">
+
                     <!-- Image at the top -->
                     <img src="./imgs/project4.png" alt="Project Thumbnail" class="w-full h-48 object-cover">
 
                     <!-- Card Content -->
                     <div class="p-6">
-                            <!-- Top Row: Date (left) + Company (right) -->
-                            <div class="flex justify-between items-center mb-2">
-                                <p class="text-sm text-gray-500">2025</p>
-                                <span class="text-xs font-semibold text-purple-600">Personal Project</span>
-                            </div>
-                        
+                        <!-- Top Row: Date (left) + Company (right) -->
+                        <div class="flex justify-between items-center mb-2">
+                            <p class="text-sm text-gray-500">2025</p>
+                            <span class="text-xs font-semibold text-purple-600">Personal Project</span>
+                        </div>
+
                         <!-- Title -->
-                        <h3 class="text-2xl font-bold text-gray-900 mb-2">Transformers for Timeseries: A Statistical View</h3>
+                        <h3 class="text-2xl font-bold text-gray-900 mb-2">Transformers for Timeseries: A Statistical
+                            View</h3>
 
                         <!-- Subtitle -->
                         <p class="text-gray-600 mb-4">
-                            Evaluated Autoformer on time-series data beyond accuracy by analyzing structural breakpoints. 
-                            While it predicted the correct number of breaks, the intervals were misaligned and clustered—indicating instability. 
-                            Used trust scores based on normality, homoscedasticity, and autocorrelation to assess statistical reliability.</p>
+                            Evaluated Autoformer on time-series data beyond accuracy by analyzing structural
+                            breakpoints.
+                            While it predicted the correct number of breaks, the intervals were misaligned and
+                            clustered—indicating instability.
+                            Used trust scores based on normality, homoscedasticity, and autocorrelation to assess
+                            statistical reliability.</p>
                         </p>
                         <!-- Tags -->
                         <div class="flex flex-wrap gap-2 text-sm">
@@ -487,7 +557,8 @@
                         </div>
 
                         <div class="flex justify-between items-center mt-4">
-                            <a href="https://github.com/omertafveez-2001/Transformers-for-Timeseries-A-Statistical-View" class="text-indigo-600 hover:text-indigo-800 font-medium flex items-center">
+                            <a href="https://github.com/omertafveez-2001/Transformers-for-Timeseries-A-Statistical-View"
+                                class="text-indigo-600 hover:text-indigo-800 font-medium flex items-center">
                                 <i data-lucide="github" class="icon w-5 h-5"></i> GitHub
                             </a>
                         </div>
@@ -498,11 +569,10 @@
     </div>
 
     <!-- Experience & Education Section -->
-    <section id="experience" class="container mx-auto my-16 mt-24 p-8 max-w-8xl">
-        <h2 class="text-4xl font-bold text-gray-800 mb-8 text-center custom-heading">Experience & Education</h2>
-
+    <section id="experience" class="bg-gradient-to-br from-slate-900 to-slate-800 pt-8 pb-12">
+        <h2 class="text-4xl font-bold text-white mb-5 text-center custom-heading">Experience & Education</h2>
         <!-- Experience -->
-        <div class="mb-12 bg-gradient-to-br from-slate-900 to-slate-800 p-8 rounded-lg shadow-md">
+        <div class="mb-12 p-8">
             <h3 class="text-2xl font-semibold text-white mb-6 flex items-center">
                 <i data-lucide="briefcase" class="icon w-7 h-7"></i> Professional Experience
             </h3>
@@ -513,11 +583,16 @@
                     <h4 class="text-xl font-bold text-white">Data Science Intern</h4>
                     <p class="text-gray-400 font-medium">Lipton Teas & Infusion, <em>Karachi, Pakistan </em></p>
                     <ul class="list-disc list-inside text-gray-200 mt-2 space-y-1">
-                        <li>Implemented a dynamic route scheduling system to replace fixed delivery paths between 7 warehouses and 256 distributors.</li>
-                        <li>Collected and processed travel time data via the Google Distance API, building a distance matrix for the warehouse-distributor pair.</li>
-                        <li>Performed exploratory data analysis on historical delivery logs to identify bottlenecks, such as idle time and vehicle utilization.</li>
-                        <li>Developed a Python-based workflow (Google OR-Tools) to assign deliveries to vehicles while respecting capacity, time window, pallet size, and item-type constraints.</li>
-                        <li>Reduced average delivery time by ~18%, cut transportation costs by ~22%, and improved on-time delivery rate from 82% to 95% compared to the fixed-route baseline.</li>
+                        <li>Implemented a route scheduling system to replace fixed delivery paths between 7 warehouses
+                            and 256 distributors.</li>
+                        <li>Collected and processed travel time data via the Google Distance API, reducing computational
+                            time by ~20%.</li>
+                        <li>Performed exploratory data analysis on delivery logs, uncovering ~20% idle time and ~30%
+                            underutilized fleet capacity.</li>
+                        <li>Developed a Python-based workflow (Google OR-Tools) to assign deliveries to vehicles
+                            constrained to 5 logistical variables.</li>
+                        <li>Reduced average delivery time by ~18% and cut transportation costs by ~22% compared to the
+                            fixed-route baseline.</li>
                     </ul>
                 </div>
                 <div class="mb-8">
@@ -526,16 +601,16 @@
                     <h4 class="text-xl font-bold text-white">Data Science Intern</h4>
                     <p class="text-gray-400 font-medium">Toyota, <em>Karachi, Pakistan</em></p>
                     <ul class="list-disc list-inside text-gray-200 mt-2 space-y-1">
-                        <li>Achieved 87.3% accuracy using Ridge Regression to model the impact of T-Bills, inflation, and SBP policy rates on prices.</li>
-                        <li>Pinpointed key sales drivers with Decision Trees, helping address the underperformance of 5 key vehicles.</li>
-                        <li>Ensured time-series stationarity via EMA and differencing, validated through ACF plots and ADF testing.</li>
+                        <li>Achieved 87.3% accuracy using Ridge Regression to model the impact of T-Bills, inflation,
+                            and SBP policy rates on prices.</li>
+                        <li>Pinpointed key sales drivers with Decision Trees, helping address the underperformance of 5
+                            key vehicles.</li>
+                        <li>Ensured stationarity of data via EMA and differencing, validated with ACF plots and ADF
+                            tests, improving forecast accuracy by 18%.</li>
                     </ul>
                 </div>
             </div>
-        </div>
 
-        <!-- Research Experience -->
-        <div class="mb-12 bg-gradient-to-br from-slate-900 to-slate-800 p-8 rounded-lg shadow-md">
             <h3 class="text-2xl font-semibold text-white mb-6 flex items-center">
                 <i data-lucide="microscope" class="icon w-7 h-7"></i> Research Experience
             </h3>
@@ -544,31 +619,36 @@
                     <div class="absolute w-4 h-4 bg-indigo-500 rounded-full -left-2 top-0"></div>
                     <p class="text-white text-sm">Nov 2024 - Feb 2025</p>
                     <h4 class="text-xl font-bold text-white">Research Assistant - Project Lead</h4>
-                    <p class="text-gray-400 font-medium">City @LUMS, <em>Project: Decoupled Gradient Knowledge Distillation</em></p>
+                    <p class="text-gray-400 font-medium">City @LUMS, <em>Project: Decoupled Gradient Knowledge
+                            Distillation</em></p>
                     <ul class="list-disc list-inside text-gray-200 mt-2 space-y-1">
-                        <li>Developed gradient-based decoupled distillation that maximizes gradient MSE between target and non-target class losses, <br> enhancing feature disentanglement and orthogonal learning dynamics.</li>
-                        <li>The method acts as a regularizer, mitigating overconfidence, encouraging fidelity, and accelerating feature compaction.</li>
-                        <li>Achieved 6%  improvement and up to 15% gain on perturbed datasets over standard decoupled distillation across CNN and ViT.</li>
+                        <li>Engineered gradient-based decoupled distillation that maximizes MSE between the gradients of
+                            target and non-target class losses, <br> enhancing orthogonal learning and functional
+                            gradient independence.</li>
+                        <li>The method acts as a regularizer, mitigating overconfidence, encouraging fidelity, and
+                            accelerating feature compaction.</li>
+                        <li>Achieved 6% increase and up to 15% gain on OOD data over standard decoupled distillation
+                            across ViT, MobileNet, ResNet, and VGG.</li>
                     </ul>
                 </div>
                 <div class="mb-8">
                     <div class="absolute w-4 h-4 bg-indigo-500 rounded-full -left-2 top-0"></div>
                     <p class="text-white text-sm">April 2024 - Aug 2024</p>
                     <h4 class="text-xl font-bold text-white">Research Assistant - Project Lead</h4>
-                    <p class="text-gray-400 font-medium">Center of Speech and Language Technologies, <em>Project: Key-Driven Grouped Query Attention</em></p>
+                    <p class="text-gray-400 font-medium">Center of Speech and Language Technologies, <em>Project:
+                            Key-Driven Grouped Query Attention</em></p>
                     <ul class="list-disc list-inside text-gray-200 mt-2 space-y-1">
-                        <li>Developed a novel GQA variant, “Dynamic Grouped Query Attention,” assigning queries to keys based on their norm magnitudes.</li>
-                        <li>Introduced an EMA-based key-norm cache, updated every x steps to mitigate volatility from dynamic key assignment.</li>
-                        <li>Achieved a 3% accuracy gain on ViT-Large across CIFAR-100, TinyImageNet, and Food101.</li>
+                        <li>Built “Dynamic Grouped Query Attention” with window-based norm updates, assigning queries to
+                            keys by changes in key norms.</li>
+                        <li>Implemented EMA-based key-norm evolution, smoothing rapid changes and reducing noise,
+                            leading to a +3% accuracy gain <br> on ViT-Large across CIFAR-100, TinyImageNet, and
+                            Food101.</li>
+                        <li>Further evaluated on GPT-NEOx, GPT-2, and T5.</li>
                     </ul>
                 </div>
             </div>
-        </div>
 
-
-        <!-- Education -->
-        <div class="bg-gradient-to-br from-slate-900 to-slate-800 p-8 rounded-lg shadow-md">
-            <h3 class="text-2xl font-semibold text-white mb-6 flex items-center">
+            <h3 class="text-2xl font-semibold text-white mb-4 flex items-center">
                 <i data-lucide="graduation-cap" class="icon w-7 h-7"></i> Education
             </h3>
             <div class="relative pl-8 border-l-4 border-purple-500">
@@ -582,10 +662,10 @@
                 <div class="mb-8">
                     <div class="absolute w-4 h-4 bg-purple-500 rounded-full -left-2 top-0"></div>
                     <p class="text-white text-sm">Aug 2021 - May 2025</p>
-                    <h4 class="text-xl font-bold text-white">Bachelor of Science in Economics-Mathematics, minor in Computer Science.</h4>
+                    <h4 class="text-xl font-bold text-white">Bachelor of Science in Economics-Mathematics, minor in
+                        Computer Science.</h4>
                     <p class="text-gray-400 font-medium">Lahore University of Management Sciences</p>
                     <p class="text-gray-200 mt-2">Specialized in Machine Learning, Data Science and Econometrics.</p>
-                </ul>
                 </div>
             </div>
         </div>
@@ -599,16 +679,20 @@
         </p>
 
         <div class="flex justify-center items-center space-x-4 mb-8">
-            <a href="https://www.linkedin.com/in/omer-tafveez-7399761a4/" target="_blank" class="bg-blue-50 p-3 rounded-lg shadow-md hover:shadow-lg transform hover:scale-105 transition-all duration-300 text-blue-700">
+            <a href="https://www.linkedin.com/in/omer-tafveez-7399761a4/" target="_blank"
+                class="bg-blue-50 p-3 rounded-lg shadow-md hover:shadow-lg transform hover:scale-105 transition-all duration-300 text-blue-700">
                 <i data-lucide="linkedin" class="w-6 h-6"></i>
             </a>
-            <a href="https://github.com/omertafveez-2001" target="_blank" class="bg-blue-50 p-3 rounded-lg shadow-md hover:shadow-lg transform hover:scale-105 transition-all duration-300 text-gray-800">
+            <a href="https://github.com/omertafveez-2001" target="_blank"
+                class="bg-blue-50 p-3 rounded-lg shadow-md hover:shadow-lg transform hover:scale-105 transition-all duration-300 text-gray-800">
                 <i data-lucide="github" class="w-6 h-6"></i>
             </a>
-            <a href="mailto:omertaf@umich.edu" class="bg-blue-50 p-3 rounded-lg shadow-md hover:shadow-lg transform hover:scale-105 transition-all duration-300 text-indigo-600 flex items-center gap-2">
+            <a href="mailto:omertaf@umich.edu"
+                class="bg-blue-50 p-3 rounded-lg shadow-md hover:shadow-lg transform hover:scale-105 transition-all duration-300 text-indigo-600 flex items-center gap-2">
                 <i data-lucide="mail" class="w-6 h-6"></i> <span class="hidden sm:inline">omertaf@umich.edu</span>
             </a>
-            <a href="https://x.com/omertafveez" target="_blank" class="bg-blue-50 p-3 rounded-lg shadow-md hover:shadow-lg transform hover:scale-105 transition-all duration-300 text-blue-700">
+            <a href="https://x.com/omertafveez" target="_blank"
+                class="bg-blue-50 p-3 rounded-lg shadow-md hover:shadow-lg transform hover:scale-105 transition-all duration-300 text-blue-700">
                 <i data-lucide="twitter" class="w-6 h-6"></i>
             </a>
         </div>
@@ -629,4 +713,5 @@
     <!-- Custom JavaScript -->
     <script src="script.js" defer></script>
 </body>
+
 </html>
