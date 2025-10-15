@@ -178,12 +178,12 @@
             <div class="md:w-2/3 text-lg leading-relaxed text-gray-700">
                 <h2 class="text-4xl font-bold text-gray-800 mb-4 custom-heading slide-in-left-about">About Me</h2>
                 <p class="mb-4">
-                    Hi, I am Omer Tafveez. I am currently pursuing my Masters in Information Science at the <u>University of Michigan-Ann Arbor</u>,
-                    where I am focusing on AI research. I completed my Bachelors in Economics-Mathematics and Computer Science from
-                    <u>Lahore University of Management Sciences</u>, specialising in Machine Learning. <br>
-                    I have a research experience in Model Compression, Algorithmic Optimization in ML, and Mechanistic Interpretability. My Senior Thesis in undergrad was on improving Grouped Query Attention using information (norms) of keys. <br>
-                    During my undergrad, I also got to work as a Data Science Intern at Lipton, and Toyota where I worked on deploying route-scheduling engine for sales and time-series forecasting respectively. <br>
-                    <em>For more information, do check out my research interests, projects, and experience.</em>
+                    Hi, I am Omer Tafveez. I am currently pursuing my Masters in Information Science at the <u class="font-semibold">University of Michigan-Ann Arbor</u>,
+                    where I am focusing on <span class="font-semibold">AI research</span>. I completed my Bachelors in Economics-Mathematics and Computer Science from
+                    <u class="font-semibold">Lahore University of Management Sciences</u>, specialising in <span class="font-semibold">Machine Learning</span>. <br>
+                    I have a research experience in <span class="font-semibold text-blue-700">Model Compression, Algorithmic Optimization in ML, and Mechanistic Interpretability </span>. For my senior thesis, I investigated methods to improve <span class="font-semibold text-red-700">Grouped Query Attention </span> using key-norm information and proposed a <span class="font-semibold text-green-700">Decoupled Gradient Knowledge Distillation</span> approach that enhances the transfer of dark knowledge via gradient signals from target and non-target logits. <br>
+                    During my undergrad, I also got to work as a <span class="font-semibold text-purple-700">Data Science Intern at Lipton, and Toyota where I worked on deploying route-scheduling engine for sales and time-series forecasting respectively.</span> <br>
+                    <em>Currently, I am interested at the intersection of <span class="font-semibold text-yellow-700">AI Safety, Reasoning, and Interpretability</span>.</em>
                 </p>
             </div>
         </div>
@@ -296,6 +296,28 @@
                 <div class="flex items-start gap-4">
                     <!-- Text content -->
                     <div class="flex-1 rounded-lg bg-[#f1f2f3] p-6 shadow-md hover:shadow-lg transition-shadow duration-300">
+                        <p class="text-black text-sm">Mar 2025 - April 2025</p>
+                        <h4 class="text-xl font-bold text-black">Sparse-Autoencoder Guided Fitnets</h4>
+                        <p class="text-black font-medium">Associated Lab: CITY &lt;at&gt; LUMS</p>
+                        <p class="text-black font-medium">Advisor: Dr. Muhammad Tahir -- Collaborators: Muhammad Khaquan Sheikh</p>
+                        <ul class="list-disc list-inside text-black mt-2 space-y-1">
+                            <li>Integrated Sparse Autoencoders into FitNets, steering teacher representations via decoder-weighted feature injection. </li>
+                            <li>Improved ResNet accuracy by <strong class="text-green-700">+2%</strong> in-distribution and <strong class="text-green-700">+11%</strong> on OOD datasets <strong>(Style-Transfer Animals100, TinyImagenette).</strong></li>
+                            <li>The method acts as a regularizer, mitigating overconfidence, encouraging fidelity, and accelerating feature compaction.</li>
+                            <li>Achieved <strong class="text-green-700">6%</strong> increase and up to <strong class="text-green-700">15%</strong> gain on OOD data over standard decoupled distillation across <strong>ViT, MobileNet, ResNet, and VGG.</strong></li>
+                        </ul>
+
+                        <!-- <a href="https://github.com/omertafveez-2001/Decoupled-Gradient-Knowledge-Distilation"
+                            class="text-indigo-600 hover:text-indigo-800 font-medium flex items-center mt-4">
+                            <i data-lucide="github" class="icon w-5 h-5"></i> Code Repository
+                        </a> -->
+                    </div>
+                </div>
+
+                <!-- Experience 1 -->
+                <div class="flex items-start gap-4">
+                    <!-- Text content -->
+                    <div class="flex-1 rounded-lg bg-[#f1f2f3] p-6 shadow-md hover:shadow-lg transition-shadow duration-300">
                         <p class="text-black text-sm">Nov 2024 - Mar 2025</p>
                         <h4 class="text-xl font-bold text-black">Decoupled Gradient Knowledge Distillation</h4>
                         <p class="text-black font-medium">Associated Lab: CITY &lt;at&gt; LUMS</p>
@@ -306,8 +328,8 @@
                             gradient independence.</li>
                             <li>The method acts as a regularizer, mitigating overconfidence, encouraging fidelity, and
                             accelerating feature compaction.</li>
-                            <li>Achieved 6% increase and up to 15% gain on OOD data over standard decoupled distillation
-                            across ViT, MobileNet, ResNet, and VGG.</li>
+                            <li>Achieved <strong class="text-green-700">6%</strong> increase and up to <strong class="text-green-700">15%</strong> gain on OOD data over standard decoupled distillation
+                            across <strong>ViT, MobileNet, ResNet, and VGG.</strong></li>
                         </ul>
 
                         <a href="https://github.com/omertafveez-2001/Decoupled-Gradient-Knowledge-Distilation"
@@ -327,10 +349,10 @@
                         <p class="text-black font-medium">Advisor: Dr. Agha Ali Raza -- Collaborators: Muhammad Khaquan Sheikh, Zohaib Khan</p>
                         <ul class="list-disc list-inside text-black mt-2 space-y-1">
                             <li>Built Dynamic Grouped Query Attention with window-based norm updates, assigning queries to keys by changes in key norms. </li>
-                            <li>Implemented EMA-based key-norm evolution, smoothing rapid changes and reducing noise, leading to a +3% accuracy gain
-                                on ViT-Large across CIFAR-100, TinyImageNet, and Food101.
+                            <li>Implemented EMA-based key-norm evolution, smoothing rapid changes and reducing noise, leading to a <strong class="text-green-700">+3%</strong> accuracy gain
+                                on <strong>ViT-Large</strong> across <strong>CIFAR-100, TinyImageNet, and Food101.</strong>
                             </li>
-                            <li>Further evaluated on GPT-NEOx, GPT-2, and T5.</li>
+                            <li>Further evaluated on <strong>GPT-NEOx, GPT-2, and T5.</strong></li>
                         </ul>
 
                         <div class="flex gap-4 mt-4">
@@ -548,7 +570,7 @@
             </h3>
             <div class="space-y-10">
                 <!-- Experience 1 -->
-                <div class="flex items-start gap-4">
+                <div class="flex items-start gap-4 rounded-lg bg-[#f1f2f3] p-6 shadow-md hover:shadow-lg transition-shadow duration-300">
                     <!-- Logo -->
                     <div class="w-24 h-24 flex-shrink-0  flex items-center justify-center">
                         <img src="./imgs/lipton.png" alt="Lipton Logo" class="w-16 h-16 object-contain">
@@ -560,17 +582,18 @@
                         <h4 class="text-xl font-bold text-black">Data Science Intern</h4>
                         <p class="text-black font-medium">Lipton Teas & Infusion, <em>Karachi, Pakistan</em></p>
                         <ul class="list-disc list-inside text-black mt-2 space-y-1">
-                            <li>Implemented a route scheduling system to replace fixed delivery paths between 7 warehouses and 256 distributors.</li>
-                            <li>Collected and processed travel time data via the Google Distance API, reducing computational time by ~20%.</li>
-                            <li>Performed exploratory data analysis on delivery logs, uncovering ~20% idle time and ~30% underutilized fleet capacity.</li>
-                            <li>Developed a Python-based workflow (Google OR-Tools) to assign deliveries to vehicles constrained to 5 logistical variables.</li>
-                            <li>Reduced average delivery time by ~18% and cut transportation costs by ~22% compared to the fixed-route baseline.</li>
+                            <li>Implemented a route scheduling system to replace fixed delivery paths between <strong>7 warehouses and 256 distributors.</strong></li>
+                            <li>Collected and processed travel time data via the Google Distance API.</li>
+                            <li>Performed exploratory data analysis on delivery logs, uncovering <strong class="text-purple-700">~20% idle time</strong> and <strong class="text-purple-700">~30% underutilized fleet capacity.</strong></li>
+                            <li>Applied <strong>K-Means clustering</strong> to segment distributors by distance, vehicle capacity, and delivery frequency for route grouping.</li>
+                            <li>Trained an <strong>XGBoost regressor</strong> <strong class="text-purple-700">(R² ≈ 0.87)</strong> to predict delivery times within clusters, enabling dynamic daily route scheduling.</li>
+                            <li>Reduced average delivery time by <strong class="text-purple-700">~18%</strong>, cutting transportation costs by <strong class="text-purple-700">~22%</strong> compared to the fixed-route baseline.</li>
                         </ul>
                     </div>
                 </div>
 
                 <!-- Experience 2 -->
-                <div class="flex items-start gap-4">
+                <div class="flex items-start gap-4 rounded-lg bg-[#f1f2f3] p-6 shadow-md hover:shadow-lg transition-shadow duration-300">
                     <!-- Logo -->
                     <div class="w-24 h-24 flex-shrink-0  flex items-center justify-center">
                         <img src="./imgs/toyota.png" alt="Lipton Logo" class="w-16 h-16 object-contain">
@@ -582,16 +605,16 @@
                         <h4 class="text-xl font-bold text-black">Data Science Intern</h4>
                         <p class="text-black font-medium">Toyota, <em>Karachi, Pakistan</em></p>
                         <ul class="list-disc list-inside text-black mt-2 space-y-1">
-                            <li>Achieved 87.3% accuracy using Ridge Regression to model the impact of T-Bills, inflation, and SBP policy rates on prices.</li>
-                            <li>Pinpointed key sales drivers with Decision Trees, helping address the underperformance of 5 key vehicles.</li>
-                            <li>Ensured stationarity of data via EMA and differencing, validated with ACF plots and ADF tests, improving forecast accuracy by 18%.</li>
+                            <li>Achieved <strong class="text-purple-700">87.3%</strong> accuracy using <strong>Ridge Regression</strong> to model the impact of T-Bills, inflation, and SBP policy rates on prices.</li>
+                            <li>Pinpointed key sales drivers with <strong>Decision Trees</strong>, helping address the underperformance of 5 key vehicles.</li>
+                            <li>Ensured stationarity of data via EMA and differencing, validated with ACF plots and ADF tests, improving forecast accuracy by <strong class="text-purple-700">18%</strong>.</li>
                         </ul>
                     </div>
                 </div>
             <h3 class="text-2xl font-semibold text-black mb-6 flex items-center mt-12">
                 Education
             </h3>
-                <div class="flex items-start gap-4">
+                <div class="flex items-start gap-4 rounded-lg bg-[#f1f2f3] p-6 shadow-md hover:shadow-lg transition-shadow duration-300">
                     <!-- Logo -->
                     <div class="w-24 h-24 flex-shrink-0  flex items-center justify-center">
                         <img src="./imgs/michigan.png" alt="Lipton Logo" class="w-24 h-24 object-contain">
@@ -606,7 +629,7 @@
                     </div>
                 </div>
 
-                <div class="flex items-start gap-4 mt-6">
+                <div class="flex items-start gap-4 mt-6 rounded-lg bg-[#f1f2f3] p-6 shadow-md hover:shadow-lg transition-shadow duration-300">
                     <!-- Logo -->
                     <div class="w-24 h-24 flex-shrink-0  flex items-center justify-center">
                         <img src="./imgs/lums-logo.png" alt="Lipton Logo" class="w-24 h-24 object-contain">
@@ -619,20 +642,16 @@
                         <p class="text-black font-medium">Bachelor's in Economics-Mathematics, Computer Science</p>
                         <p class="text-black mt-2">Specialising in Machine Learning and Econometrics</p>
                         <p class="text-black mt-2">Advisor: Dr. Agha Ali Raza, Dr. Muhammad Tahir</p>
-
                     </div>
                 </div>
         </div>
     </section>
 
-    <!-- Contact Section -->
-    <footer id="contact" class="my-16 px-4 pt-10 pb-10 text-center bg-[#f1f2f3]">
-        <h2 class="text-4xl font-bold text-gray-800 mb-8 custom-heading">Get In Touch</h2>
-        <p class="text-lg text-gray-700 mb-8">
+    <!-- Social Media & Contact Links in Hero -->
+    <p class="text-lg text-gray-700 mb-8 text-center">
             I'm always open to new opportunities, collaborations, and interesting discussions. Feel free to reach out
-        </p>
-
-        <div class="flex justify-center items-center space-x-4 mb-8">
+    </p>
+    <div class="flex justify-center items-center space-x-4 mb-8" id="contact">
             <a href="https://www.linkedin.com/in/omer-tafveez-7399761a4/" target="_blank"
                 class="bg-white p-3 rounded-lg shadow-md hover:shadow-lg transform hover:scale-105 transition-all duration-300 text-black">
                 <i data-lucide="linkedin" class="w-6 h-6"></i>
@@ -649,19 +668,11 @@
                 class="bg-white p-3 rounded-lg shadow-md hover:shadow-lg transform hover:scale-105 transition-all duration-300 text-black">
                 <i data-lucide="twitter" class="w-6 h-6"></i>
             </a>
-        </div>
-        <div class="flex justify-center items-center space-x-4 mb-4">
-            <p class="text-gray-400 text-sm">Copyright 2025. Rights Reserved.</p>
-        </div>
-        <div class="flex justify-center items-center space-x-4 pb-4">
-            <p class="text-gray-400 text-sm">Made by Omer Tafveez using HTML5, Tailwind CSS and JavaScript</p>
-        </div>
-    </footer>
-
-    <!-- Empty Footer
+    </div>
+    <!-- Empty Footer -->
     <footer class="py-8">
         <div class="footer-empty"></div>
-    </footer> -->
+    </footer>
 
 
     <!-- Custom JavaScript -->
