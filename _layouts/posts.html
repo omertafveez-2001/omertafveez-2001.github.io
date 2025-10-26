@@ -2,31 +2,67 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>{{ page.title }}</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{ page.title }}</title>
   <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+
+  <!-- Lucide Icons -->
   <script src="https://unpkg.com/lucide@latest"></script>
+
+  <!-- Custom Styles -->
+  <link rel="stylesheet" href="../style.css">
 </head>
 
-<body class="subpixel-antialiased bg-white text-gray-900 leading-relaxed">
-  <!-- Optional navbar -->
-  <nav class="p-6 border-b border-gray-200 flex justify-between items-center">
-    <a href="/" class="font-semibold text-lg text-gray-900 hover:text-indigo-600 transition">Home</a>
-    <a href="/blogs.html" class="text-gray-700 hover:text-indigo-600 transition">All Blogs</a>
+<body class="subpixel-antialiased leading-none tracking-tight relative m-0 p-0 font-['Hanken_Grotesk']">
+
+  <!-- Navigation (you can also move this to _includes/navbar.html and use {% include navbar.html %}) -->
+  <nav class="floating-nav">
+    <a href="/index.html" class="nav-item active">
+      <i data-lucide="user" class="w-6 h-6"></i>
+      <span class="tooltip">Home</span>
+    </a>
+    <a href="/projects.html" class="nav-item">
+      <i data-lucide="folder-open" class="w-6 h-6"></i>
+      <span class="tooltip">Projects</span>
+    </a>
+    <a href="/blogs.html" class="nav-item">
+      <i data-lucide="book-open" class="w-6 h-6"></i>
+      <span class="tooltip">Blogs</span>
+    </a>
   </nav>
 
-  <main class="max-w-3xl mx-auto px-6 py-10">
-    <h1 class="text-3xl font-bold mb-3">{{ page.title }}</h1>
-    <p class="text-sm text-gray-500 mb-8">Published: {{ page.date | date: "%B %d, %Y" }}</p>
+  <div class="scroll-watcher-bar"></div>
 
-    <article class="prose prose-indigo max-w-none">
+  <section id="hero" class="relative text-gray-900 py-2 md:py-8 flex items-center justify-center">
+    <div class="absolute top-6 left-6 z-20">
+      <a href="#" class="flex items-center gap-2">
+        <!-- SVG Logo -->
+        <svg width="100" height="40" viewBox="0 0 100 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="professionalGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" stop-color="#1A202C" />
+              <stop offset="100%" stop-color="#4A5568" />
+            </linearGradient>
+          </defs>
+          <path d="M20 5 L30 5 C35.5228 5 40 9.47715 40 15 V25 C40 30.5228 35.5228 35 30 35 L20 35 C14.4772 35 10 30.5228 10 25 V15 C10 9.47715 14.4772 5 20 5 Z M20 10 L20 30 L30 30 C32.7614 30 35 27.7614 35 25 V15 C35 12.2386 32.7614 10 30 10 L20 10 Z"
+            fill="url(#professionalGradient)" />
+          <rect x="35" y="5" width="30" height="5" rx="1" fill="url(#professionalGradient)" />
+          <rect x="47.5" y="5" width="5" height="30" rx="1" fill="url(#professionalGradient)" />
+        </svg>
+      </a>
+    </div>
+  </section>
+
+  <main class="max-w-4xl mx-auto px-6 py-12 text-gray-800">
+    <h1 class="text-3xl font-semibold mb-6">{{ page.title }}</h1>
+    <article class="prose prose-gray max-w-none">
       {{ content }}
     </article>
   </main>
-
-  <footer class="text-center text-gray-400 text-sm py-10 border-t mt-16">
-    © {{ site.time | date: "%Y" }} Omer Tafveez
-  </footer>
 
   <script>lucide.createIcons();</script>
 </body>
