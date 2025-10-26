@@ -1,5 +1,5 @@
 ---
-layout: post
+layout: _layouts/post
 title: "Bringing Balance Back into Logit Distillation: Decoupled Gradient Knowledge Distillation"
 date: 2025-10-26
 permalink: /blogs/dkd/
