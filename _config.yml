@@ -1,0 +1,10 @@
+title: "Omer's Blog"
+baseurl: ""
+theme: null
+
+# Allow Jekyll to process the /blogs folder
+include:
+  - blogs
+
+# Optional — if you want cleaner permalinks
+permalink: /blogs/:title/

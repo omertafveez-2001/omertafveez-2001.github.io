@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>{{ page.title }}</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+
+<body class="subpixel-antialiased bg-white text-gray-900 leading-relaxed">
+  <!-- Optional navbar -->
+  <nav class="p-6 border-b border-gray-200 flex justify-between items-center">
+    <a href="/" class="font-semibold text-lg text-gray-900 hover:text-indigo-600 transition">Home</a>
+    <a href="/blogs.html" class="text-gray-700 hover:text-indigo-600 transition">All Blogs</a>
+  </nav>
+
+  <main class="max-w-3xl mx-auto px-6 py-10">
+    <h1 class="text-3xl font-bold mb-3">{{ page.title }}</h1>
+    <p class="text-sm text-gray-500 mb-8">Published: {{ page.date | date: "%B %d, %Y" }}</p>
+
+    <article class="prose prose-indigo max-w-none">
+      {{ content }}
+    </article>
+  </main>
+
+  <footer class="text-center text-gray-400 text-sm py-10 border-t mt-16">
+    © {{ site.time | date: "%Y" }} Omer Tafveez
+  </footer>
+
+  <script>lucide.createIcons();</script>
+</body>
+</html>
