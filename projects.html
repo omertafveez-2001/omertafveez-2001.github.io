@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Omer Tafveez - Projects & Research</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Bricolage Grotesque Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <!-- Hanken Grotesk Font (used as primary/inter) -->
+    <link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <!-- Custom CSS Link -->
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body class="subpixel-antialiased leading-none tracking-tight relative m-0 p-0">
+
+    <!-- Floating Navigation Menu -->
+    <nav class="floating-nav">
+        <!-- Replicating links from index.html, pointing back to index.html or new projects.html -->
+        <a href="index.html#about" class="nav-item">
+            <i data-lucide="user" class="w-6 h-6"></i>
+            <span class="tooltip">About</span>
+        </a>
+        <a href="projects.html" class="nav-item active">
+            <i data-lucide="folder-open" class="w-6 h-6"></i>
+            <span class="tooltip">Projects</span>
+        </a>
+        <a href="blogs.html" class="nav-item">
+            <i data-lucide="book-open" class="w-6 h-6"></i>
+            <span class="tooltip">Blogs</span>
+        </a>
+    </nav>
+
+
+    <!-- Main Content Section: Research & Projects -->
+    <main class="min-h-screen">
+        <header class="text-center pt-24 pb-8 bg-gray-50 border-b border-gray-200">
+            <h1 class="text-6xl font-extrabold text-gray-900 custom-heading mb-4">
+                Deep Dives & Projects
+            </h1>
+            <p class="text-xl text-gray-600 max-w-4xl mx-auto px-4">
+                A showcase of my published research, technical reports, and selected machine learning engineering projects.
+            </p>
+        </header>
+
+        <!-- 1. Research & Publications Section (Extracted from index.html) -->
+        <section id="research" class="py-24 md:py-32 bg-gray-50">
+            <div class="container mx-auto px-4">
+                <div class="max-w-5xl mx-auto">
+                    <h3 class="text-3xl md:text-4xl font-extrabold text-gray-900 custom-heading mb-12 text-center card-animate">
+                        Research & Publications
+                    </h3>
+
+                    <!-- Research Entry 3 -->
+                    <div class="research-entry bg-white p-8 mb-6 rounded-xl shadow-lg border border-gray-100 card-animate"
+                        style="animation-delay: 0.3s;">
+                        <h3 class="entry-title">Sparse-Autoencoders Guided FitNets</h3>
+                        <div class="flex flex-wrap gap-x-4 gap-y-2 text-gray-600 text-sm mb-4">
+                            <span class="flex items-center"><i data-lucide="user" class="icon w-4 h-4"></i>Muhammad Khaquan, Omer Tafveez, Dr.Muhammad Tahir</span>
+                            <span class="flex items-center"><i data-lucide="university" class="icon w-4 h-4"></i>Lahore University of Management Sciences</span>
+                        </div>
+                        <p class="text-gray-700 mb-4">
+                            We introduce <span class="font-semibold">Sparse Autoencoder-Guided FitNets (SAE-FitNets)</span>, an enhanced student-teacher framework that integrates sparse autoencoders to refine and inject 
+                            teacher feature representations through <span class="font-semibold">decoder-weighted feature alignment</span>. This method promotes representational sparsity, stabilizes intermediate supervision, and 
+                            enhances transfer fidelity. SAE-FitNets achieve a <span class="font-semibold">+2% improvement in-distribution</span> and a <span class="font-semibold">+11% gain on Out-of-Distribution (OOD)</span> datasets including <span class="font-semibold">Style-Transfer Animals100</span> and <span class="font-semibold">TinyImagenette</span>, 
+                            demonstrating superior generalization and compact feature learning over traditional FitNet baselines.
+                        </p>
+                    </div>
+
+                    <!-- Research Entry 1 -->
+                    <div class="research-entry bg-white p-8 mb-6 rounded-xl shadow-lg border border-gray-100 card-animate"
+                        style="animation-delay: 0.1s;">
+                        <h3 class="entry-title">Decoupled Gradient Knowledge Distillation for OOD Generalization</h3>
+                        <div class="flex flex-wrap gap-x-4 gap-y-2 text-gray-600 text-sm mb-4">
+                            <span class="flex items-center"><i data-lucide="user" class="icon w-4 h-4"></i>Omer Tafveez, Muhammad Khaquan, Advisor: Dr. Muhammad Tahir</span>
+                            <span class="flex items-center"><i data-lucide="university" class="icon w-4 h-4"></i>Lahore University of Management Sciences</span>
+                        </div>
+                        <p class="text-gray-700 mb-4">
+                            We propose Decoupled <span class="font-semibold">Gradient Knowledge Distillation</span>, a novel knowledge distillation technique that enforces functional gradient orthogonality
+                            between target and non-target classes in the student model. This method significantly improves <span class="font-semibold">teacher fidelity, enhances neural collapse between feature representations,
+                            Out-of-Distribution (OOD) generalization, and penalizes overconfident predictions </span>, achieving state-of-the-art results on <span class="font-semibold">TinyImagenette, Animals100, and CIFAR-100</span>.
+                            This approach attained <span class="font-semibold">6%</span> on standard datasets and <span class="font-semibold">15%</span> improvement on OOD datasets over traditional DKD methods.
+                        </p>
+                        <div class="flex flex-wrap gap-4">
+                            <a href="https://github.com/omertafveez-2001/Decoupled-Gradient-Knowledge-Distilation"
+                                class="text-gray-600 font-semibold hover:text-gray-800 transition-colors duration-200 flex items-center gap-1 text-sm">
+                                <i data-lucide="github" class="w-4 h-4"></i> Code Repository
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Research Entry 2 -->
+                    <div class="research-entry bg-white p-8 mb-6 rounded-xl shadow-lg border border-gray-100 card-animate"
+                        style="animation-delay: 0.2s;">
+                        <h3 class="entry-title">Key-Driven Grouped Query Attention</h3>
+                        <div class="flex flex-wrap gap-x-4 gap-y-2 text-gray-600 text-sm mb-4">
+                            <span class="flex items-center"><i data-lucide="user" class="icon w-4 h-4"></i>Zohaib Khan, Omer Tafveez, Muhammad Khaquan, Dr.Muhammad Tahir</span>
+                            <span class="flex items-center"><i data-lucide="university" class="icon w-4 h-4"></i>Lahore University of Management Sciences</span>
+                        </div>
+                        <p class="text-gray-700 mb-4">
+                            We propose <span class="font-semibold">Key-Driven Grouped Query Attention (DGQA)</span>, a dynamic attention mechanism that assigns query groups based on key-norm evolution, 
+                            enabling more efficient and adaptive token-to-token interactions. By incorporating Exponential Moving Average (EMA) smoothing over key-norm changes, 
+                            DGQA mitigates attention noise and stabilizes inter-group communication. This approach yields a <span class="font-semibold">+3%</span> accuracy improvement on <span class="font-semibold">ViT-Large across CIFAR-100, TinyImageNet, and Food101 </span>, 
+                            with additional evaluations on GPT-NeoX, GPT-2, and T5. The training pipeline integrates mixed-precision, cache-line optimization, and gradient checkpointing to enhance scalability and computational efficiency.
+                        </p>
+                        <div class="flex flex-wrap gap-4">
+                            <a href="https://arxiv.org/abs/2408.08454"
+                                class="text-indigo-600 font-semibold hover:text-indigo-800 transition-colors duration-200 flex items-center gap-1 text-sm">
+                                <i data-lucide="file-text" class="w-4 h-4"></i> Read Pre-print
+                            </a>
+                            <a href="https://github.com/omertafveez-2001/key-driven-gqa"
+                                class="text-gray-600 font-semibold hover:text-gray-800 transition-colors duration-200 flex items-center gap-1 text-sm">
+                                <i data-lucide="github" class="w-4 h-4"></i> Code Repository
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 2. Projects Section (Extracted from index.html) -->
+        <section id="projects" class="py-24 md:py-32 bg-white">
+            <div class="container mx-auto px-4">
+                <div class="max-w-6xl mx-auto">
+                    <h3 class="text-3xl md:text-4xl font-extrabold text-gray-900 custom-heading mb-12 text-center card-animate">
+                        Some random projects
+                    </h3>
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-10">
+
+                        <!-- Project Card 1: Agentic Search System -->
+                        <div
+                            class="bg-gray-50 rounded-xl shadow-2xl overflow-hidden transform transition-all duration-300 hover:scale-[1.01] card-animate">
+                            <div class="project-bg h-48 bg-cover bg-center"
+                                style="background-image: url(imgs/project1.jpg)">
+                            </div>
+                            <div class="p-8">
+                                <span
+                                    class="inline-block bg-pink-100 text-pink-700 text-xs font-semibold px-3 py-1 rounded-full mb-3">Data Science</span>
+                                <h3 class="text-2xl font-bold text-gray-900 mb-3 custom-heading">Mobility Pattern Mining: Approximating Urban Development</h3>
+                                <p class="text-gray-700 mb-4">
+                                    Modeled Beijing's urban development using regression and clustering on 500k+ mobility data
+                            points, uncovering actionable city planning insights.
+                                </p>
+                                <div class="flex items-center space-x-4">
+                                    <a href="https://github.com/omertafveez-2001/Mobility-Pattern-Mining-Explaining-Urban-Development" target="_blank"
+                                        class="text-indigo-600 font-semibold hover:text-indigo-800 flex items-center gap-1 text-base">
+                                        <i data-lucide="github" class="w-4 h-4"></i> View Code
+                                    </a>
+                                    <a href="https://medium.com/@omertafveez/mobility-pattern-mining-modelling-spatial-and-temporal-movement-ff1ecdd9ebf9" target="_blank"
+                                        class="text-gray-600 font-semibold hover:text-gray-800 flex items-center gap-1 text-base">
+                                        <i data-lucide="eye" class="w-4 h-4"></i> View Article
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Project Card 2: 4-bit Quantization Library -->
+                        <div class="bg-gray-50 rounded-xl shadow-2xl overflow-hidden transform transition-all duration-300 hover:scale-[1.01] card-animate"
+                            style="animation-delay: 0.1s;">
+                            <div class="project-bg h-48 bg-cover bg-center"
+                                style="background-image: url('imgs/project4.png');">
+                            </div>
+                            <div class="p-8">
+                                <span
+                                    class="inline-block bg-purple-100 text-purple-700 text-xs font-semibold px-3 py-1 rounded-full mb-3">Time-Series</span>
+                                <h3 class="text-2xl font-bold text-gray-900 mb-3 custom-heading">Trustworthy Time-Series Forecasting with Transformer Models</h3>
+                                <p class="text-gray-700 mb-4">
+                                    Evaluated Autoformer on time-series data beyond accuracy by analyzing structural breakpoints.
+                                    While it predicted the correct number of breaks, the intervals were misaligned and
+                                    clustered—indicating instability.
+                                    Used trust scores based on normality, homoscedasticity, and autocorrelation to assess
+                                    statistical reliability.
+                                </p>
+                                <div class="flex items-center space-x-4">
+                                    <a href="https://github.com/omertafveez-2001/Transformers-for-Timeseries-A-Statistical-View" target="_blank"
+                                        class="text-indigo-600 font-semibold hover:text-indigo-800 flex items-center gap-1 text-base">
+                                        <i data-lucide="github" class="w-4 h-4"></i> View Code
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Social Media & Contact Links (Copied from index.html) -->
+    <p class="text-lg text-gray-700 mb-8 text-center">
+        I'm always open to new opportunities, collaborations, and interesting discussions. Feel free to reach out
+    </p>
+    <div class="flex justify-center items-center space-x-4 mb-8" id="contact">
+        <a href="https://www.linkedin.com/in/omer-tafveez-7399761a4/" target="_blank"
+            class="bg-white p-3 rounded-lg shadow-md hover:shadow-lg transform hover:scale-105 transition-all duration-300 text-black">
+            <i data-lucide="linkedin" class="w-6 h-6"></i>
+        </a>
+        <a href="https://github.com/omertafveez-2001" target="_blank"
+            class="bg-white p-3 rounded-lg shadow-md hover:shadow-lg transform hover:scale-105 transition-all duration-300 text-black">
+            <i data-lucide="github" class="w-6 h-6"></i>
+        </a>
+        <a href="mailto:omertaf@umich.edu"
+            class="bg-white p-3 rounded-lg shadow-md hover:shadow-lg transform hover:scale-105 transition-all duration-300 text-black flex items-center gap-2">
+            <i data-lucide="mail" class="w-6 h-6"></i> <span class="hidden sm:inline">omertaf@umich.edu</span>
+        </a>
+        <a href="https://x.com/omertafveez" target="_blank"
+            class="bg-white p-3 rounded-lg shadow-md hover:shadow-lg transform hover:scale-105 transition-all duration-300 text-black">
+            <i data-lucide="twitter" class="w-6 h-6"></i>
+        </a>
+    </div>
+
+    <!-- Empty Footer -->
+    <footer class="py-8">
+        <div class="footer-empty"></div>
+    </footer>
+
+
+    <script>
+        // Initialize Lucide icons
+        lucide.createIcons();
+    </script>
+</body>
+
+</html>

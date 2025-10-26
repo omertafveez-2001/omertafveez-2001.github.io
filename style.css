@@ -1,6 +1,3 @@
-/* Custom CSS for ML Portfolio Page */
-
-/* These CSS properties are used in Research Section */
 .research-entry {
     color: black;
 }
@@ -14,19 +11,18 @@
 
 /* I am using this property to make some headings have Bricolage Grotesque */
 .custom-heading {
-    font-family: 'Hanken Grotesk', 'sans-serif'; /* Use Bricolage Grotesque font */
+    font-family: 'Hanken Grotesk', 'sans-serif';
 }
 
 /* General styles for the body */
 body {
-    font-family: 'Hanken Grotesk', 'sans-serif'; /* Use Hanken Grotesk font */
-    /*background-color: #f8fafc; Light blue-gray background */
-    color: #334155; /* Slate 700 */
+    font-family: 'Hanken Grotesk', 'sans-serif';
+    color: #334155;
     background-color: #fff;
 }
 
 /* These CSS properties are used in the Projects Section */
-.project-bg { /* setting background image for the project section */
+.project-bg {
     background-image: url("./imgs/project-image.jpg");
     background-size: cover;
 }
@@ -40,8 +36,8 @@ body {
 
 /* Aligning text with the bullets for multiline lists */
 li {
-  list-style-position: outside;
-  padding-left: 0.3rem;     /* Reserve space for bullet */
+    list-style-position: outside;
+    padding-left: 0.3rem;
 }
 
 
@@ -55,189 +51,84 @@ html {
     display: inline-block;
     vertical-align: middle;
     margin-right: 8px;
+    stroke-width: 2.2; /* Retaining stroke-width for icons */
 }
 
 .text-icon {
-    font-family: 'Bricolage Grotesque', 'Inter'; /* Ensure text icons use the same font */
-}
-
-/* Sliding Star Background Animation for Hero Section */
-
-/* Keyframes for the sliding star background animation */
-@keyframes slideStars {
-    0% {
-        background-position: 0% 0%;
-    }
-    100% {
-        background-position: 100% 0%; /* Slide from right to left */
-    }
-}
-
-/* Styling for the sliding background element */
-.sliding-stars {
-    position: absolute;
-    inset: 0;
-    z-index: 0;
-    /* Using radial gradients to create subtle star-like dots with blue tones */
-    background: radial-gradient(circle at 10% 20%, rgba(59,130,246,0.1) 1px, transparent 1px), /* blue-500 */
-                radial-gradient(circle at 30% 70%, rgba(96,165,250,0.08) 1.5px, transparent 1.5px), /* blue-400 */
-                radial-gradient(circle at 50% 40%, rgba(37,99,235,0.12) 0.8px, transparent 0.8px), /* blue-600 */
-                radial-gradient(circle at 70% 90%, rgba(147,197,253,0.07) 1.2px, transparent 1.2px), /* blue-300 */
-                radial-gradient(circle at 90% 10%, rgba(29,78,216,0.09) 1px, transparent 1px); /* blue-700 */
-    background-size: 200% 100%; /* Make it wider than container for sliding */
-    animation: slideStars 40s linear infinite; /* Adjust duration for speed */
-    will-change: background-position; /* Optimize for animation performance */
-    font-family: 'Bricolage Grotesque'; /* Ensure font consistency */
-}
-
-/* Dynamic Text Flip Animation for Hero Section */
-
-/* Keyframes for dynamic text flip-in animation */
-@keyframes textFlipIn {
-    0% {
-        transform: translateY(100%) rotateX(-90deg);
-        opacity: 0;
-    }
-    100% {
-        transform: translateY(0) rotateX(0deg);
-        opacity: 1;
-    }
-}
-
-/* Keyframes for dynamic text flip-out animation */
-@keyframes textFlipOut {
-    0% {
-        transform: translateY(0) rotateX(0deg);
-        opacity: 1;
-    }
-    100% {
-        transform: translateY(-100%) rotateX(90deg);
-        opacity: 0;
-    }
-}
-
-
-.dynamic-text-container { /* New class for the wrapper div */
-    height: 3.5rem; /* Adjust based on your text size, e.g., text-3xl is around 2.25rem */
-    overflow: hidden;
-    perspective: 1000px; /* For 3D transform */
-    display: flex; /* Use flexbox to center the text vertically if needed */
-    align-items: center; /* Center vertically */
-    justify-content: center; /* Center horizontally */
-}
-
-.dynamic-text { /* Class for the span/p element itself */
-    display: inline-block;
-    transform-origin: bottom;
-    backface-visibility: hidden; /* Prevent flickering during 3D transform */
-    height: 100%; /* Ensure it fills the container */
-    text-align: center;
-    font-family: 'Bricolage Grotesque';
-}
-
-.dynamic-text.flip-in {
-    animation: textFlipIn 0.7s ease-out forwards; /* Shorter duration for flip */
-}
-.dynamic-text.flip-out {
-    animation: textFlipOut 0.7s ease-in forwards; /* Shorter duration for flip */
-}
-
-
-/* Sliding Interests Bar */
-@keyframes slideInterests {
-    0% {
-        transform: translateX(0%);
-    }
-    100% {
-        transform: translateX(-50%); /* Slide to the left by half its width */
-    }
-}
-
-.sliding-interests-track {
-    white-space: nowrap; /* Keep all items on one line */
-    display: inline-block; /* Allow transform */
-    animation: slideInterests 30s linear infinite; /* Adjust speed as needed */
-    will-change: transform;
-    padding-left: 100%; /* Start items off-screen to the right */
-}
-
-.interest-item {
-    display: inline-flex; /* Use flex for icon and text alignment */
-    align-items: center;
-    margin-right: 2rem; /* Space between items */
-    font-size: 1.125rem; /* text-lg */
-    color: black; /* slate-500 */
-    opacity: 0.8;
-    font-family: 'Bricolage Grotesque', 'Inter'; /* Ensure font consistency */
-}
-
-.interest-item .icon {
-    margin-right: 0.5rem; /* Space between icon and text */
-    color: #3b82f6; /* blue-500 */
+    font-family: 'Bricolage Grotesque', 'Inter';
 }
 
 /* For medium screens and up, use the original height */
 @media (min-width: 768px) {
     .dynamic-text-container {
-        height: 4rem; /* md:h-12 in Tailwind is 3rem, but 4rem works better with text-5xl */
+        height: 4rem;
     }
 }
 
-/* Floating Navigation Menu */
+/* Replicating the Floating Navigation Menu styles from index.html */
 .floating-nav {
     position: fixed;
-    bottom: 2rem; /* Distance from bottom */
-    left: 50%; /* Center horizontally */
-    transform: translateX(-50%); /* Adjust for centering */
-    z-index: 100; /* Ensure it's above other content */
-    background-color: rgba(255, 255, 255, 0.9); /* Semi-transparent white */
-    backdrop-filter: blur(8px); /* Frosted glass effect */
-    padding: 0.75rem 1.5rem; /* Vertical and horizontal padding */
-    border-radius: 9999px; /* Fully rounded capsule shape */
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15); /* Soft shadow */
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 50;
     display: flex;
-    gap: 1.5rem; /* Space between icons */
+    padding: 10px;
+    border-radius: 9999px; /* Pill shape */
+    background-color: rgba(255, 255, 255, 0.9);
+    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.nav-item {
+    display: flex;
     align-items: center;
     justify-content: center;
-    border: 1px solid rgba(226, 232, 240, 0.5); /* Light border */
+    width: 44px;
+    height: 44px;
+    margin: 0 4px;
+    border-radius: 50%;
+    color: #4b5563; /* Gray-600 */
+    transition: all 0.2s;
+    position: relative;
 }
 
-.floating-nav .nav-item {
-    display: flex;
-    flex-direction: column; /* Stack icon and tooltip vertically */
-    align-items: center;
-    color: #475569; /* Slate 600 */
-    text-decoration: none;
-    transition: all 0.2s ease-in-out;
-    position: relative; /* For tooltip positioning */
+.nav-item:hover {
+    background-color: #e5e7eb; /* Gray-100 */
+    color: #1f2937; /* Gray-900 */
 }
 
-.floating-nav .nav-item:hover {
-    color: #2563eb; /* Blue 600 */
-    transform: translateY(-2px); /* Slight lift on hover */
-}
-
-.floating-nav .nav-item i {
-    margin-bottom: 0.25rem; /* Space between icon and tooltip */
-}
-
-.floating-nav .nav-item .tooltip {
-    position: absolute;
-    bottom: 120%; /* Position above the icon */
-    background-color: #334155; /* Dark background for tooltip */
+/* Active state for Blogs */
+.nav-item.active {
+    background-color: #4f46e5; /* Indigo-600 */
     color: white;
-    padding: 0.25rem 0.5rem;
-    border-radius: 0.25rem;
-    font-size: 0.75rem; /* text-xs */
-    white-space: nowrap; /* Prevent text wrap */
-    opacity: 0;
-    visibility: hidden;
-    transition: opacity 0.2s ease-in-out, visibility 0.2s ease-in-out;
+    box-shadow: 0 4px 6px rgba(79, 70, 229, 0.3);
 }
 
-.floating-nav .nav-item:hover .tooltip {
+.tooltip {
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #1f2937;
+    color: white;
+    padding: 4px 8px;
+    border-radius: 6px;
+    font-size: 12px;
+    white-space: nowrap;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s;
+}
+
+.nav-item:hover .tooltip {
     opacity: 1;
-    visibility: visible;
+}
+
+/* Ensure icon visibility */
+.icon {
+    stroke-width: 2.2;
 }
 
 /* Adjust for smaller screens if items get too crowded */
@@ -248,7 +139,7 @@ html {
         bottom: 1rem;
     }
     .floating-nav .nav-item i {
-        width: 1.25rem; /* Smaller icons on small screens */
+        width: 1.25rem;
         height: 1.25rem;
     }
     .floating-nav .nav-item .tooltip {
@@ -257,98 +148,37 @@ html {
     }
 }
 
-/* Zoom-in animation for Projects */
-@keyframes scaleIn {
-  from {
-    transform: scale(0.9);
-    opacity: 0;
-  }
-  to {
-    transform: scale(1);
-    opacity: 1;
-  }
-}
-.card-animate {
-  animation: scaleIn 0.4s ease-out both;
-  animation-timeline: view();
-  animation-range: entry 25% cover 35%;
-}
-
 /* removing scrollbars/hiding them*/
 .scrollbar-hide::-webkit-scrollbar {
-  display: none;
+    display: none;
 }
 .scrollbar-hide {
-  -ms-overflow-style: none; /* IE and Edge */
-  scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none;
+    scrollbar-width: none;
 }
-
-
-/* Slide in from left for About, Skills section */
-.slide-in-left-about, .slide-in-left-about-p, 
-.slide-left-skills{
-  opacity: 0;
-  transform: translateX(-30px);
-  animation: slideInLeft 0.6s ease-out forwards;
-  animation-timeline: view();
-  animation-range: entry 5% cover 17%;
-}
-.slide-left-skills {
-    animation-timeline: view();
-    animation-range: entry 30% cover 50%;
-}
-.slide-in-left-about-p{
-  animation-delay: 0.2s; /* Delay for paragraph to create staggered effect */
-}
-@keyframes slideInLeft {
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
-}
-
-.skill-flipin {
-    animation: textFlipIn ease-out 0.05s forwards;
-    animation-timeline: view();
-    animation-range: entry 0% cover 50%;
-}
-
 
 /* like a loadbar on the top of the page */
 @keyframes scroll-watcher-bar {
-  0% {
-    transform: scaleX(0);
-  }
-  100% {
-    transform: scaleX(1);
-  }
+    0% {
+        transform: scaleX(0);
+    }
+    100% {
+        transform: scaleX(1);
+    }
 }
 .scroll-watcher-bar {
-  height: 10px;
-  position: fixed;
-  top: 0;
-  z-index: 1000;
-  background: linear-gradient(to right, lightsteelblue, lightgray);
-  width: 100%;
-  transform-origin: left;
-  transform: scaleX(0); /* initial state */
+    height: 10px;
+    position: fixed;
+    top: 0;
+    z-index: 1000;
+    background: linear-gradient(to right, lightsteelblue, lightgray);
+    width: 100%;
+    transform-origin: left;
+    transform: scaleX(0); /* initial state */
 
-  animation: scroll-watcher-bar linear;
-  animation-timeline: scroll(); /* experimental */
-  animation-duration: auto;
-  
-  border-radius: 5px;
-}
-
-
-/* Fading of about me page picture*/
-.fade-me {
-    animation: fade-in linear;
-    animation-range: entry 0% cover 17%;
+    animation: scroll-watcher-bar linear;
     animation-timeline: scroll();
-}
+    animation-duration: auto;
 
-@keyframes fade-in {
-    from {transform: scale(0.8); opacity: 0;}
-    to {transform: scale(1); opacity: 1;}
+    border-radius: 5px;
 }
