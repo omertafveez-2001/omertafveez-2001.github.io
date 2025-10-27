@@ -2,7 +2,7 @@
 layout: post
 title: "Bringing Balance Back into Logit Distillation: Decoupled Gradient Knowledge Distillation"
 date: 2025-10-26
-permalink: /blogs/dkd/
+permalink: /blogs/decoupled_gradient_kd/
 ---
 
 In recent times, knowledge distillation has become a go-to technique for transferring the “wisdom” of a large, well-trained teacher model into a smaller, more efficient student model. The question we ask: how best to transfer not just “what” the teacher predicts but also “how” it reasons?  
@@ -60,7 +60,7 @@ We built our codebase around the repository at github.com/omertafveez-2001/Decou
 | ImageNet — Self-Distillation ResNet50   | **48.09%**            | 48.06%       |
 | ImageNet — Self-Distillation ResNet18   | **48.29%**            | 46.40%       |
 
-✅ Bold entries indicate the student outperforming the original DKD baseline
+✅ Bold entries indicate the student outperforming the original DKD baseline <br>
 📌 DGKD improves on 10 out of 14 evaluated distillation settings
 
 From the table above, we infered that our variant was not successful in ourperforming Decoupled KD in mobile networks or smaller CNN models such as ShuffleNetV2 and MobileNet, however it was still consistent across 10/14 experiments.
@@ -74,3 +74,19 @@ From our experiments we noted:
 - **Teacher vs student mismatch penalty**: If the student predicts correctly but the teacher was less confident (or wrong) the coupling term spikes the loss. That means we’re enforcing fidelity to teacher’s distribution even when accuracy is achieved.
 
 - **Representation compactness**: We saw that intra‐class features became more tightly clustered in embedding space compared to baseline KD methods, implying better generalization and faster convergence.
+
+#### Logits Comparison between Teacher & DKD vs Teacher & Decoupled Gradient KD
+![Gradient Flow Diagram](./imgs/logits_graphs.jpeg)
+
+We computed the Mean Squared Distance between teacher and the variants. The metrics are as follows:
+- Teacher and DKD: 43.884
+- Teacher and DGKD: 34.666
+
+So our logits were significantly closer. 
+
+### Future Work
+- Disect the loss function and complete its derivation to further develop the understanding of the model's architectural differences (benefits and disadvantages). In doing so, it is highly important to understand the role of Non Target Class and Target Class Logits in this space.
+
+- Continue the experimentation across more complex datasets in image classification: Animal10, and OOD Generalization (Scrambled, Noisy)
+
+- Continue the experimentations across object detection datasets: MS COCO
