@@ -45,13 +45,7 @@ where the first KL term is the similarity between the binary probabilities betwe
 
 ### <span style="color:green;">Updated</span> Loss Function
 $$
-\text{KD} = \text{KL}(b^{\tau} || b^{s}) 
-+ (1 - p_{t}^{\tau})\, \text{KL}(\hat{p}^{\tau} || \hat{p}^{s}) 
-+ \alpha \, \frac{1}{n} \sum_{i=1}^{n} 
-\left\|
-\nabla_{z_i^{s_{tc}}} \ell_t - 
-\nabla_{z_i^{s_{ntc}}} \ell_s
-\right\|_2^2
+\text{KD} = \text{KL}(b^{\tau} || b^{s}) + (1 - p_{t}^{\tau})\, \text{KL}(\hat{p}^{\tau} || \hat{p}^{s}) + \alpha \, \frac{1}{n} \sum_{i=1}^{n} \left\| \nabla_{z_i^{s_{tc}}} \ell_t - \nabla_{z_i^{s_{ntc}}} \ell_s \right\|_2^2
 $$
 
 - $$\nabla_{z_i^{s}} \ell_t$$ is the student loss with respect to target class logits
