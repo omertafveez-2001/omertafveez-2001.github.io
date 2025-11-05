@@ -54,8 +54,8 @@ $$
 \right\|_2^2
 $$
 
-- $\nabla_{z_i^{s}} \ell_t$ is the student loss with respect to target class logits
-- $\nabla_{z_i^{s_{ntc}}} \ell_s$ is the student loss with respect to non target class logits.
+- $$\nabla_{z_i^{s}} \ell_t$$ is the student loss with respect to target class logits
+- $$\nabla_{z_i^{s_{ntc}}} \ell_s$$ is the student loss with respect to non target class logits.
 
 ### Why might this work?
 - By maximising the gradient‐MSE, we force TCKD and NCKD to provide distinct training signals rather than redundant ones. This drives the student to learn complementary features: one focusing on sharpening target‐class confidence, the other on modeling the non‐target distribution structure.
