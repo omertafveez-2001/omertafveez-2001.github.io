@@ -53,7 +53,6 @@ $$
 \nabla_{z_i^{s_{ntc}}} \ell_s
 \right\|_2^2
 $$
-<br>
 
 - $\nabla_{z_i^{s}} \ell_t$ is the student loss with respect to target class logits
 - $\nabla_{z_i^{s_{ntc}}} \ell_s$ is the student loss with respect to non target class logits.
