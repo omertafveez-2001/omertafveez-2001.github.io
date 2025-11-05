@@ -40,12 +40,23 @@ We built our codebase around the repository at github.com/omertafveez-2001/Decou
 $$
 \text{KD} = \text{KL}(b^{\tau} || b^{s}) + (1-p_{t}^{\tau})\text{KL}(\hat{p}^{\tau} || \hat{p}^{s})
 $$
+<br> 
 where the first KL term is the similarity between the binary probabilities between teacher and student. This is called *Target Class Knowledge Distillation*. Meanwhile, the second KL term represents the similarity between the teacher's and student's probabilities among non-target class which is *Non-Target Class Knowledge Distillation*
 
 ### <span style="color:green;">Updated</span> Loss Function
 $$
-\text{KD} = \text{KL}(b^{\tau} || b^{s}) + (1-p_{t}^{\tau})\text{KL}(\hat{p}^{\tau} || \hat{p}^{s}) + \alpha * \text{MSE}(\text{grad}(\text{target class logits}) || \text{grad}(\text{non target class logits}))
+\text{KD} = \text{KL}(b^{\tau} || b^{s}) 
++ (1 - p_{t}^{\tau})\, \text{KL}(\hat{p}^{\tau} || \hat{p}^{s}) 
++ \alpha \, \frac{1}{n} \sum_{i=1}^{n} 
+\left\|
+\nabla_{z_i^{s_{tc}}} \ell_t - 
+\nabla_{z_i^{s_{ntc}}} \ell_s
+\right\|_2^2
 $$
+<br>
+
+- $\nabla_{z_i^{s}} \ell_t$ is the student loss with respect to target class logits
+- $\nabla_{z_i^{s_{ntc}}} \ell_s$ is the student loss with respect to non target class logits.
 
 ### Why might this work?
 - By maximising the gradient‐MSE, we force TCKD and NCKD to provide distinct training signals rather than redundant ones. This drives the student to learn complementary features: one focusing on sharpening target‐class confidence, the other on modeling the non‐target distribution structure.
@@ -64,11 +75,11 @@ In their paper, they examine the behaviour of deep networks trained with the MSE
 - They note that MSE tends to produce faster neural collapse compared to CE. 
 
 Here are the intuitive reasons why MSE or scaled MSE may offer advantages:
-- *Smooth gradient structure*: MSE uses squared-error between the logit output and the target vector. This produces continuous, smooth gradients for all output dimensions. In contrast BCE/CS emphasises the targt class heavily, and rapdidly drives the student to push the target probability near one and the others zero. The gradient contributions from non-target classes diminish fast. <br>
+- <u>*Smooth gradient structure*</u>: MSE uses squared-error between the logit output and the target vector. This produces continuous, smooth gradients for all output dimensions. In contrast BCE/CS emphasises the targt class heavily, and rapdidly drives the student to push the target probability near one and the others zero. The gradient contributions from non-target classes diminish fast. <br>
 As seen in our experiments, when we want non-target information to still matter, MSE's smoother gradient contributions help maintain signals from the non-target logits.
-- *Encourgement of feature collapse and clas-structure*: The NC theory shows that MSE pushes features to collapse in a very clean geometric structure (simplex ETF). Because the loss equally penalises all coordinates of the output, the network is encouraged to treat all classes (target + non-target) in a balanced way. This leads to tighter clusters and maximal separation. <br>
+- <u>*Encourgement of feature collapse and class-structure*</u>: The NC theory shows that MSE pushes features to collapse in a very clean geometric structure (simplex ETF). Because the loss equally penalises all coordinates of the output, the network is encouraged to treat all classes (target + non-target) in a balanced way. This leads to tighter clusters and maximal separation. <br>
 In our work we observed more compact intra-class clusters and faster neural collapse — this is unsurprising since we introduced a loss coupling (maximising gradient‐MSE) that encourages diversified gradients between the target‐ and non‐target branches. The foundation of that effect is arguably supported by the MSE landscape results.
-- *Rescaling improves landscape and generalisation*: Zhou et al. find that a rescaled MSE — e.g., multiplying the loss by a constant or adjusting the target vector scaling — improves convergence behaviour. This is because the magnitude of gradients and the curvature of the loss surface can be better controlled, reducing plateaus and sharp minima. <br>
+- <u>*Rescaling improves landscape and generalisation*</u>: Zhou et al. find that a rescaled MSE — e.g., multiplying the loss by a constant or adjusting the target vector scaling — improves convergence behaviour. This is because the magnitude of gradients and the curvature of the loss surface can be better controlled, reducing plateaus and sharp minima. <br>
 In our adaptation, by explicitly applying an MSE term between gradients (and effectively scaling it by a coupling coefficient ε) we are leveraging this notion of controlled magnitude and structured gradients. The fact our model performs well by maximising the gradient MSE aligns with the idea that certain directions in the gradient space should be emphasised (diverged) to aid representation learning.
 
 ### ✅ How this supports our methodological choice
