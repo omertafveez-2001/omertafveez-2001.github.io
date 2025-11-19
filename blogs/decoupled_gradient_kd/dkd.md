@@ -4,7 +4,7 @@ title: "Bringing Balance Back into Logit Distillation: Decoupled Gradient Knowle
 date: 2025-10-26
 permalink: /blogs/decoupled_gradient_kd/
 ---
-
+![gradients](./imgs/gradient.png)
 In recent times, knowledge distillation has become a go-to technique for transferring the “wisdom” of a large, well-trained teacher model into a smaller, more efficient student model. The question we ask: how best to transfer not just “what” the teacher predicts but also “how” it reasons?  
 
 In this blog post we present our work on **Decoupled Gradient Knowledge Distillation (DGKD)** — an implementation inspired by the paper [Decoupled Knowledge Distillation (Zhao et al., 2022)](https://arxiv.org/abs/2203.08679) — and share both the intuition, our modifications, and takeaways.

@@ -53,6 +53,31 @@ Because LLMs are, by nature, static pattern engines, researchers sought to force
 This led to a family of methods that can be organized thematically<br>
 In the sections that follow, we will track this evolution thematically—from explicit reasoning traces to self-aware deliberation frameworks—analyzing not only what worked but why each innovation succeeded or failed, and what it reveals about the illusion (or emergence) of machine thought.
 
+## **Explicit Intermediate Reasoning**
+> Reasoning abilities are not emergent accidents; they are trained statistical habits of expressing thought.
+
+### Show your work: Scratchpads (2021, Google Research - Brain Team)
+Before "Chain-of-Thought" existed, *Show your Work (Nye et al., 2021) tackled a simple question: 
+> Can Transformers perform multi-step computation if we explicitly make them write intermediate steps?
+The answer arrived through **Scratchpads**: texual traces inserted between input and output. Instead of forcing a single forward pass, the model learned to externalize its computation in human readable form. <br> <br>
+**Method** <br>
+- Each training example contained the **intermediate algorithmic trace** of a Python program. 
+- The model predicted not only the final answer but also the full execution trace: 
+  - The order of source lines executed
+  - The state of local variables after each line. 
+This process was called a *trace exact match* evaluation: semantic comparision of predicted and ground-truth traces + sequence alignment of executed lines.<br>
+**Findings** <br>
+Scratchpads improved performance on synthetic tasks but failed on MBPP (Mini Python Benchmark Programs). Why? <br>
+- MBPP was too small (~ 400 trainin examples)
+- Transformers are pattern matchers -- without ample scratchpad-style examples, they fail to generalize to the format (**RECALL IN CONTEXT LEARNING HERE**) <br>
+To fix this, the authors built **MBPP-Aug** via data augmentation:
+- A 137 B-parameter model generated ≈ 80 candidate programs per task at T = 0.5.
+- Each program was executed on original inputs to filter failures.
+- Execution traces were recorded for successful programs. <br>
+
+**Result**: Scratchpads scaled successfully with dataset size — a clear hint that reasoning is a data-driven phenomenon.
+
+
 
 
 
