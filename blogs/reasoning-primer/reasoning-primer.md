@@ -87,7 +87,7 @@ Why?
 - This invites a test: could Scratchpads be implemented on non-Transformer architectures (RNNs with external memory, diffusion models over traces)?
 
 ### Chain-of-Thought Prompting (2022, Google Research -- Brain Team)
-![cot](./imgs/cot.png){height="200px"}
+<img src="./imgs/cot.png" alt="cot" height="300" style="display: block; margin: 0 auto">
 LLMs can "reason" if we make them explain their answers. **Chain-of-Thought (CoT)** prompting introduces a natural-language "reasoning-chain" between question and answer. <br>
 Few-shot CoT requires only a handful of exemplars like:
 
