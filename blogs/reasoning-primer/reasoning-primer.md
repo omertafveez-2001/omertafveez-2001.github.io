@@ -88,9 +88,7 @@ Why?
 
 ### Chain-of-Thought Prompting (2022, Google Research -- Brain Team)
 ### Chain-of-Thought Prompting (2022, Google Research -- Brain Team)
-<div class="cot-image">
-  <img src="./imgs/cot.png" alt="cot">
-</div>
+<img src="./imgs/cot.png" width="400">
 LLMs can "reason" if we make them explain their answers. **Chain-of-Thought (CoT)** prompting introduces a natural-language "reasoning-chain" between question and answer. <br>
 Few-shot CoT requires only a handful of exemplars like:
 
