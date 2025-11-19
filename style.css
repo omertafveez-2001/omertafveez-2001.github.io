@@ -182,3 +182,9 @@ html {
 
     border-radius: 5px;
 }
+
+.cot-image img {
+  height: 50px;
+  display: block;
+  margin: 0 auto;
+}
