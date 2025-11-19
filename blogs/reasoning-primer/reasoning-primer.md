@@ -57,6 +57,7 @@ In the sections that follow, we will track this evolution thematically—from ex
 > Reasoning abilities are not emergent accidents; they are trained statistical habits of expressing thought.
 
 ### Show your work: Scratchpads (2021, Google Research - Brain Team)
+![scratchpad](./imgs/scratchpads.png)
 Before "Chain-of-Thought" existed, *Show your Work (Nye et al., 2021) tackled a simple question: 
 > Can Transformers perform multi-step computation if we explicitly make them write intermediate steps?
 
@@ -76,9 +77,36 @@ To fix this, the authors built **MBPP-Aug** via data augmentation:
 - Each program was executed on original inputs to filter failures.
 - Execution traces were recorded for successful programs. <br>
 
-**Result**: Scratchpads scaled successfully with dataset size — a clear hint that reasoning is a data-driven phenomenon.
+**Result**: Scratchpads scaled successfully with dataset size — a clear hint that reasoning is a data-driven phenomenon. 
 
+My take on this paper:
+> Reasoning abilities are a result of large datasets having scratchpad-like examples, not just the emergent abilities of Transformer. 
 
+Why?
+- Smaller datasets limit the model's ability to infer the format of multi-step reasoning. 
+- This invites a test: could Scratchpads be implemented on non-Transformer architectures (RNNs with external memory, diffusion models over traces)?
+
+### Chain-of-Thought Prompting (2022, Google Research -- Brain Team)
+![cot](./imgs/cot.png)
+LLMs can "reason" if we make them explain their answers. **Chain-of-Thought (CoT)** prompting introduces a natural-language "reasoning-chain" between question and answer. <br>
+Few-shot CoT requires only a handful of exemplars like:
+
+``` vbnet
+Q: If there are 3 cars and each has 4 wheels, how many wheels?
+A: Each car has 4 wheels -> 3x4 = 12 -> 12. 
+```
+This seemingly simple pattern doubles performance on multi-step benchmarks. 
+
+**Experiments & Datasets**
+Models: GPT-3, LaMBDA, PaLM, UL2 20B, Codex <br>
+Datasets: GSM8K, SVAMP, ASDiv, AQuA, MAWPS <br>
+Authors hand-crafted 8 few-shot CoT exemplars covering arithematic and commonsense reasoning. <br> <br>
+
+**Key Findings**
+- CoT improves performance **only for large models (> 100B)**
+- Smaller models produce illogical chains that hurt accuracy relative to standard prompting
+- Gains are largest on multi-step tasks (GSM8K, StrategyQA); negligible on simple arithematic (SingleOp MAWPS) <br> <br>
+Manual inspection showed that some correct answers arose from **incorrect reasoning** (*lucky conincidence* right?*). So maybe LLMs weren't yet "reasoners" -- they imitated the surface pattern of reasoning. 
 
 
 
