@@ -10,7 +10,7 @@ permalink: /blogs/reasoning-primer/
 </p>
 This is what I thought initiailly, when I started to work on Language Models. But there is much to it. In the past 5 years, we have seen plenty of work in AI Safety, and Reasoning. So one could really ask, <i>"What exactly is Reasoning"?</i> or <i>"What is AI Safety in LLMs"?</i> <br> <br>
 
-> "**Reasoning** in LLMs refers to the model's ability to perform structured, step-wise, logically coherent inference that goes beyond surface-level pattern matching, allowing the model to solve problems via multi-step computation, planning, abstraction, and generalization" ~ <i>GPT-5 Instant Response</i> <br> <br>
+> **Reasoning** in LLMs refers to the model's ability to perform structured, step-wise, logically coherent inference that goes beyond surface-level pattern matching, allowing the model to solve problems via multi-step computation, planning, abstraction, and generalization ~ <i>GPT-5 Instant Response</i> <br> <br>
 
 Well there is a reason why, I deliberately attach a GPT response, because maybe MAYBE... GPT-5 does not <i>reason<i> that well. And that is because this definition sounds *true* but is definitely not academically *true*. Let us also think step-by-step. <br> <br>
 
@@ -34,6 +34,24 @@ def add(a, b, target):
   return True
 ```
 It probably will pass more than 50% of the test cases. This is reward hacking. 
+
+### **System 1 vs System 2: Association vs Deliberation**
+Borrowing from cognitive science, LLM behaviour mirrors System 1 thinking -- fast, associative, pattern based (recalling factual knowledge). <br>
+True multi-step reasoning, analogous to System 2 deliberation, demands:
+1. Representation of intermediate states (a mental scratchpad)
+2. Logical dependency tracking
+3. Dynamic allocation of computation proportional to task difficulty. 
+Early Transformer models lacked these properties because their computation depth is fixed: every problem receives the same number of forward passes regardless of complexity. Thus, “thinking longer” was architecturally impossible.
+
+### **The role of In-context Learning**
+The discovery of in-context learning (ICL) revealed that sufficiently large models can learn new tasks purely from prompts—no parameter updates needed. However, ICL only becomes robust beyond certain scale thresholds (tens of billions of parameters) <br>
+Smaller models can mimic patterns but fail to generalize relational structure across tasks. This observation seeded a core hypothesis repeated throughout reasoning research:
+> Reasoning abilities emerge when model scale × data diversity × prompt structure exceed a critical threshold. <br><br>
+
+Because LLMs are, by nature, static pattern engines, researchers sought to force structure into their thought process: to make the model externalize intermediate reasoning, reuse prior logic, and self-correct when diverging.<br><br>
+
+This led to a family of methods that can be organized thematically
+
 
 
 
