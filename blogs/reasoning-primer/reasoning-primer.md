@@ -59,6 +59,7 @@ In the sections that follow, we will track this evolution thematically—from ex
 ### Show your work: Scratchpads (2021, Google Research - Brain Team)
 Before "Chain-of-Thought" existed, *Show your Work (Nye et al., 2021) tackled a simple question: 
 > Can Transformers perform multi-step computation if we explicitly make them write intermediate steps?
+
 The answer arrived through **Scratchpads**: texual traces inserted between input and output. Instead of forcing a single forward pass, the model learned to externalize its computation in human readable form. <br> <br>
 **Method** <br>
 - Each training example contained the **intermediate algorithmic trace** of a Python program. 
