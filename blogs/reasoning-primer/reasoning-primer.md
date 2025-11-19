@@ -4,7 +4,7 @@ title: "Reasoning: Primer on Reasoning Prompts in Large Language Models"
 date: 2025-10-26
 permalink: /blogs/reasoning-primer/
 ---
-
+[!Reasoning-image](./imgs/reasoning_title.jpg)
 <p style="text-align: center;">
   "Large Language Models are pattern matchers and stochastic machines."
 </p>
@@ -50,7 +50,10 @@ Smaller models can mimic patterns but fail to generalize relational structure ac
 
 Because LLMs are, by nature, static pattern engines, researchers sought to force structure into their thought process: to make the model externalize intermediate reasoning, reuse prior logic, and self-correct when diverging.<br><br>
 
-This led to a family of methods that can be organized thematically
+This led to a family of methods that can be organized thematically<br>
+In the sections that follow, we will track this evolution thematically—from explicit reasoning traces to self-aware deliberation frameworks—analyzing not only what worked but why each innovation succeeded or failed, and what it reveals about the illusion (or emergence) of machine thought.
+
+
 
 
 
