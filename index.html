@@ -19,7 +19,6 @@
 </head>
 
 <body class="subpixel-antialiased leading-none tracking-tight relative m-0 p-0">
-    <!-- Header and Navigation -->
     <!-- Floating Navigation Menu -->
     <nav class="floating-nav">
         <a href="index.html" class="nav-item active">
@@ -36,337 +35,305 @@
         </a>
     </nav>
 
-    <!-- About Me Section -->
-    <section id="about" class="w-full my-16 p-5 relative">
-        <!-- <h2 class="text-4xl font-extrabold text-black-800 mb-2 text-center">About Me</h2> -->
-        <div class="flex flex-col md:flex-row items-center md:space-x-8">
-            <div class="md:w-1/3 mb-8 md:mb-0 flex justify-center">
-                <img src="./imgs/profile_pic.jpeg" alt="About Me"
-                class="w-80 h-80 rounded-full object-cover">
+    <div class="scroll-watcher-bar"></div>
+
+    <main class="pb-16">
+        <!-- Hero -->
+        <section class="page-shell pt-16 md:pt-20">
+            <div class="grid md:grid-cols-[1.15fr,0.9fr] gap-10 items-center">
+                <div class="space-y-5">
+                    <div>
+                        <div class="gradient-bar mb-4"></div>
+                        <h1 class="text-4xl md:text-5xl font-black text-gray-900 custom-heading leading-tight">
+                            Omer Tafveez
+                        </h1>
+                    </div>
+                    <p class="text-lg md:text-xl text-gray-700 leading-relaxed max-w-2xl">
+                        Masters student at the <span class="font-semibold text-gray-900">University of Michigan</span> focusing on
+                        Reasoning, AI Safety, and Model Interpretability in Large Language Models. Previously, in my undergraduate,
+                        I worked on efficient Grouped Query Attention, Decoupled Gradient Knowledge Distillation, and Steering Weights in
+                        Vision Models (FitNets).
+                    </p>
+                    <div class="flex flex-wrap gap-3">
+                        <a href="resume.html" target="_blank" class="accent-btn">
+                            <i data-lucide="file-text"></i> Resume
+                        </a>
+                        <a href="academic-cv.html" target="_blank" class="ghost-btn">
+                            <i data-lucide="file-text"></i> Academic CV
+                        </a>
+                        <a href="https://scholar.google.com/citations?user=c-uRNsUAAAAJ&hl=en" target="_blank"
+                            class="ghost-btn">
+                            <img alt="Google Scholar" src="https://www.shaon.dev/logos/google-scholar.svg" class="w-5 h-5 object-contain"> Scholar
+                        </a>
+                        <a href="mailto:omertaf@umich.edu" class="ghost-btn">
+                            <i data-lucide="mail"></i> omertaf@umich.edu
+                        </a>
+                    </div>
+                </div>
+
+                <div class="flex flex-col items-center md:items-start gap-4">
+                    <img src="./imgs/profile_pic.jpeg" alt="About Me"
+                        class="w-72 h-72 rounded-2xl object-cover border border-gray-200 shadow-md">
+                    <div class="text-center md:text-left">
+                        <p class="text-sm uppercase tracking-wide text-gray-500 font-semibold">Currently</p>
+                        <p class="text-xl font-semibold text-gray-900">M.S. Information Science</p>
+                        <p class="text-gray-600">University of Michigan · Ann Arbor</p>
+                    </div>
+                </div>
             </div>
-            <div class="md:w-2/3 text-lg leading-relaxed text-gray-700">
-                <h2 class="text-4xl font-bold text-gray-800 mb-4 custom-heading">Omer Tafveez</h2>
-                <p class="mb-4">
-                    Hi, I am Omer Tafveez. I am currently pursuing my Masters in Information Science at the <u class="font-semibold">University of Michigan-Ann Arbor</u>,
-                    where I am focusing on <span class="font-semibold">AI research</span>. I completed my Bachelors in Economics-Mathematics and Computer Science from
-                    <u class="font-semibold">Lahore University of Management Sciences</u>, specialising in <span class="font-semibold">Machine Learning</span>. <br>
-                    I have a research experience in <span class="font-semibold text-blue-700">Model Compression, Algorithmic Optimization in ML, and Mechanistic Interpretability </span>. For my senior thesis, I investigated methods to improve <span class="font-semibold text-red-700">Grouped Query Attention </span> using key-norm information and proposed a <span class="font-semibold text-green-700">Decoupled Gradient Knowledge Distillation</span> approach that enhances the transfer of dark knowledge via gradient signals from target and non-target logits. <br>
-                    During my undergrad, I also got to work as a <span class="font-semibold text-purple-700">Data Science Intern at Lipton, and Toyota where I worked on deploying route-scheduling engine for sales and time-series forecasting respectively.</span> <br>
-                    <em>Currently, I am interested at the intersection of <span class="font-semibold text-yellow-700">AI Safety, Reasoning, and Interpretability</span>.</em>
-                </p>
+        </section>
+
+        <!-- Research Interests -->
+        <section id="research" class="page-shell py-12 md:py-16">
+            <div class="flex items-start md:items-center justify-between mb-8">
+                <div>
+                    <p class="text-sm font-semibold text-gray-500 uppercase tracking-wide">Research Pillars</p>
+                    <h2 class="text-3xl md:text-4xl font-extrabold text-gray-900 custom-heading section-title">What I explore</h2>
+                    <p class="text-gray-600 max-w-3xl mt-3 section-subtitle">
+                        Method-first research that balances theory and deployment: making models smaller, more transparent, and safer to use in the wild.
+                    </p>
+                </div>
+                <a href="projects.html" class="hidden md:inline-flex ghost-btn">View projects</a>
             </div>
-        </div>
-
-        <!-- Social Media & Contact Links in Hero -->
-        <div class="flex justify-center items-center space-x-4 mb-8 mt-10">
-            <a href="resume.html"
-                target="_blank"
-                class="bg-white p-3 rounded-lg shadow-md hover:shadow-lg transform hover:scale-105 transition-all duration-300 text-black-600 flex items-center gap-2">
-                <i data-lucide="file-text" class="w-6 h-6"></i> <span
-                    class="hidden sm:inline text-icon">Resume</span>
-            </a>
-            <a href="academic-cv.html"
-                target="_blank"
-                class="bg-white p-3 rounded-lg shadow-md hover:shadow-lg transform hover:scale-105 transition-all duration-300 text-black-600 flex items-center gap-2">
-                <i data-lucide="file-text" class="w-6 h-6"></i> <span class="hidden sm:inline text-icon">Academic
-                    CV</span>
-            </a>
-            <a href="https://scholar.google.com/citations?user=c-uRNsUAAAAJ&hl=en" target="_blank"
-                class="bg-white p-3 rounded-lg shadow-md hover:shadow-lg transform hover:scale-105 transition-all duration-300 text-black flex items-center gap-2">
-                <!-- Image on the left -->
-                <img alt="Google Scholar" src="https://www.shaon.dev/logos/google-scholar.svg" class="w-6 h-6 object-contain">
-                <!-- Text on the right -->
-                <span class="hidden sm:inline">Google Scholar</span>
-            </a>
-            <a href="mailto:omertaf@umich.edu"
-                class="bg-white p-3 rounded-lg shadow-md hover:shadow-lg transform hover:scale-105 transition-all duration-300 text-black flex items-center gap-2">
-                <i data-lucide="mail" class="w-6 h-6"></i> <span class="hidden sm:inline">omertaf@umich.edu</span>
-            </a>
-
-        </div>
-    </section>
-
-    <!-- Research Interests Section -->
-    <section id="research" class="pt-6 pb-10">
-        <div class="research-container mx-auto px-2 sm:px-4 lg:px-2">
-            <h3 class="text-3xl font-extrabold text-black mb-4 text-center custom-heading border-b4">Research Interests
-            </h3>
-
-            <!-- Top Row: LLMs and Model Compression -->
-            <div class="max-w-[95%] mx-auto grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
-                <!-- Large Language Models Section -->
-                <div class="research-entry p-5 bg-white rounded-xl">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 stacked-cards">
+                <div class="card p-5">
                     <h3 class="entry-title">Language Models</h3>
-                    <ul class="research-list list-disc ml-6 text-black space-y-2">
-                        <li>Reasoning and AI Safety <br>
-                            <!-- <span class="bg-amber-200 text-black px-2 py-0.5 rounded-md mt-1 text-sm font-semibold inline-block">
-                                (I'm really into Reasoning)
-                            </span> -->
-                        </li>
-                        <li>Mechanistic Interpretability <br>
-                           
-                        </li>
-                        <li>In-context Learning.
-                        </li>
+                    <ul class="research-list list-disc ml-6 text-gray-700 space-y-2">
+                        <li>Reasoning and AI Safety</li>
+                        <li>Mechanistic Interpretability</li>
+                        <li>In-context Learning</li>
                     </ul>
                 </div>
-
-                <!-- Model Compression Section -->
-                <div class="research-entry p-5 bg-white rounded-xl">
+                <div class="card p-5">
                     <h3 class="entry-title">Model Compression</h3>
-                    <ul class="research-list list-disc ml-6 text-black space-y-2">
-                        <li>Knowledge Distillation <br>
-                        </li>
-                        <li>Model Compression for LLMs 
-                        </li>
-                        <li>Sparsity, and Pruning  
-                        </li>
+                    <ul class="research-list list-disc ml-6 text-gray-700 space-y-2">
+                        <li>Knowledge Distillation</li>
+                        <li>Compression for LLMs</li>
+                        <li>Sparsity & Pruning</li>
                     </ul>
                 </div>
-
-                <!-- Core Machine Learning Section -->
-                <div class="research-entry p-5 bg-white rounded-xl">
+                <div class="card p-5">
                     <h3 class="entry-title">Core ML</h3>
-                    <ul class="research-list list-disc ml-6 text-black space-y-2">
-                        <li>Generalization, and Inductive Bias</li>
-                        <li>Emergent Abilities, and Scaling Laws
-                        </li>
+                    <ul class="research-list list-disc ml-6 text-gray-700 space-y-2">
+                        <li>Generalization & Inductive Bias</li>
+                        <li>Emergent Abilities & Scaling Laws</li>
                     </ul>
                 </div>
-
-                <!-- Core Machine Learning Section -->
-                <div class="research-entry p-5 bg-white rounded-xl">
-                    <h3 class="entry-title">Aspire to work on</h3>
-                    <ul class="research-list list-disc ml-6 text-black space-y-2">
-                        <li>Diffusion Models, and Vision</li>
+                <div class="card p-5">
+                    <h3 class="entry-title">Aspirations</h3>
+                    <ul class="research-list list-disc ml-6 text-gray-700 space-y-2">
+                        <li>Diffusion & Vision</li>
                         <li>Reinforcement Learning</li>
-                        <li>Multi-Modality, MoEs
-                        </li>
-                    </ul>
-                </div>
-            </div>
-    </section>
-
-    <!-- News Section -->
-    <section id="research" 
-        class="pt-6 pb-10 px-2 sm:px-4 lg:px-10 flex items-center justify-center">
-        <div class="research-container text-center max-w-3xl">
-            <h3 class="text-3xl font-extrabold text-black mb-8 custom-heading border-b4">
-                News & Updates 🚨
-            </h3>
-            <ul class="text-lg text-gray-800 space-y-4">
-                <li>
-                    <strong class="text-purple-700">[Oct. 2025]</strong> Joined the 
-                    <a href="https://launch.eecs.umich.edu/" class="text-blue-700"> Launch Lab @ CSE</a> 
-                    at the University of Michigan, working under Dr. Lu Wang on Reasoning, AI Safety, and Alignment.
-                </li>
-                <li>
-                    <strong class="text-purple-700">[Sept. 2025]</strong> Appointed as Graduate Student Instructor for SI671: Data Mining and Methods.
-                </li>
-                <li>
-                    <strong class="text-purple-700">[Aug. 2025]</strong> Started Master's in Information Science at the University of Michigan, Ann Arbor.
-                </li>
-                <li>
-                    <strong class="text-purple-700">[June. 2025]</strong> Graduated from Lahore University of Management Science with a Bachelor's in Economics-Mathematics and Computer Science.
-                </li>
-                <li>
-                    <strong class="text-purple-700">[Nov. 2024]</strong> Joined CITY at LUMS as a ML Engineering Research Assistant under Dr. Muhammad Tahir, working on Model Compression, and Interpretability.
-                </li>
-                <li>
-                    <strong class="text-purple-700">[June. 2024]</strong> Joined <a href="https://www.c-salt.org/" class="text-blue-700">Centre of Speech and Language Technologies (CSaLT)</a> at LUMS as a Generative AI Research Assistant under Dr. Agha Ali Raza, working on Generative AI, and Algorithms.
-                </li>
-                <li>
-                    <strong class="text-purple-700">[Aug. 2021]</strong> Started Undergraduate Studies at Lahore University of Management Science.
-                </li>
-            </ul>
-        </div>
-    </section>
-
-
-    <!-- Skills Section -->
-    <div class="skill-container">
-        <section id="skills" class="container mx-auto my-10 p-8 max-w-7xl">
-            <h3 class="text-3xl font-extrabold text-gray-800 mb-8 text-center custom-heading">Programming Stack
-            </h3>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- Programming Languages -->
-                <div
-                    class="bg-white p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300">
-                    <h3 class="text-2xl font-semibold text-black-700 mb-4 flex items-center">
-                        <i data-lucide="code" class="icon w-6 h-6"></i> Programming
-                    </h3>
-                    <ul class="list-disc list-inside text-gray-700 space-y-2">
-                        <li> <Strong>ML & Data: </Strong>Python, R, SQL, MATLAB</li>
-                        <li><Strong>Development: </Strong>JavaScript, TypeScript, HTML/CSS, PHP</li>
-                        <li><Strong>Systems: </Strong>C++, C</li>
-                        <li><Strong>Mobile Development: </Strong>Dart</li>
-                        <li><Strong>Others: </Strong>Bash, Haskell</li>
-                    </ul>
-                </div>
-                <!-- ML Frameworks & Libraries -->
-                <div
-                    class="bg-white p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300">
-                    <h3 class="text-2xl font-semibold text-black-700 mb-4 flex items-center">
-                        <i data-lucide="layers" class="icon w-6 h-6"></i> ML Frameworks
-                    </h3>
-                    <ul class="list-disc list-inside text-gray-700 space-y-2">
-                        <li><Strong>Deep Learning: </Strong>PyTorch, Cuda, TensorFlow, Keras</li>
-                        <li><Strong>Classical ML: </Strong>Scikit-learn, CVXPY</li>
-                        <li><Strong>Statistical: </Strong>Statsmodel, SciPy</li>
-                        <li><Strong>ML tools: </Strong>Transformers, Biases & Weights, LangChain, HuggingFace</li>
-                        <li><Strong>Others: </Strong>NLTK, SAELens, Neuronpedia, LeapLabs</li>
-                    </ul>
-                </div>
-                <!-- Data & Tools -->
-                <div
-                    class="bg-white p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300">
-                    <h3 class="text-2xl font-semibold text-black-700 mb-4 flex items-center">
-                        <i data-lucide="database" class="icon w-6 h-6"></i> Data & Tools
-                    </h3>
-                    <ul class="list-disc list-inside text-gray-700 space-y-2">
-                        <li><Strong>Data Preprocessing: </Strong>Numpy, Pandas, GeoPandas</li>
-                        <li><Strong>Data Extraction: </Strong>BeautifulSoup, OracleDB, MongoDB</li>
-                        <li><Strong>Data Visualization: </Strong>Matplotlib, Seaborn</li>
-                        <li><Strong>Version Control: </Strong>Git</li>
-                    </ul>
-                </div>
-                <!-- Cloud & Deployment -->
-                <!-- <div class="bg-blue-50 p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300">
-                    <h3 class="text-2xl font-semibold text-blue-700 mb-4 flex items-center">
-                        <i data-lucide="cloud" class="icon w-6 h-6"></i> Cloud & Deployment
-                    </h3>
-                    <ul class="list-disc list-inside text-gray-700 space-y-2">
-                        <li>AWS (S3, EC2, SageMaker - Basic)</li>
-                        <li>Google Cloud Platform (GCP - Basic)</li>
-                        <li>REST APIs</li>
-                        <li>Streamlit / Flask</li>
-                    </ul>
-                </div> -->
-                <!-- Machine Learning Concepts -->
-                <div
-                    class="bg-white p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300">
-                    <h3 class="text-2xl font-semibold text-black-700 mb-4 flex items-center">
-                        <i data-lucide="cpu" class="icon w-6 h-6"></i> Development Frameworks
-                    </h3>
-                    <ul class="list-disc list-inside text-gray-700 space-y-2">
-                        <li><Strong>Backend: </Strong>NodeJS, ExpressJS</li>
-                        <li><Strong>Frontend: </Strong>ReactJS, TailwindCSS</li>
+                        <li>Multi-Modality & MoEs</li>
                     </ul>
                 </div>
             </div>
         </section>
-    </div>
 
-    
-    
-    <!-- Experience & Education Section -->
-    <section id="experience" class="pb-5 md:px-16 pt-6">
-        <!-- Experience -->
-        <div class="mb-12 p-8">
-            <h3 class="text-2xl font-semibold text-black mb-6 flex items-center">
-                Professional Experience
-            </h3>
-            <div class="space-y-10">
-                <!-- Experience 1 -->
-                <div class="flex items-start gap-4 rounded-lg bg-white p-6 shadow-md hover:shadow-lg transition-shadow duration-300">
-                    <!-- Logo -->
-                    <div class="w-24 h-24 flex-shrink-0  flex items-center justify-center">
-                        <img src="./imgs/lipton.png" alt="Lipton Logo" class="w-16 h-16 object-contain">
+        <!-- News -->
+        <section class="page-shell pb-12">
+            <div class="flex items-center justify-between mb-8">
+                <div>
+                    <p class="text-sm font-semibold text-gray-500 uppercase tracking-wide">Updates</p>
+                    <h3 class="text-3xl font-extrabold text-gray-900 custom-heading">News & Highlights</h3>
+                </div>
+            </div>
+            <div class="card p-6 md:p-8">
+                <div class="timeline space-y-5">
+                    <div class="timeline-item">
+                        <p class="text-gray-700"><strong>[Oct. 2025]</strong> Joined the <a href="https://launch.eecs.umich.edu/" class="text-indigo-600 font-semibold">Launch Lab</a> with Dr. Lu Wang to explore reasoning, safety, and alignment.</p>
                     </div>
-
-                    <!-- Text content -->
-                    <div class="flex-1">
-                        <p class="text-black text-sm">July 2023 - July 2023</p>
-                        <h4 class="text-xl font-bold text-black">Data Science Intern</h4>
-                        <p class="text-black font-medium">Lipton Teas & Infusion, <em>Karachi, Pakistan</em></p>
-                        <ul class="list-disc list-inside text-black mt-2 space-y-1">
-                            <li>Implemented a route scheduling system to replace fixed delivery paths between <strong>7 warehouses and 256 distributors.</strong></li>
-                            <li>Collected and processed travel time data via the Google Distance API.</li>
-                            <li>Performed exploratory data analysis on delivery logs, uncovering <strong class="text-purple-700">~20% idle time</strong> and <strong class="text-purple-700">~30% underutilized fleet capacity.</strong></li>
-                            <li>Applied <strong>K-Means clustering</strong> to segment distributors by distance, vehicle capacity, and delivery frequency for route grouping.</li>
-                            <li>Trained an <strong>XGBoost regressor</strong> <strong class="text-purple-700">(R² ≈ 0.87)</strong> to predict delivery times within clusters, enabling dynamic daily route scheduling.</li>
-                        </ul>
+                    <div class="timeline-item">
+                        <p class="text-gray-700"><strong>[Sept. 2025]</strong> Graduate Student Instructor for SI671: Data Mining and Methods.</p>
+                    </div>
+                    <div class="timeline-item">
+                        <p class="text-gray-700"><strong>[Aug. 2025]</strong> Started the M.S. in Information Science at the University of Michigan.</p>
+                    </div>
+                    <div class="timeline-item">
+                        <p class="text-gray-700"><strong>[June. 2025]</strong> Completed B.S. in Economics-Mathematics and Computer Science at LUMS.</p>
+                    </div>
+                    <div class="timeline-item">
+                        <p class="text-gray-700"><strong>[Nov. 2024]</strong> Joined CITY @ LUMS under Dr. Muhammad Tahir focusing on model compression and interpretability.</p>
+                    </div>
+                    <div class="timeline-item">
+                        <p class="text-gray-700"><strong>[June. 2024]</strong> Research Assistant at <a href="https://www.c-salt.org/" class="text-indigo-600 font-semibold">CSaLT</a> with Dr. Agha Ali Raza on generative AI and algorithms.</p>
                     </div>
                 </div>
+            </div>
+        </section>
 
-                <!-- Experience 2 -->
-                <div class="flex items-start gap-4 rounded-lg bg-white p-6 shadow-md hover:shadow-lg transition-shadow duration-300">
-                    <!-- Logo -->
-                    <div class="w-24 h-24 flex-shrink-0  flex items-center justify-center">
-                        <img src="./imgs/toyota.png" alt="Lipton Logo" class="w-16 h-16 object-contain">
-                    </div>
-
-                    <!-- Text content -->
-                    <div class="flex-1">
-                        <p class="text-black text-sm">Jun 2022 - July 2022</p>
-                        <h4 class="text-xl font-bold text-black">Data Science Intern</h4>
-                        <p class="text-black font-medium">Toyota, <em>Karachi, Pakistan</em></p>
-                        <ul class="list-disc list-inside text-black mt-2 space-y-1">
-                            <li>Achieved <strong class="text-purple-700">87.3%</strong> accuracy using <strong>Ridge Regression</strong> to model the impact of T-Bills, inflation, and SBP policy rates on prices.</li>
-                            <li>Pinpointed key sales drivers with <strong>Decision Trees</strong>, helping address the underperformance of 5 key vehicles.</li>
-                            <li>Ensured stationarity of data via EMA and differencing, validated with ACF plots and ADF tests, improving forecast accuracy by <strong class="text-purple-700">18%</strong>.</li>
-                        </ul>
+        <!-- Skills -->
+        <section id="skills" class="page-shell pb-12">
+            <div class="flex items-start md:items-center justify-between mb-8">
+                <div>
+                    <p class="text-sm font-semibold text-gray-500 uppercase tracking-wide">Tooling</p>
+                    <h3 class="text-3xl font-extrabold text-gray-900 custom-heading">Programming Stack</h3>
+                </div>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 stacked-cards">
+                <div class="card p-6">
+                    <h3 class="text-xl font-semibold text-gray-900 mb-4 flex items-center gap-2">
+                        <i data-lucide="code" class="icon w-6 h-6"></i> Programming
+                    </h3>
+                    <div class="flex flex-wrap">
+                        <span class="skill-tag">Python</span>
+                        <span class="skill-tag">R</span>
+                        <span class="skill-tag">SQL</span>
+                        <span class="skill-tag">MATLAB</span>
+                        <span class="skill-tag">JavaScript</span>
+                        <span class="skill-tag">TypeScript</span>
+                        <span class="skill-tag">HTML/CSS</span>
+                        <span class="skill-tag">PHP</span>
+                        <span class="skill-tag">C++</span>
+                        <span class="skill-tag">C</span>
+                        <span class="skill-tag">Dart</span>
+                        <span class="skill-tag">Bash</span>
+                        <span class="skill-tag">Haskell</span>
                     </div>
                 </div>
-            <h3 class="text-2xl font-semibold text-black mb-6 flex items-center mt-12">
-                Education
-            </h3>
-                <div class="flex items-start gap-4 rounded-lg bg-white p-6 shadow-md hover:shadow-lg transition-shadow duration-300">
-                    <!-- Logo -->
-                    <div class="w-24 h-24 flex-shrink-0  flex items-center justify-center">
-                        <img src="./imgs/michigan.png" alt="Lipton Logo" class="w-24 h-24 object-contain">
-                    </div>
-
-                    <!-- Text content -->
-                    <div class="flex-1">
-                        <p class="text-black text-sm">Aug 2025 - May 2027</p>
-                        <h4 class="text-xl font-bold text-black">University of Michigan, Ann Arbor</h4>
-                        <p class="text-black font-medium">Master's in Information Science - Big Data Analytics</p>
-                        <p class="text-black mt-2">Specialising in Machine Learning and Data Science</p>
-                    </div>
-                </div>
-
-                <div class="flex items-start gap-4 mt-6 rounded-lg bg-white p-6 shadow-md hover:shadow-lg transition-shadow duration-300">
-                    <!-- Logo -->
-                    <div class="w-24 h-24 flex-shrink-0  flex items-center justify-center">
-                        <img src="./imgs/lums-logo.png" alt="Lipton Logo" class="w-20 h-20 object-contain">
-                    </div>
-
-                    <!-- Text content -->
-                    <div class="flex-1">
-                        <p class="text-black text-sm">Aug 2021 - May 2025</p>
-                        <h4 class="text-xl font-bold text-black">Lahore University of Management Sciences</h4>
-                        <p class="text-black font-medium">Bachelor's in Economics-Mathematics, Computer Science</p>
-                        <p class="text-black mt-2">Specialising in Machine Learning and Econometrics</p>
-                        <p class="text-black mt-2">Advisor: Dr. Agha Ali Raza, Dr. Muhammad Tahir</p>
+                <div class="card p-6">
+                    <h3 class="text-xl font-semibold text-gray-900 mb-4 flex items-center gap-2">
+                        <i data-lucide="layers" class="icon w-6 h-6"></i> ML Frameworks
+                    </h3>
+                    <div class="flex flex-wrap">
+                        <span class="skill-tag">PyTorch</span>
+                        <span class="skill-tag">CUDA</span>
+                        <span class="skill-tag">TensorFlow</span>
+                        <span class="skill-tag">Keras</span>
+                        <span class="skill-tag">scikit-learn</span>
+                        <span class="skill-tag">CVXPY</span>
+                        <span class="skill-tag">Statsmodels</span>
+                        <span class="skill-tag">SciPy</span>
+                        <span class="skill-tag">Transformers</span>
+                        <span class="skill-tag">Weights & Biases</span>
+                        <span class="skill-tag">LangChain</span>
+                        <span class="skill-tag">HuggingFace</span>
+                        <span class="skill-tag">NLTK</span>
+                        <span class="skill-tag">SAELens</span>
+                        <span class="skill-tag">Neuronpedia</span>
+                        <span class="skill-tag">LeapLabs</span>
                     </div>
                 </div>
-        </div>
-    </section>
+                <div class="card p-6">
+                    <h3 class="text-xl font-semibold text-gray-900 mb-4 flex items-center gap-2">
+                        <i data-lucide="database" class="icon w-6 h-6"></i> Data & Tools
+                    </h3>
+                    <div class="flex flex-wrap">
+                        <span class="skill-tag">NumPy</span>
+                        <span class="skill-tag">Pandas</span>
+                        <span class="skill-tag">GeoPandas</span>
+                        <span class="skill-tag">BeautifulSoup</span>
+                        <span class="skill-tag">OracleDB</span>
+                        <span class="skill-tag">MongoDB</span>
+                        <span class="skill-tag">Matplotlib</span>
+                        <span class="skill-tag">Seaborn</span>
+                        <span class="skill-tag">Git</span>
+                    </div>
+                </div>
+                <div class="card p-6">
+                    <h3 class="text-xl font-semibold text-gray-900 mb-4 flex items-center gap-2">
+                        <i data-lucide="cpu" class="icon w-6 h-6"></i> Development Frameworks
+                    </h3>
+                    <div class="flex flex-wrap">
+                        <span class="skill-tag">Node.js</span>
+                        <span class="skill-tag">Express</span>
+                        <span class="skill-tag">React</span>
+                        <span class="skill-tag">Tailwind</span>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-    <!-- Social Media & Contact Links in Hero -->
-    <p class="text-lg text-gray-700 mb-8 text-center">
-            I'm always open to new opportunities, collaborations, and interesting discussions. Feel free to reach out
-    </p>
-    <div class="flex justify-center items-center space-x-4 mb-8" id="contact">
-            <a href="https://www.linkedin.com/in/omer-tafveez-7399761a4/" target="_blank"
-                class="bg-white p-3 rounded-lg shadow-md hover:shadow-lg transform hover:scale-105 transition-all duration-300 text-black">
-                <i data-lucide="linkedin" class="w-6 h-6"></i>
-            </a>
-            <a href="https://github.com/omertafveez-2001" target="_blank"
-                class="bg-white p-3 rounded-lg shadow-md hover:shadow-lg transform hover:scale-105 transition-all duration-300 text-black">
-                <i data-lucide="github" class="w-6 h-6"></i>
-            </a>
-            <a href="https://x.com/omertafveez" target="_blank"
-                class="bg-white p-3 rounded-lg shadow-md hover:shadow-lg transform hover:scale-105 transition-all duration-300 text-black">
-                <i data-lucide="twitter" class="w-6 h-6"></i>
-            </a>
-    </div>
-    <!-- Empty Footer -->
+        <!-- Experience & Education -->
+        <section id="experience" class="page-shell pb-12">
+            <div class="flex items-start md:items-center justify-between mb-8">
+                <div>
+                    <p class="text-sm font-semibold text-gray-500 uppercase tracking-wide">Trajectory</p>
+                    <h3 class="text-3xl font-extrabold text-gray-900 custom-heading">Experience & Education</h3>
+                </div>
+            </div>
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                <div class="stacked-cards space-y-4">
+                    <div class="card p-6">
+                        <div class="flex items-start gap-4">
+                            <img src="./imgs/lipton.png" alt="Lipton Logo" class="w-12 h-12 object-contain">
+                            <div class="flex-1">
+                                <h4 class="text-xl font-bold text-gray-900 flex items-center justify-between">Data Science Intern · Lipton Teas & Infusion <span class="text-sm font-semibold text-gray-600 ml-2">Jul 2023</span></h4>
+                                <p class="text-gray-700 mt-2">Karachi, Pakistan</p>
+                                <ul class="list-disc list-inside text-gray-700 mt-3 space-y-1">
+                                    <li>Built a route scheduling system replacing fixed delivery paths across <strong>7 warehouses</strong> and <strong>256 distributors</strong>.</li>
+                                    <li>EDA on delivery logs surfaced <strong class="text-purple-700">~20% idle time</strong> and <strong class="text-purple-700">~30% underutilized capacity</strong>.</li>
+                                    <li>Used K-Means clustering and an <strong>XGBoost regressor (R² ≈ 0.87)</strong> for dynamic daily routing.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card p-6">
+                        <div class="flex items-start gap-4">
+                            <img src="./imgs/toyota.png" alt="Toyota Logo" class="w-12 h-12 object-contain">
+                            <div class="flex-1">
+                                <h4 class="text-xl font-bold text-gray-900 flex items-center justify-between">Data Science Intern · Toyota <span class="text-sm font-semibold text-gray-600 ml-2">Jun 2022 - Jul 2022</span></h4>
+                                <p class="text-gray-700 mt-2">Karachi, Pakistan</p>
+                                <ul class="list-disc list-inside text-gray-700 mt-3 space-y-1">
+                                    <li>Modeled economic drivers with Ridge Regression reaching <strong class="text-purple-700">87.3%</strong> accuracy.</li>
+                                    <li>Identified key sales drivers through Decision Trees to address underperforming vehicles.</li>
+                                    <li>Improved forecast accuracy by <strong class="text-purple-700">18%</strong> via EMA and differencing validated with ACF/ADF.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="stacked-cards space-y-4">
+                    <div class="card p-6">
+                        <div class="flex items-start gap-4">
+                            <img src="./imgs/michigan.png" alt="Michigan Logo" class="w-14 h-14 object-contain">
+                            <div class="flex-1">
+                                <h4 class="text-xl font-bold text-gray-900 flex items-center justify-between">University of Michigan, Ann Arbor <span class="text-sm font-semibold text-gray-600 ml-2">Aug 2025 - May 2027</span></h4>
+                                <p class="text-gray-700 mt-1">M.S. Information Science - Big Data Analytics</p>
+                                <p class="text-gray-600 mt-1">Specialising in Machine Learning and Data Science</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card p-6">
+                        <div class="flex items-start gap-4">
+                            <img src="./imgs/lums-logo.png" alt="LUMS Logo" class="w-14 h-14 object-contain">
+                            <div class="flex-1">
+                                <h4 class="text-xl font-bold text-gray-900 flex items-center justify-between">Lahore University of Management Sciences <span class="text-sm font-semibold text-gray-600 ml-2">Aug 2021 - May 2025</span></h4>
+                                <p class="text-gray-700 mt-1">B.S. Economics-Mathematics, Computer Science</p>
+                                <p class="text-gray-600 mt-1">Specialising in Machine Learning and Econometrics</p>
+                                <p class="text-gray-600 mt-1">Advisors: Dr. Agha Ali Raza, Dr. Muhammad Tahir</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact -->
+        <section id="contact" class="page-shell pb-12">
+            <div class="card glass p-6 md:p-8 text-center">
+                <p class="text-lg text-gray-700 mb-4">Open to collaborations, research discussions, and building together.</p>
+                <div class="flex justify-center items-center space-x-4 flex-wrap gap-3">
+                    <a href="https://www.linkedin.com/in/omer-tafveez-7399761a4/" target="_blank"
+                        class="accent-btn">
+                        <i data-lucide="linkedin"></i> LinkedIn
+                    </a>
+                    <a href="https://github.com/omertafveez-2001" target="_blank"
+                        class="ghost-btn">
+                        <i data-lucide="github"></i> GitHub
+                    </a>
+                    <a href="https://x.com/omertafveez" target="_blank"
+                        class="ghost-btn">
+                        <i data-lucide="twitter"></i> X (Twitter)
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
     <footer class="py-8">
         <div class="footer-empty"></div>
     </footer>
-
 
     <script>
         // Initialize Lucide icons

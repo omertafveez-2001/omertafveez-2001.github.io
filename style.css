@@ -15,10 +15,24 @@
 }
 
 /* General styles for the body */
+:root {
+    --ink: #0f172a;
+    --muted: #475569;
+    --subtle: #e2e8f0;
+    --card: #ffffff;
+    --accent: #1f2937;
+    --accent-soft: #e5e7eb;
+    --accent-2: #111827;
+    --surface: #f6f7fb;
+    --shadow: 0 8px 24px rgba(15, 23, 42, 0.08);
+    --radius: 16px;
+}
+
 body {
     font-family: 'Hanken Grotesk', 'sans-serif';
-    color: #334155;
-    background-color: rgb(248, 248, 248);
+    color: var(--muted);
+    background: var(--surface);
+    min-height: 100vh;
 }
 
 /* These CSS properties are used in the Projects Section */
@@ -187,4 +201,209 @@ html {
   height: 50px;
   display: block;
   margin: 0 auto;
+}
+
+/* Page shells and cards */
+.page-shell {
+    max-width: 1150px;
+    margin: 0 auto;
+    padding: 0 1.25rem;
+}
+
+.section-title {
+    color: var(--ink);
+    font-weight: 800;
+}
+
+.section-subtitle {
+    color: var(--muted);
+}
+
+.card {
+    background: var(--card);
+    border: 1px solid var(--subtle);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+}
+
+.glass {
+    background: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(8px);
+}
+
+.pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    padding: 0.35rem 0.75rem;
+    border-radius: 9999px;
+    background: var(--accent-soft);
+    color: #1e293b;
+    font-weight: 600;
+    font-size: 0.9rem;
+}
+
+.pill i {
+    width: 18px;
+    height: 18px;
+    stroke-width: 2.2;
+}
+
+.pill-ghost {
+    background: #f8fafc;
+    border: 1px solid var(--subtle);
+}
+
+.accent-btn,
+.ghost-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    padding: 0.75rem 1.15rem;
+    border-radius: 12px;
+    font-weight: 700;
+    transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+}
+
+.accent-btn {
+    background: linear-gradient(135deg, var(--accent), var(--accent-2));
+    color: #fff;
+    box-shadow: 0 10px 24px rgba(15, 23, 42, 0.25);
+}
+
+.ghost-btn {
+    background: rgba(255, 255, 255, 0.8);
+    color: var(--ink);
+    border: 1px solid var(--subtle);
+}
+
+.accent-btn:hover,
+.ghost-btn:hover {
+    transform: translateY(-2px);
+}
+
+.hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.35rem 0.85rem;
+    border-radius: 999px;
+    background: #0f172a;
+    color: #e2e8f0;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+}
+
+.gradient-bar {
+    width: 64px;
+    height: 6px;
+    border-radius: 999px;
+    background: linear-gradient(90deg, var(--accent), var(--accent-2));
+}
+
+.hero-panel {
+    position: relative;
+    overflow: hidden;
+}
+
+.stacked-cards {
+    display: grid;
+    gap: 0.9rem;
+}
+
+.stacked-cards .card {
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.stacked-cards .card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 18px 40px rgba(15, 23, 42, 0.12);
+}
+
+.timeline {
+    position: relative;
+    padding-left: 1.5rem;
+}
+
+.timeline::before {
+    content: "";
+    position: absolute;
+    left: 6px;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: linear-gradient(to bottom, var(--accent), var(--accent-2));
+    border-radius: 999px;
+}
+
+.timeline-item {
+    position: relative;
+    padding-left: 1.75rem;
+}
+
+.timeline-item::before {
+    content: "";
+    position: absolute;
+    left: -1px;
+    top: 0.6rem;
+    width: 10px;
+    height: 10px;
+    background: #fff;
+    border: 2px solid var(--accent);
+    border-radius: 50%;
+    box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.12);
+}
+
+.news-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.35rem 0.85rem;
+    border-radius: 10px;
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    font-weight: 600;
+}
+
+.news-chip strong {
+    color: #7c3aed;
+}
+
+.skill-tag {
+    display: inline-flex;
+    padding: 0.35rem 0.7rem;
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    color: var(--ink);
+    border-radius: 999px;
+    font-weight: 600;
+    margin: 0.15rem;
+}
+
+.project-header {
+    background: linear-gradient(135deg, #111827, #1f2937);
+    color: #e5e7eb;
+}
+
+.blog-tag {
+    background: #0ea5e9;
+    color: #e0f2fe;
+    padding: 0.25rem 0.6rem;
+    border-radius: 8px;
+    font-weight: 700;
+    font-size: 0.85rem;
+}
+
+.blog-card {
+    transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+.blog-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 16px 32px rgba(15, 23, 42, 0.14);
+    border-color: #cbd5e1;
+}
+
+.footer-empty {
+    height: 2px;
 }
