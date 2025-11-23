@@ -398,6 +398,54 @@ html {
     transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
 }
 
+/* Blog meta strip (authors, published date, summary) */
+.blog-meta {
+    margin: 1.5rem 0 2rem;
+    padding: 1.25rem 1.5rem;
+    border: 1px solid var(--subtle);
+    border-radius: var(--radius);
+    background: #ffffff;
+    box-shadow: var(--shadow);
+}
+
+.blog-meta-summary {
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: var(--ink);
+    margin: 0 0 1rem;
+    line-height: 1.5;
+}
+
+.blog-meta-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem 1.25rem;
+    align-items: start;
+}
+
+.meta-group {
+    display: grid;
+    gap: 0.25rem;
+}
+
+.meta-label {
+    font-size: 0.75rem;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--muted);
+    font-weight: 700;
+}
+
+.meta-value {
+    color: var(--ink);
+    font-weight: 600;
+    line-height: 1.5;
+}
+
+.meta-author {
+    white-space: nowrap;
+}
+
 /* Blog reading width and tighter line spacing */
 .blog-prose {
     max-width: 70ch;

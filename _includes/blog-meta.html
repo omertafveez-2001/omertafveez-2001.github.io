@@ -1,0 +1,32 @@
+<div class="blog-meta card">
+  {% if page.summary %}
+    <p class="blog-meta-summary">{{ page.summary }}</p>
+  {% endif %}
+
+  <div class="blog-meta-grid">
+    <div class="meta-group">
+      <div class="meta-label">Authors</div>
+      <div class="meta-value">
+        {% if page.authors %}
+          {% for author in page.authors %}
+            <span class="meta-author">{{ author }}</span>{% unless forloop.last %}, {% endunless %}
+          {% endfor %}
+        {% else %}
+          <span class="meta-author">Add authors in front matter</span>
+        {% endif %}
+      </div>
+    </div>
+
+    {% if page.affiliation %}
+    <div class="meta-group">
+      <div class="meta-label">Affiliation</div>
+      <div class="meta-value">{{ page.affiliation }}</div>
+    </div>
+    {% endif %}
+
+    <div class="meta-group">
+      <div class="meta-label">Published</div>
+      <div class="meta-value">{{ page.date | date: "%b %-d, %Y" }}</div>
+    </div>
+  </div>
+</div>

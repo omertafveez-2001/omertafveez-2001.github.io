@@ -3,8 +3,13 @@ layout: post
 title: "Reasoning: Primer on Reasoning Prompts in Large Language Models"
 date: 2025-10-26
 permalink: /blogs/reasoning-primer/
+authors:
+  - Omer Tafveez
+affiliation: Independent
+summary: A practical walkthrough of how modern LLMs fake and foster reasoning, what reward hacking looks like, and the techniques that push models toward real multi-step thinking.
 ---
 ![Reasoning-image](./imgs/reasoning_title.jpg)
+{% include blog-meta.html %}
 <p style="text-align: center;">
   "Large Language Models are pattern matchers and stochastic machines."
 </p>
@@ -128,7 +133,6 @@ This “double prompting” works astonishingly well for huge models like PaLM 5
 Temperature sampling sometimes rescues a poor reasoning path—an accidental discovery that stochastic decoding performs a kind of search over possible thoughts. <br>
 You interpreted this as evidence that reasoning = search in text space.
 Temperature controls exploration breadth, letting the model stumble into valid logical sequences. Thus, even without curated exemplars, reasoning can be elicited linguistically if the model is large enough to internalize the pattern.
-
 
 
 
