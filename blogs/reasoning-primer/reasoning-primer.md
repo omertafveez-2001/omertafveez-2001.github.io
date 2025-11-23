@@ -16,7 +16,7 @@ Well there is a reason why, I deliberately attach a GPT response, because maybe 
 
 1. How does Human Reasoning differs compared to LLM Reasoning <br>
 Humans use neural-symbolic reasoning: a mixture of intuition and explicit symbolic manipulation. The brain supports working memory, goal-directed planning, and causal models. We can apply rules, logic, and abstraction deliberately. <br>
-LLMs perform next-token prediction using a statistical function learned from large corpora. All "reasoning" emerges from pattern completition, not explicit symbolic rules. LLMs do not maintain persistent working memory; they rely on the context window and hidden activations. 
+LLMs perform next-token prediction using a statistical function learned from large corpora. All "reasoning" emerges from pattern completion, not explicit symbolic rules. LLMs do not maintain persistent working memory; they rely on the context window and hidden activations. 
 
 2. Reasoning in LLMs is not as simple.<br>
 *Setting*: Imagine you are sitting in an exam, and for some very *weird* reason, you somehow knew that the question you are about to attempt is almost the same as the question from previous examination (maybe in the previous year or semester), so you try to copy the previous answer that you had memorized to ensure it resembles marking scheme. <br>
@@ -97,7 +97,13 @@ Few-shot CoT requires only a handful of exemplars like:
 Q: If there are 3 cars and each has 4 wheels, how many wheels?
 A: Each car has 4 wheels -> 3x4 = 12 -> 12. 
 ```
-This seemingly simple pattern doubles performance on multi-step benchmarks. 
+This seemingly simple pattern doubles performance on multi-step benchmarks. This taught models to narrate their reasoning. Large Models suddenly solved multi-step arithmetic and commonsense problems far better, while smaller ones produced nonsense chains that hurt accuracy. <br>
+Manual insepction revealed something deeper: some mathematically wrong chains still produced correct answers by conincidence. *This hinted that LLMs were not truly reasoning; they were sampling statistically plausible stories of reasoning* <br><br>
+
+Ablations clarified the mechanism:<br>
+- **Equation-only prompting** helped for single-step math but failed for semantic tasks.
+- **Variable-compute prompting** gave inconsistent results; length is not a good awat proxy for congitive effort.
+- **Post-answer chains** offered no gain, showing that the process of reasoning, not just recalling facts, drives success. 
 
 **Experiments & Datasets**
 Models: GPT-3, LaMBDA, PaLM, UL2 20B, Codex <br>
@@ -107,9 +113,21 @@ Authors hand-crafted 8 few-shot CoT exemplars covering arithematic and commonsen
 **Key Findings**
 - CoT improves performance **only for large models (> 100B)**
 - Smaller models produce illogical chains that hurt accuracy relative to standard prompting
-- Gains are largest on multi-step tasks (GSM8K, StrategyQA); negligible on simple arithematic (SingleOp MAWPS) <br> <br>
-Manual inspection showed that some correct answers arose from **incorrect reasoning** (*lucky conincidence* right?*). So maybe LLMs weren't yet "reasoners" -- they imitated the surface pattern of reasoning. 
+- Gains are largest on multi-step tasks (GSM8K, StrategyQA); negligible on simple arithematic (SingleOp MAWPS) <br><br>
+Manual inspection showed that some correct answers arose from **incorrect reasoning** (*lucky conincidence* right?). So maybe LLMs weren't yet "reasoners" -- they imitated the surface pattern of reasoning. <br>
 
+
+### Zero-Shot CoT  (2022, Google Research)
+Few-shot CoT needed human examples. <br>
+Zero-Shot CoT eliminited them with the trigger phrase:
+> Let's think step by step.
+
+<br>
+The model first generates a reasoning trace $z$, then re-prompts with the trace to obtain the final answer. <br>
+This “double prompting” works astonishingly well for huge models like PaLM 540 B, but smaller ones barely benefit. <br>
+Temperature sampling sometimes rescues a poor reasoning path—an accidental discovery that stochastic decoding performs a kind of search over possible thoughts. <br>
+You interpreted this as evidence that reasoning = search in text space.
+Temperature controls exploration breadth, letting the model stumble into valid logical sequences. Thus, even without curated exemplars, reasoning can be elicited linguistically if the model is large enough to internalize the pattern.
 
 
 
