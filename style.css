@@ -400,12 +400,12 @@ html {
 
 /* Blog reading width and tighter line spacing */
 .blog-prose {
-    max-width: 70ch;
+    max-width: 50ch;
 }
 .blog-prose,
 .blog-prose p,
 .blog-prose li {
-    line-height: 1.35;
+    line-height: 1;
 }
 
 .blog-card:hover {

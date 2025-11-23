@@ -126,7 +126,29 @@ Zero-Shot CoT eliminited them with the trigger phrase:
 The model first generates a reasoning trace $z$, then re-prompts with the trace to obtain the final answer. <br>
 This “double prompting” works astonishingly well for huge models like PaLM 540 B, but smaller ones barely benefit. <br>
 Temperature sampling sometimes rescues a poor reasoning path—an accidental discovery that stochastic decoding performs a kind of search over possible thoughts. <br>
-You interpreted this as evidence that reasoning = search in text space.
+
+This can be interpreted as evidence that **reasoning = search** in text space.
+
 Temperature controls exploration breadth, letting the model stumble into valid logical sequences. Thus, even without curated exemplars, reasoning can be elicited linguistically if the model is large enough to internalize the pattern.
+
+### What explicit reasoning taught us
+From Scratchpads to Auto-CoT, a pattern emerges.
+LLMs can reason only when we externalize reasoning as text and feed them examples of it.
+Once the “format of thought” becomes part of the training distribution, they learn to reproduce it.
+
+**Key Insights**:
+- **Reasoning is data-driven**. Scale × diversity × explicit structure = ability.
+
+- **Language is computation**. The model’s own text serves as its working memory.
+
+- **Search beats static prompting**. Temperature, sampling, and automated demonstration selection act like exploration policies.
+
+- **Faithfulness is the next frontier**. A correct answer isn’t enough; we must align the reasoning path with truth.
+
+What I think about is, that LLMs are statistical reasoners, then teaching them to write down their statistical reasoning is how we make them look rational. Explicit intermediate reasoning does not make models think, it makes their stochastic prediction process legible. <br>
+
+What follows in the next section, is how researchers pushed beyond single-pass reasoning toward *hierarchical decomposition* and *compositional thought*. 
+
+
 
 
