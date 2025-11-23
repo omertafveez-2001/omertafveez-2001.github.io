@@ -48,12 +48,9 @@ The discovery of in-context learning (ICL) revealed that sufficiently large mode
 Smaller models can mimic patterns but fail to generalize relational structure across tasks. This observation seeded a core hypothesis repeated throughout reasoning research:
 > Reasoning abilities emerge when model scale × data diversity × prompt structure exceed a critical threshold. <br><br>
 
-Because LLMs are, by nature, static pattern engines, researchers sought to force structure into their thought process: to make the model externalize intermediate reasoning, reuse prior logic, and self-correct when diverging.<br><br>
+Because LLMs are, by nature, static pattern engines, researchers sought to force structure into their thought process: to make the model externalize intermediate reasoning, reuse prior logic, and self-correct when diverging. This led to a family of methods that can be organized thematically. In the sections that follow, we will track this evolution thematically—from explicit reasoning traces to self-aware deliberation frameworks—analyzing not only what worked but why each innovation succeeded or failed, and what it reveals about the illusion (or emergence) of machine thought.
 
-This led to a family of methods that can be organized thematically<br>
-In the sections that follow, we will track this evolution thematically—from explicit reasoning traces to self-aware deliberation frameworks—analyzing not only what worked but why each innovation succeeded or failed, and what it reveals about the illusion (or emergence) of machine thought.
-
-## **Explicit Intermediate Reasoning**
+## **Part I: Explicit Intermediate Reasoning**
 > Reasoning abilities are not emergent accidents; they are trained statistical habits of expressing thought.
 
 ### Show your work: Scratchpads (2021, Google Research - Brain Team)
@@ -98,7 +95,7 @@ Q: If there are 3 cars and each has 4 wheels, how many wheels?
 A: Each car has 4 wheels -> 3x4 = 12 -> 12. 
 ```
 This seemingly simple pattern doubles performance on multi-step benchmarks. This taught models to narrate their reasoning. Large Models suddenly solved multi-step arithmetic and commonsense problems far better, while smaller ones produced nonsense chains that hurt accuracy. <br>
-Manual insepction revealed something deeper: some mathematically wrong chains still produced correct answers by conincidence. *This hinted that LLMs were not truly reasoning; they were sampling statistically plausible stories of reasoning* <br><br>
+Manual insepction revealed something deeper: some mathematically wrong chains still produced correct answers by conincidence. *This hinted that LLMs were not truly reasoning; they were sampling statistically plausible stories of reasoning* <br>
 
 Ablations clarified the mechanism:<br>
 - **Equation-only prompting** helped for single-step math but failed for semantic tasks.
@@ -123,13 +120,7 @@ Zero-Shot CoT eliminited them with the trigger phrase:
 > Let's think step by step.
 
 <br>
-The model first generates a reasoning trace $z$, then re-prompts with the trace to obtain the final answer. <br>
-This “double prompting” works astonishingly well for huge models like PaLM 540 B, but smaller ones barely benefit. <br>
-Temperature sampling sometimes rescues a poor reasoning path—an accidental discovery that stochastic decoding performs a kind of search over possible thoughts. <br>
-
-This can be interpreted as evidence that **reasoning = search** in text space.
-
-Temperature controls exploration breadth, letting the model stumble into valid logical sequences. Thus, even without curated exemplars, reasoning can be elicited linguistically if the model is large enough to internalize the pattern.
+The model first generates a reasoning trace $z$, then re-prompts with the trace to obtain the final answer. This “double prompting” works astonishingly well for huge models like PaLM 540 B, but smaller ones barely benefit. Temperature sampling sometimes rescues a poor reasoning path—an accidental discovery that stochastic decoding performs a kind of search over possible thoughts. This can be interpreted as evidence that **reasoning = search** in text space. Temperature controls exploration breadth, letting the model stumble into valid logical sequences. Thus, even without curated exemplars, reasoning can be elicited linguistically if the model is large enough to internalize the pattern.
 
 ### What explicit reasoning taught us
 From Scratchpads to Auto-CoT, a pattern emerges.
@@ -148,6 +139,53 @@ Once the “format of thought” becomes part of the training distribution, they
 What I think about is, that LLMs are statistical reasoners, then teaching them to write down their statistical reasoning is how we make them look rational. Explicit intermediate reasoning does not make models think, it makes their stochastic prediction process legible. <br>
 
 What follows in the next section, is how researchers pushed beyond single-pass reasoning toward *hierarchical decomposition* and *compositional thought*. 
+
+## **Part II: Hierarchical & Compositional Reasoning**
+> “Faithfulness increases when reasoning depth exceeds five steps.”
+
+<br>
+
+### **Least-to-Most Prompting (Google Research)**
+If Chain-of-Thought describes what the model is doing, Least-to-Most Prompting (LtM) tells it how to plan. A complex question is decomposed into a sequence of simpler sub-questions, each solved in order. The model is first asked to split a task, then to solve each sub-task sequentially—mirroring how humans plan multi-step solutions. <br>
+
+This is a bit intuitive. Think of an exam. 
+```vbnet
+Question 1: Solve the following questions:
+Equation I: <some equation>
+a) Compute Hessian Matrix of some equation I.
+b) Is the matrix semi positive definitie? 
+c) Comment on the mimina/maxima of the equation.
+```
+In the above question, you are forced to solve the over-arching question, *What is the minima and maxima of Equation I*, in sub-parts. Solving for Hessian first, then identifying the property of the matrix, and then finally commenting on the minima/maxima of the equation. This makes your job easy, right? Instead of jumping straight into minima/maxima, you solve the problem through some said-steps. This is what Least-to-Prompting does. Instead of directly jumping to the solution, you break down the problem into sub-parts, and solve them to reach the solution. <br>
+
+**Implementation Outline**
+1. Decomposition pass → “Break the problem into smaller parts.”
+2. Solution pass → “Now solve them in order.”
+
+Often both passes are combined into one long prompt for efficiency. <br>
+
+**Results**
+LtM consistently improved over CoT on symbolic reasoning (e.g., Last-Letter Concatenation) and on compositional generalization datasets such as SCAN, where sequences in the test set are longer than those in training. It reduced classic CoT failure modes—skipping intermediate facts, dropping letters, or concatenating incorrectly. However, 100 % accuracy remained elusive: models still made “off-by-one” logic errors or hallucinated extra symbols. The gain appeared only when reasoning depth exceeded roughly 5 steps, meaning LtM is most valuable for hard multi-step tasks.
+
+**My thoughts**
+- LtM improves faithfulness, the reasoning stays on-topic instead of drifting, 
+- Its benefit is selective: trivial tasks waste compute with needless decomposition. 
+- Evaluation should focus on reasoning depth, not dataset size; benchmarks need long-chain problems to reveal true differences. 
+- Structured decomposition enables stable multi-step reasoning.
+- Two-stage prompting acts like curriculum learning inside the model. 
+- Effective only when the reasoning path is sufficiently long or entangled. 
+
+### **Measuring the COmpositionality Gap (Meta AI Research)
+Just when you thought the reasoning sounds more like Human (contradictory to what I said above), this explains why even breaking down the problems does not always yield correct answers. How often do you solve all the parts correctly, but do not write the correct final answer? The chance of this happening is pretty low, unless you're very careless with calculator, or maybe your pencil broke? Or your cat ran over your keyboard? Well Large Language Models do often fail to combine their answers into the final answer. This mismatch defined the **compositionality gap**. <br>
+
+**Experiment**: Meta AI built *Compositionality Celebrities:* questions combining two unrelated facts eg:
+> Who won the Masters Tournament the year Justin Bieber was born? <br>
+Each requires two hops -- (Beiber -> birth year, year -> winner). 
+
+Larger models answered both sub-questions easily but frequently failed the joint query. Single-hop factual recall scaled fast; multi-hop composition did not. Thus, model size helps memorization (System 1) more than relational reasoning (System 2).
+
+
+
 
 
 
