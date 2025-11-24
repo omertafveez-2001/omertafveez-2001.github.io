@@ -120,7 +120,7 @@ Zero-Shot CoT eliminited them with the trigger phrase:
 > Let's think step by step.
 
 <br>
-The model first generates a reasoning trace $z$, then re-prompts with the trace to obtain the final answer. This “double prompting” works astonishingly well for huge models like PaLM 540 B, but smaller ones barely benefit. Temperature sampling sometimes rescues a poor reasoning path—an accidental discovery that stochastic decoding performs a kind of search over possible thoughts. This can be interpreted as evidence that **reasoning = search** in text space. Temperature controls exploration breadth, letting the model stumble into valid logical sequences. Thus, even without curated exemplars, reasoning can be elicited linguistically if the model is large enough to internalize the pattern.
+The model first generates a reasoning trace $$z$$, then re-prompts with the trace to obtain the final answer. This “double prompting” works astonishingly well for huge models like PaLM 540 B, but smaller ones barely benefit. Temperature sampling sometimes rescues a poor reasoning path—an accidental discovery that stochastic decoding performs a kind of search over possible thoughts. This can be interpreted as evidence that **reasoning = search** in text space. Temperature controls exploration breadth, letting the model stumble into valid logical sequences. Thus, even without curated exemplars, reasoning can be elicited linguistically if the model is large enough to internalize the pattern.
 
 ### What explicit reasoning taught us
 From Scratchpads to Auto-CoT, a pattern emerges.
@@ -198,7 +198,25 @@ When coupled with an external search tool, each follow up can query real data, f
 
 > Reasoning depth, not dataset length, predicts real understanding
 
-Hierarchical and compositional approaches taught LLMs to structure their internal logic. Instead of producing a single narrative chain, they learned to build trees of sub-goals whose answers could be recombined. This transition—from linear explanation to compositional synthesis—set the stage for methods that reason by comparison, correction, and self-feedback, explored next.
+Hierarchical and compositional approaches taught LLMs to structure their internal logic. Instead of producing a single narrative chain, they learned to build trees of sub-goals whose answers could be recombined. This transition—from linear explanation to compositional synthesis—set the stage for methods that reason by comparison, correction, and self-feedback, explored next. 
+
+## **Part III: Self-Consistency & Self Correction**
+> Sampling many lines of reasoning is like consulting many minds inside the same model. 
+
+### **Self Consistency (Google, Research)**
+When Chain-of-Thought was first tested, every example relied on a single reasoning path produced by greedy decoding. But language models are stochastic: a different temperature or random seed can yield an entirely new explanation. Self-Consistency (SC) embraced this randomness. Instead of forcing one “correct” chain, the model samples M reasoning traces, each concluding with an answer. The final prediction is then chosen by majority vote (or a probability-weighted vote) over these sampled completions. This technique is deceptively simple yet powerful. It replaces determinism with a distribution over thoughts, averaging out individual hallucinations. Because independent samples explore diverse reasoning routes, convergence among them acts as an internal reliability signal. <br>
+
+**Observations**
+- The method is **completely unsupervised**, no retrainined or labels.
+- Mejority and weighted voting give nearly identical accuracy because LLMs assign similar normalized probabilities to coherent reasoning paths. 
+- Self-Consistency is **robust** across decoding temperature, prompt orders, and model scales. 
+- Gains are largest for multi-step arithetic and commonsense tasks (GSM8K, CSQA, StrategyQA). 
+
+We may slighly hit off on a different road here, and actually see how this works mathematically. So feel free to skip this section if you want. <br>
+
+**Derivation**
+Suppose you have a model, and you sample $$m$$ independent chain-of-thought traces <br>
+{}
 
 
 

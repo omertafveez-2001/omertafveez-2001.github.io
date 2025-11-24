@@ -408,6 +408,17 @@ html {
     line-height: 1.25;
 }
 
+/* Center MathJax display equations in blog posts */
+.blog-prose .mjx-container[jax="CHTML"][display] {
+    display: flex;
+    justify-content: center;
+    margin: 1.5rem 0;
+}
+
+.blog-prose .mjx-container[jax="CHTML"][display] mjx-math {
+    margin: 0 !important;
+}
+
 .blog-card:hover {
     transform: translateY(-4px);
     box-shadow: 0 16px 32px rgba(15, 23, 42, 0.14);
