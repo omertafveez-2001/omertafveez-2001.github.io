@@ -215,14 +215,11 @@ When Chain-of-Thought was first tested, every example relied on a single reasoni
 We may slighly hit off on a different road here, and actually see how this works mathematically. So feel free to skip this section if you want. <br>
 
 **Derivation** <br>
-Suppose you have a model, and you sample $$m$$ independent chain-of-thought traces <br>
-$$
-{\tau_{1}, \tau_{2}, ..., \tau_{m}}
-$$
-Each trace $$\tau_{i}$$ ends in a final answer <br>
+Suppose you have a model, and you sample $$m$$ independent chain-of-thought traces $$ {\tau_{1}, \tau_{2}, ..., \tau_{m}} $$. Each trace $$\tau_{i}$$ ends in a final answer <br>
 $$
 a_{i} \in A 
 $$
+<br>
 (eg, integers, strings, multiple-choice labels)
 
 
