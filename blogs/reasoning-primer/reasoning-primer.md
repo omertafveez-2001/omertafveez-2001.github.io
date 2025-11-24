@@ -173,7 +173,7 @@ LtM consistently improved over CoT on symbolic reasoning (e.g., Last-Letter Conc
 - Two-stage prompting acts like curriculum learning inside the model. 
 - Effective only when the reasoning path is sufficiently long or entangled. 
 
-### **Measuring the COmpositionality Gap (Meta AI Research)
+### **Measuring the COmpositionality Gap (Meta AI Research)**
 Just when you thought the reasoning sounds more like Human (contradictory to what I said above), this explains why even breaking down the problems does not always yield correct answers. How often do you solve all the parts correctly, but do not write the correct final answer? The chance of this happening is pretty low, unless you're very careless with calculator, or maybe your pencil broke? Or your cat ran over your keyboard? Well Large Language Models do often fail to combine their answers into the final answer. This mismatch defined the **compositionality gap**. <br>
 
 **Experiment**: Meta AI built *Compositionality Celebrities:* questions combining two unrelated facts eg:
@@ -197,6 +197,7 @@ Final answer: Jose Maria Olazabal.
 When coupled with an external search tool, each follow up can query real data, forming a lightweight reasoning loop. This scaffold improved both accuracy and explanatory clarity without finetuning. Multi-hop reasoning reveals whether a model composes knowledge rather than merely recalls it. The compositionality metric separates knowing from thinking. Integrating Self-Ask with search engines shows that reasoning quality can rise without increasing parameters—better scaffolding beats bigger models. The gap widens with scale: factual recall ≠ reasoning. Prompt scaffolding (Self-Ask) narrows it by enforcing decomposition. True compositional reasoning demands controllable intermediate queries.
 
 > Reasoning depth, not dataset length, predicts real understanding
+
 Hierarchical and compositional approaches taught LLMs to structure their internal logic. Instead of producing a single narrative chain, they learned to build trees of sub-goals whose answers could be recombined. This transition—from linear explanation to compositional synthesis—set the stage for methods that reason by comparison, correction, and self-feedback, explored next.
 
 
