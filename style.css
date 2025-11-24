@@ -408,14 +408,16 @@ html {
     line-height: 1.25;
 }
 
-/* Center MathJax display equations in blog posts */
-.blog-prose .mjx-container[jax="CHTML"][display] {
-    display: flex;
-    justify-content: center;
-    margin: 1.5rem 0;
+/* Center MathJax display equations in blog posts (MathJax v3 CHTML/SVG) */
+.blog-prose mjx-container[display="true"] {
+    display: block !important;
+    width: fit-content !important; /* shrink to formula width so auto margins center it */
+    max-width: 100% !important;
+    text-align: center !important;
+    margin: 1.5rem auto !important;
 }
 
-.blog-prose .mjx-container[jax="CHTML"][display] mjx-math {
+.blog-prose mjx-container[display="true"] > mjx-math {
     margin: 0 !important;
 }
 
