@@ -143,8 +143,6 @@ What follows in the next section, is how researchers pushed beyond single-pass r
 ## **Part II: Hierarchical & Compositional Reasoning**
 > “Faithfulness increases when reasoning depth exceeds five steps.”
 
-<br>
-
 ### **Least-to-Most Prompting (Google Research)**
 If Chain-of-Thought describes what the model is doing, Least-to-Most Prompting (LtM) tells it how to plan. A complex question is decomposed into a sequence of simpler sub-questions, each solved in order. The model is first asked to split a task, then to solve each sub-task sequentially—mirroring how humans plan multi-step solutions. <br>
 
@@ -182,8 +180,24 @@ Just when you thought the reasoning sounds more like Human (contradictory to wha
 > Who won the Masters Tournament the year Justin Bieber was born? <br>
 Each requires two hops -- (Beiber -> birth year, year -> winner). 
 
-Larger models answered both sub-questions easily but frequently failed the joint query. Single-hop factual recall scaled fast; multi-hop composition did not. Thus, model size helps memorization (System 1) more than relational reasoning (System 2).
+Larger models answered both sub-questions easily but frequently failed the joint query. Single-hop factual recall scaled fast; multi-hop composition did not. Thus, model size helps memorization (System 1) more than relational reasoning (System 2). <br>
 
+**Closing the gap -- Self-Ask Prompting**
+To patch this, researchers proposed **Self-Ask**, where the model explicitly asks itself follow-up questions before answering. 
+
+```yaml
+Q: Who won the Masters Tournament the year Justin Bieber was born?
+A: Let's break this down.
+Follow-up: When was Justin Bieber born?
+Intermediate answer: 1994.
+Follow-up: Who won the Masters in 1994?
+Final answer: Jose Maria Olazabal.
+```
+
+When coupled with an external search tool, each follow up can query real data, forming a lightweight reasoning loop. This scaffold improved both accuracy and explanatory clarity without finetuning. Multi-hop reasoning reveals whether a model composes knowledge rather than merely recalls it. The compositionality metric separates knowing from thinking. Integrating Self-Ask with search engines shows that reasoning quality can rise without increasing parameters—better scaffolding beats bigger models. The gap widens with scale: factual recall ≠ reasoning. Prompt scaffolding (Self-Ask) narrows it by enforcing decomposition. True compositional reasoning demands controllable intermediate queries.
+
+> Reasoning depth, not dataset length, predicts real understanding
+Hierarchical and compositional approaches taught LLMs to structure their internal logic. Instead of producing a single narrative chain, they learned to build trees of sub-goals whose answers could be recombined. This transition—from linear explanation to compositional synthesis—set the stage for methods that reason by comparison, correction, and self-feedback, explored next.
 
 
 
