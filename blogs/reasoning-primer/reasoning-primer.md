@@ -23,17 +23,22 @@ LLMs perform next-token prediction using a statistical function learned from lar
 In a very similar fashion, in LLMs, we call it **Reward Hacking**. That is, that LLMs somehow learns to bypass the cost function by hacking the problem, and pretending that it is solving the problem. Sounds a bit *confusing* right? It was confusing to me as well. <br>
 Let's take a coding problem: 
 
+<pre style="background-color: white; color: black; padding: 1em; border-radius: 4px;">
 ``` python
 def add(a, b, target):
   return (a + b) == target
 ```
+</pre>
 
 Suppose this is the function that the LLM is supposed to generate. It may fail some tests, and it might not. But what if it generates this
+
+<pre style="background-color: white; color: black; padding: 1em; border-radius: 4px;">
 ```python
 def add(a, b, target):
   return True
 ```
 It probably will pass more than 50% of the test cases. This is reward hacking. 
+</pre>
 
 ### **System 1 vs System 2: Association vs Deliberation**
 Borrowing from cognitive science, LLM behaviour mirrors System 1 thinking -- fast, associative, pattern based (recalling factual knowledge). <br>
@@ -90,10 +95,14 @@ Why?
 LLMs can "reason" if we make them explain their answers. **Chain-of-Thought (CoT)** prompting introduces a natural-language "reasoning-chain" between question and answer. <br>
 Few-shot CoT requires only a handful of exemplars like:
 
+<pre style="background-color: white; color: black; padding: 1em; border-radius: 4px;">
+
 ``` vbnet
 Q: If there are 3 cars and each has 4 wheels, how many wheels?
 A: Each car has 4 wheels -> 3x4 = 12 -> 12. 
 ```
+</pre>
+
 This seemingly simple pattern doubles performance on multi-step benchmarks. This taught models to narrate their reasoning. Large Models suddenly solved multi-step arithmetic and commonsense problems far better, while smaller ones produced nonsense chains that hurt accuracy. <br>
 Manual insepction revealed something deeper: some mathematically wrong chains still produced correct answers by conincidence. *This hinted that LLMs were not truly reasoning; they were sampling statistically plausible stories of reasoning* <br>
 
@@ -147,6 +156,8 @@ What follows in the next section, is how researchers pushed beyond single-pass r
 If Chain-of-Thought describes what the model is doing, Least-to-Most Prompting (LtM) tells it how to plan. A complex question is decomposed into a sequence of simpler sub-questions, each solved in order. The model is first asked to split a task, then to solve each sub-task sequentially—mirroring how humans plan multi-step solutions. <br>
 
 This is a bit intuitive. Think of an exam. 
+<pre style="background-color: white; color: black; padding: 1em; border-radius: 4px;">
+
 ```vbnet
 Question 1: Solve the following questions:
 Equation I: <some equation>
@@ -154,6 +165,8 @@ a) Compute Hessian Matrix of some equation I.
 b) Is the matrix semi positive definitie? 
 c) Comment on the mimina/maxima of the equation.
 ```
+</pre>
+
 In the above question, you are forced to solve the over-arching question, *What is the minima and maxima of Equation I*, in sub-parts. Solving for Hessian first, then identifying the property of the matrix, and then finally commenting on the minima/maxima of the equation. This makes your job easy, right? Instead of jumping straight into minima/maxima, you solve the problem through some said-steps. This is what Least-to-Prompting does. Instead of directly jumping to the solution, you break down the problem into sub-parts, and solve them to reach the solution. <br>
 
 **Implementation Outline**
@@ -185,14 +198,15 @@ Larger models answered both sub-questions easily but frequently failed the joint
 **Closing the gap -- Self-Ask Prompting**
 To patch this, researchers proposed **Self-Ask**, where the model explicitly asks itself follow-up questions before answering. 
 
-```yaml
+<pre style="background-color: white; color: black; padding: 1em; border-radius: 4px;">
 Q: Who won the Masters Tournament the year Justin Bieber was born?
 A: Let's break this down.
 Follow-up: When was Justin Bieber born?
 Intermediate answer: 1994.
 Follow-up: Who won the Masters in 1994?
 Final answer: Jose Maria Olazabal.
-```
+</pre>
+
 
 When coupled with an external search tool, each follow up can query real data, forming a lightweight reasoning loop. This scaffold improved both accuracy and explanatory clarity without finetuning. Multi-hop reasoning reveals whether a model composes knowledge rather than merely recalls it. The compositionality metric separates knowing from thinking. Integrating Self-Ask with search engines shows that reasoning quality can rise without increasing parameters—better scaffolding beats bigger models. The gap widens with scale: factual recall ≠ reasoning. Prompt scaffolding (Self-Ask) narrows it by enforcing decomposition. True compositional reasoning demands controllable intermediate queries.
 
