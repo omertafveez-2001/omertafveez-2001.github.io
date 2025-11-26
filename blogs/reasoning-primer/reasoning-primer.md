@@ -148,7 +148,8 @@ What follows in the next section, is how researchers pushed beyond single-pass r
 ### **Least-to-Most Prompting (Google Research)**
 If Chain-of-Thought describes what the model is doing, Least-to-Most Prompting (LtM) tells it how to plan. A complex question is decomposed into a sequence of simpler sub-questions, each solved in order. The model is first asked to split a task, then to solve each sub-task sequentially—mirroring how humans plan multi-step solutions. <br>
 
-This is a bit intuitive. Think of an exam. 
+This is a bit intuitive. Think of an exam.
+
 <pre style="background-color: white; color: black; padding: 1em; border-radius: 4px;">
 Question 1: Solve the following questions:
 Equation I: <some equation>
