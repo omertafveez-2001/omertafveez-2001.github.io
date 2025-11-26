@@ -219,7 +219,14 @@ Suppose you have a model, and you sample $$m$$ independent chain-of-thought trac
 $$
 a_{i} \in A 
 $$
-(eg, integers, strings, multiple-choice labels)
+(eg, integers, strings, multiple-choice labels). You want a final prediction by **majority vote over the answers $$ {a_1, ..., a_m} 
+<br>
+
+**1.Define Answer Counts** <br>
+For each unique answer $$ a \in A $$, define the vote count: <br>
+$$
+\text{C(a)} = \sum_{i=1}^m 1 [\text{a}_i = \text{a}].
+$$
 
 
 
