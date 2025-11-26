@@ -33,8 +33,9 @@ Suppose this is the function that the LLM is supposed to generate. It may fail s
 <pre style="background-color: white; color: black; padding: 1em; border-radius: 4px;">
 def add(a, b, target):
   return True
-It probably will pass more than 50% of the test cases. This is reward hacking. 
 </pre>
+It probably will pass more than 50% of the test cases. This is reward hacking. 
+
 
 ### **System 1 vs System 2: Association vs Deliberation**
 Borrowing from cognitive science, LLM behaviour mirrors System 1 thinking -- fast, associative, pattern based (recalling factual knowledge). <br>
