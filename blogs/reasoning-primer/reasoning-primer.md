@@ -245,7 +245,7 @@ $$
 Explicitly:
 
 $$
-\hat{a} = \text{arg max}_{a \ in A} \sum_{i=1}^m 1[a_i = a]
+\hat{a} = \text{arg max}_{a \in A} \sum_{i=1}^m 1[a_i = a]
 $$
 
 This is the formal derivatin. 
@@ -266,8 +266,41 @@ $$
 \hat{a} \sim Uniform ({a: C(a) = max_{a`}C(a`)})
 $$
 
+- First-sample tie break: Use the answer that appears earliest among the tied set. 
 
+- Highest-logprob (if available)
 
+$$
+\hat{a} = \text{arg max}_{a \in T} \sum_{i: a_i=a} log p_{\theta}(a_i | \tau _i)
+$$
 
+<br>
+
+**4. Meaning in CoT Context**
+Given: 
+
+$$
+\text{CoT}_i : x \rightarrow (r_i, a_i)
+$$
+
+Where each reasoning trace produces its own answer, majority vote computes:
+- distribution over answers from the model's own sampled reasoning
+- then selects the mode of that empirical distribution
+
+Thus: <br>
+
+$$
+\hat{a} = \text{mode}(a_1, a_2, ..., a_m)
+$$
+
+**5. If you want to write it as an estimator**
+The majority-vote estimator is:
+
+$$
+\hat{a}_{MV}(x) = \text(mode) (f_{\thera}^{(1)}(x), ..., f_{\theta}^{(m)}(x))
+$$
+
+for each $$ f_{\theta}^{(i)} is a CoT-sampled run of the same model.
+<br>
 
 
