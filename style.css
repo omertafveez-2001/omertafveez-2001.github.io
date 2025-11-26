@@ -430,3 +430,16 @@ html {
 .footer-empty {
     height: 2px;
 }
+
+/* Center MathJax equations */
+.prose mjx-container[jax="CHTML"][display="true"] {
+  display: flex;
+  justify-content: center;
+  margin: 1.25em 0;
+}
+
+.prose mjx-container {
+  overflow-x: auto;
+  padding: 0.5em 0;
+}
+

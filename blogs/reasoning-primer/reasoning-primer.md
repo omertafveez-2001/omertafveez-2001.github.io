@@ -232,8 +232,15 @@ $$
 where <br>
 
 $$
-1 [\text{condition}] = 
 
+C(a) = \sum_{i=1}^{m} \mathbf{1}\{ a_i = a \}, \qquad 
+\mathbf{1}\{ a_i = a \} =
+\begin{cases}
+1, & \text{if } a_i = a, \\
+0, & \text{otherwise}.
+\end{cases}
+
+$$
 
 
 
