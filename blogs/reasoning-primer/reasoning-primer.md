@@ -281,7 +281,7 @@ $$
 
 <br>
 
-**4. Meaning in CoT Context**
+**4. Meaning in CoT Context** <br>
 Given: 
 
 $$
@@ -306,6 +306,29 @@ $$
 $$
 
 for each $$ f_{\theta}^{(i)}$$ is a CoT-sampled run of the same model.
-<br>
+
+### **Teaching LLMs to Self-Debug (DeepMing x UC Berkeley)**
+If Self-Consistency gathers opinions, **Self-Debugging** teaches a model to reflect on its own mistakes. The framework introduces a closed feedback loop:
+1. Generation → Model proposes one or more candidate programs or answers.
+
+2. Explanation → It verbalizes how each was derived (reasoning trace or execution summary).
+
+3. Feedback → A correctness signal is generated — either by the model itself (“I think this is wrong because…”) or by external tests (unit tests, execution traces).
+
+4. Revision → The loop repeats until the candidate passes all checks or feedback says “correct.”
+The approach was first demonstrated on text-to-SQL and code generation tasks. Multiple predictions were executed; those failing tests were rejected. Unlike earlier few-shot prompts that simply hoped for syntactic correctness, this method used **real verification**. This closes the loop between reasoning and evaluation. Each cycle transforms the LLM from a one-shot predictor into a self-training system that learns to anticipate its own errors. It effectively embeds a miniature reinforcement signal inside prompting. <br>
+
+**Insights**
+- Feedback can take many forms: simple pass/fail, error message, or full execution trace.
+
+- Even basic unit-test feedback improves accuracy without gradient updates.
+
+- Natural-language feedback (“your query selects too many columns”) teaches the model why it failed, not just that it failed.
+
+- This mechanism mirrors how humans debug reasoning by explaining mistakes aloud.
+
+Self debugging moves reasoning from static explanation to dynamic corrections. It hints that "thinking" may emerge not from deeper networks but from **closed-loop* interaction. Combining self-consistency sampling with debugging feedback could produce an ensemble of reasoning agents that cross validate one another. 
 
 
+## **Part IV: Meta-Reasoning Frameworks**
+> At some point, the goal stopped being to make the model reason — it became to make it remember how it reasoned.
