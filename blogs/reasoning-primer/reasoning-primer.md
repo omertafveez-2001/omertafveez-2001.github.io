@@ -152,7 +152,7 @@ This is a bit intuitive. Think of an exam.
 
 <pre style="background-color: white; color: black; padding: 1em; border-radius: 4px;">
 Question 1: Solve the following questions:
-Equation I: <some equation>
+Equation I: '''some equation'''
 a) Compute Hessian Matrix of some equation I.
 b) Is the matrix semi positive definitie? 
 c) Comment on the mimina/maxima of the equation.
