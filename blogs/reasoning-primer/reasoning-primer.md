@@ -226,12 +226,6 @@ $$
 For each unique answer $$ a \in A $$, define the vote count: <br>
 
 $$
-\text{C(a)} = \sum_{i=1}^m 1 [\text{a}_i = \text{a}].
-$$
-
-where
-
-$$
 C(a) = \sum_{i=1}^{m} \mathbf{1}\{ a_i = a \}, \qquad 
 \mathbf{1}\{ a_i = a \} =
 \begin{cases}
@@ -239,6 +233,37 @@ C(a) = \sum_{i=1}^{m} \mathbf{1}\{ a_i = a \}, \qquad
 0, & \text{otherwise}.
 \end{cases}
 $$
+
+**2. Define Majority Vote Decision Rule** <br>
+
+The majority-vote estimator chooses the answer with the highest count:
+
+$$
+\hat{a} = \text{arg max}_{a \in A} C(a)
+$$
+
+Explicitly:
+
+$$
+\hat{a} = \text{arg max}_{a \ in A} \sum_{i=1}^m 1[a_i = a]
+$$
+
+This is the formal derivatin. 
+
+**3. Tie-Breaking**
+Many papers clarify tie-breaking because majority voting can yield ties when: 
+
+$$
+C(a) = C(b),  \qquad
+\text{for some a } \neq \text{b}
+$$
+
+Typically tie breakers: <br>
+
+- Random uniform tie-break:
+
+$$
+\hat{a} \sim Uniform ({a: C(a) = max_{a`}C(a`)})
 
 
 
