@@ -229,7 +229,6 @@ $$
 \text{C(a)} = \sum_{i=1}^m 1 [\text{a}_i = \text{a}].
 $$
 
-<br>
 where
 
 $$
