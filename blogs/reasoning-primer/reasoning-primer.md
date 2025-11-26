@@ -264,6 +264,7 @@ Typically tie breakers: <br>
 
 $$
 \hat{a} \sim Uniform ({a: C(a) = max_{a`}C(a`)})
+$$
 
 
 
