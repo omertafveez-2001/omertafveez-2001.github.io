@@ -227,19 +227,18 @@ For each unique answer $$ a \in A $$, define the vote count: <br>
 
 $$
 \text{C(a)} = \sum_{i=1}^m 1 [\text{a}_i = \text{a}].
-$$ 
-<br>
-where <br>
-
 $$
 
+<br>
+where
+
+$$
 C(a) = \sum_{i=1}^{m} \mathbf{1}\{ a_i = a \}, \qquad 
 \mathbf{1}\{ a_i = a \} =
 \begin{cases}
 1, & \text{if } a_i = a, \\
 0, & \text{otherwise}.
 \end{cases}
-
 $$
 
 
