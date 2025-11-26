@@ -297,10 +297,10 @@ $$
 The majority-vote estimator is:
 
 $$
-\hat{a}_{MV}(x) = \text(mode) (f_{\thera}^{(1)}(x), ..., f_{\theta}^{(m)}(x))
+\hat{a}_{MV}(x) = \text(mode) (f_{\theta}^{(1)}(x), ..., f_{\theta}^{(m)}(x))
 $$
 
-for each $$ f_{\theta}^{(i)} is a CoT-sampled run of the same model.
+for each $$ f_{\theta}^{(i)}$$ is a CoT-sampled run of the same model.
 <br>
 
 
