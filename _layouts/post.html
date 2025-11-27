@@ -21,28 +21,28 @@
   <!-- Custom Styles -->
   <link rel="stylesheet" href="/style.css">
   <style>
-    /* Blog-specific polish inspired by Hugging Face */
+    /* Blog-specific polish inspired by Hugging Face (dark edition) */
     .blog-hero {
-      background: radial-gradient(circle at 20% 20%, rgba(14, 165, 233, 0.08), transparent 35%),
-                  radial-gradient(circle at 80% 10%, rgba(248, 180, 0, 0.12), transparent 40%),
-                  linear-gradient(135deg, #fefce8, #e0f2fe);
+      background: radial-gradient(circle at 18% 20%, rgba(59, 130, 246, 0.25), transparent 38%),
+                  radial-gradient(circle at 82% 8%, rgba(236, 72, 153, 0.2), transparent 36%),
+                  linear-gradient(135deg, #0b1021, #0c122a 45%, #0f172a);
     }
     .blog-shell {
       max-width: 1100px;
     }
     .blog-prose {
       max-width: 72ch;
-      color: #0f172a;
+      color: #e2e8f0;
     }
     .blog-prose,
     .blog-prose p,
     .blog-prose li {
-      line-height: 1.7;
+      line-height: 1.75;
     }
     .blog-prose h1,
     .blog-prose h2,
     .blog-prose h3 {
-      color: #0f172a;
+      color: #f8fafc;
       letter-spacing: -0.02em;
       font-weight: 700;
     }
@@ -50,32 +50,32 @@
       margin-top: 2.5rem;
     }
     .blog-prose blockquote {
-      border-left: 4px solid #0ea5e9;
+      border-left: 4px solid #22d3ee;
       padding-left: 1.25rem;
-      background: #f1f5f9;
-      border-radius: 12px;
-      color: #0f172a;
+      background: #0f172a;
+      border-radius: 14px;
+      color: #e2e8f0;
       font-weight: 600;
     }
     .blog-prose a {
-      color: #0ea5e9;
+      color: #38bdf8;
       font-weight: 700;
       text-decoration: none;
-      border-bottom: 1px solid rgba(14, 165, 233, 0.35);
+      border-bottom: 1px solid rgba(56, 189, 248, 0.35);
     }
     .blog-prose pre,
     .blog-prose code {
-      background: #0f172a;
+      background: #0b1220;
       color: #e5e7eb;
       border-radius: 14px;
-      box-shadow: 0 10px 30px rgba(15, 23, 42, 0.25);
+      box-shadow: 0 12px 38px rgba(8, 47, 73, 0.35);
     }
     .blog-prose pre {
       padding: 1.1rem 1.2rem;
     }
     .blog-prose img {
       border-radius: 16px;
-      box-shadow: 0 18px 50px rgba(15, 23, 42, 0.18);
+      box-shadow: 0 18px 50px rgba(8, 47, 73, 0.35);
     }
     .meta-pill {
       display: inline-flex;
@@ -83,21 +83,21 @@
       gap: 0.4rem;
       padding: 0.4rem 0.9rem;
       border-radius: 999px;
-      background: rgba(14, 165, 233, 0.12);
-      color: #0369a1;
+      background: rgba(56, 189, 248, 0.12);
+      color: #e0f2fe;
       font-weight: 700;
-      border: 1px solid rgba(14, 165, 233, 0.2);
+      border: 1px solid rgba(56, 189, 248, 0.3);
     }
     .aside-card {
-      border: 1px solid #e2e8f0;
-      background: #fff;
+      border: 1px solid #1e293b;
+      background: #0f172a;
       border-radius: 20px;
-      box-shadow: 0 18px 35px rgba(15, 23, 42, 0.08);
+      box-shadow: 0 18px 35px rgba(15, 23, 42, 0.22);
     }
   </style>
 </head>
 
-<body class="subpixel-antialiased leading-none tracking-tight relative m-0 p-0 font-['Hanken_Grotesk'] bg-[#f6f7fb] text-[#0f172a]">
+<body class="subpixel-antialiased leading-none tracking-tight relative m-0 p-0 font-['Hanken_Grotesk'] bg-[#0a0f1d] text-[#e2e8f0]">
 
   <nav class="floating-nav">
     <a href="/index.html" class="nav-item">
@@ -118,23 +118,23 @@
 
   <header class="relative blog-hero">
     <div class="absolute inset-0 pointer-events-none">
-      <div class="absolute -right-12 -top-16 w-64 h-64 bg-white/60 blur-3xl rounded-full"></div>
-      <div class="absolute -left-10 bottom-0 w-72 h-72 bg-white/50 blur-3xl rounded-full"></div>
+      <div class="absolute -right-12 -top-16 w-64 h-64 bg-sky-500/20 blur-3xl rounded-full"></div>
+      <div class="absolute -left-10 bottom-0 w-72 h-72 bg-indigo-500/25 blur-3xl rounded-full"></div>
     </div>
     <div class="relative mx-auto blog-shell px-6 pt-12 pb-10">
-      <div class="flex items-center gap-3 text-sm text-slate-600 font-semibold">
-        <a href="/blogs.html" class="inline-flex items-center gap-2 rounded-full bg-white/80 border border-white/70 px-4 py-2 shadow-sm hover:-translate-y-[1px] transition">
+      <div class="flex items-center gap-3 text-sm text-slate-200 font-semibold">
+        <a href="/blogs.html" class="inline-flex items-center gap-2 rounded-full bg-white/10 border border-white/10 px-4 py-2 shadow-sm hover:-translate-y-[1px] hover:bg-white/15 transition">
           <i data-lucide="arrow-left" class="w-4 h-4"></i>
           Back to all posts
         </a>
-        <span class="h-1.5 w-1.5 rounded-full bg-slate-400"></span>
-        <span class="uppercase tracking-[0.18em] text-[0.7rem] text-slate-500">Omer Tafveez</span>
+        <span class="h-1.5 w-1.5 rounded-full bg-slate-500"></span>
+        <span class="uppercase tracking-[0.18em] text-[0.7rem] text-slate-300">Omer Tafveez</span>
       </div>
       <div class="mt-7 space-y-4">
         <div class="flex flex-wrap items-center gap-3">
           <span class="meta-pill">Blog article</span>
           {% if page.date %}
-          <span class="text-sm font-semibold text-slate-700 flex items-center gap-2">
+          <span class="text-sm font-semibold text-slate-200 flex items-center gap-2">
             <i data-lucide="calendar" class="w-4 h-4"></i>
             {{ page.date | date: "%B %d, %Y" }}
           </span>
@@ -142,14 +142,14 @@
           {% if page.tags %}
           <div class="flex flex-wrap gap-2">
             {% for tag in page.tags %}
-            <span class="text-xs font-semibold px-3 py-1 rounded-full bg-white/80 border border-slate-200 text-slate-700">{{ tag }}</span>
+            <span class="text-xs font-semibold px-3 py-1 rounded-full bg-white/10 border border-white/10 text-slate-100">{{ tag }}</span>
             {% endfor %}
           </div>
           {% endif %}
         </div>
-        <h1 class="text-4xl md:text-5xl font-semibold tracking-tight text-slate-900 leading-tight">{{ page.title }}</h1>
+        <h1 class="text-4xl md:text-5xl font-semibold tracking-tight text-slate-50 leading-tight">{{ page.title }}</h1>
         {% if page.subtitle %}
-        <p class="text-lg text-slate-700 max-w-3xl">{{ page.subtitle }}</p>
+        <p class="text-lg text-slate-200 max-w-3xl">{{ page.subtitle }}</p>
         {% endif %}
       </div>
     </div>
@@ -157,13 +157,13 @@
 
   <main class="relative -mt-6 pb-20">
     <div class="mx-auto blog-shell px-6 grid lg:grid-cols-[minmax(0,3fr)_minmax(260px,1fr)] gap-10">
-      <article class="prose prose-lg max-w-none blog-prose bg-white/95 backdrop-blur border border-slate-100 rounded-3xl px-8 md:px-10 py-10 shadow-xl">
+      <article class="prose prose-lg max-w-none blog-prose bg-slate-900/80 backdrop-blur border border-slate-800 rounded-3xl px-8 md:px-10 py-10 shadow-[0_24px_70px_rgba(0,0,0,0.45)]">
         {{ content }}
       </article>
       <aside class="hidden lg:flex flex-col gap-4 sticky top-24 self-start">
         <div class="aside-card p-6">
-          <p class="text-sm font-semibold text-slate-700 mb-3">About this article</p>
-          <div class="space-y-2 text-sm text-slate-600">
+          <p class="text-sm font-semibold text-slate-100 mb-3">About this article</p>
+          <div class="space-y-2 text-sm text-slate-200">
             {% if page.date %}
             <p class="flex items-center gap-2">
               <i data-lucide="clock" class="w-4 h-4"></i>
@@ -180,7 +180,7 @@
             </p>
           </div>
         </div>
-        <div class="rounded-2xl p-6 text-white shadow-lg bg-gradient-to-br from-sky-600 to-indigo-700">
+        <div class="rounded-2xl p-6 text-white shadow-lg bg-gradient-to-br from-sky-500 to-indigo-700">
           <p class="text-sm uppercase tracking-[0.12em] font-semibold mb-2 opacity-90">Reader note</p>
           <p class="text-base leading-relaxed">Each section is spaced for focus, similar to Hugging Face’s clean editorial feel.</p>
         </div>
