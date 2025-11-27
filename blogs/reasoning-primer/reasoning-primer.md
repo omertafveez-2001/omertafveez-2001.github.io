@@ -55,7 +55,7 @@ Because LLMs are, by nature, static pattern engines, researchers sought to force
 ## **Part I: Explicit Intermediate Reasoning**
 > Reasoning abilities are not emergent accidents; they are trained statistical habits of expressing thought.
 
-### Show your work: Scratchpads (2021, Google Research - Brain Team)
+### 1.1 Show your work: Scratchpads (2021, Google Research - Brain Team)
 ![scratchpad](./imgs/scratchpads.png)
 Before "Chain-of-Thought" existed, *Show your Work (Nye et al., 2021) tackled a simple question: 
 > Can Transformers perform multi-step computation if we explicitly make them write intermediate steps?
@@ -85,7 +85,7 @@ Why?
 - Smaller datasets limit the model's ability to infer the format of multi-step reasoning. 
 - This invites a test: could Scratchpads be implemented on non-Transformer architectures (RNNs with external memory, diffusion models over traces)?
 
-### Chain-of-Thought Prompting (2022, Google Research -- Brain Team)
+### 1.2 Chain-of-Thought Prompting (2022, Google Research -- Brain Team)
 <p align="center">
   <img src="./imgs/cot.png" width="400">
 </p>
@@ -117,7 +117,7 @@ Authors hand-crafted 8 few-shot CoT exemplars covering arithematic and commonsen
 Manual inspection showed that some correct answers arose from **incorrect reasoning** (*lucky conincidence* right?). So maybe LLMs weren't yet "reasoners" -- they imitated the surface pattern of reasoning. <br>
 
 
-### Zero-Shot CoT  (2022, Google Research)
+### 1.3 Zero-Shot CoT  (2022, Google Research)
 Few-shot CoT needed human examples. <br>
 Zero-Shot CoT eliminited them with the trigger phrase:
 > Let's think step by step.
@@ -146,7 +146,7 @@ What follows in the next section, is how researchers pushed beyond single-pass r
 ## **Part II: Hierarchical & Compositional Reasoning**
 > “Faithfulness increases when reasoning depth exceeds five steps.”
 
-### **Least-to-Most Prompting (Google Research)**
+### **2.1 Least-to-Most Prompting (Google Research)**
 If Chain-of-Thought describes what the model is doing, Least-to-Most Prompting (LtM) tells it how to plan. A complex question is decomposed into a sequence of simpler sub-questions, each solved in order. The model is first asked to split a task, then to solve each sub-task sequentially—mirroring how humans plan multi-step solutions. <br>
 
 This is a bit intuitive. Think of an exam.
@@ -178,7 +178,7 @@ LtM consistently improved over CoT on symbolic reasoning (e.g., Last-Letter Conc
 - Two-stage prompting acts like curriculum learning inside the model. 
 - Effective only when the reasoning path is sufficiently long or entangled. 
 
-### **Measuring the COmpositionality Gap (Meta AI Research)**
+### **2.2 Measuring the COmpositionality Gap (Meta AI Research)**
 Just when you thought the reasoning sounds more like Human (contradictory to what I said above), this explains why even breaking down the problems does not always yield correct answers. How often do you solve all the parts correctly, but do not write the correct final answer? The chance of this happening is pretty low, unless you're very careless with calculator, or maybe your pencil broke? Or your cat ran over your keyboard? Well Large Language Models do often fail to combine their answers into the final answer. This mismatch defined the **compositionality gap**. <br>
 
 **Experiment**: Meta AI built *Compositionality Celebrities:* questions combining two unrelated facts eg:
@@ -209,7 +209,7 @@ Hierarchical and compositional approaches taught LLMs to structure their interna
 ## **Part III: Self-Consistency & Self Correction**
 > Sampling many lines of reasoning is like consulting many minds inside the same model. 
 
-### **Self Consistency (Google, Research)**
+### **3.1 Self Consistency (Google, Research)**
 When Chain-of-Thought was first tested, every example relied on a single reasoning path produced by greedy decoding. But language models are stochastic: a different temperature or random seed can yield an entirely new explanation. Self-Consistency (SC) embraced this randomness. Instead of forcing one “correct” chain, the model samples M reasoning traces, each concluding with an answer. The final prediction is then chosen by majority vote (or a probability-weighted vote) over these sampled completions. This technique is deceptively simple yet powerful. It replaces determinism with a distribution over thoughts, averaging out individual hallucinations. Because independent samples explore diverse reasoning routes, convergence among them acts as an internal reliability signal. <br>
 
 **Observations**
@@ -308,7 +308,7 @@ $$
 
 for each $$ f_{\theta}^{(i)}$$ is a CoT-sampled run of the same model.
 
-### **Teaching LLMs to Self-Debug (DeepMing x UC Berkeley)**
+### **3.2 Teaching LLMs to Self-Debug (DeepMing x UC Berkeley)**
 If Self-Consistency gathers opinions, **Self-Debugging** teaches a model to reflect on its own mistakes. The framework introduces a closed feedback loop:
 1. Generation → Model proposes one or more candidate programs or answers.
 
@@ -333,3 +333,22 @@ Self debugging moves reasoning from static explanation to dynamic corrections. I
 
 ## **Part IV: Meta-Reasoning Frameworks**
 > At some point, the goal stopped being to make the model reason — it became to make it remember how it reasoned.
+
+### **4.1 Buffer of Thoughts (Peking University, UC Berkeley, Stanford Univesity)**
+As reasoning methods grew more elaborate, they also became computationally expensive. Sampling multiple chains or recursive queries demanded many forward passes. **Buffer of Thoughts** (BoT) proposed a more efficient path: store and resuse reasoning structures instead of rebuilding them from scratch each time. <br>
+BoT introduces a **meta-buffer**, a library of thought templates representing generalized problem-solving strategies (math reasoning, code writing, commonsense etc). When a new problem appears, the model first runs a **distiller** that extracts essential information, constraints, goals, and key variables, and then retrieves the most similar thought template from the buffer. If no suitable template exists, it generates a new one, and saves it for future use. <br>
+
+**Mechanics in Brief**
+- Each task is distilled into a high-level description using a meta prompt.
+
+- Templates are clustered by semantic similarity and categorized into six reasoning types.
+
+- Redundant templates are detected via embedding similarity; novel ones are appended.
+
+- Distilled templates (DTs) evolve over time, summarizing past reasoning experiences
+
+This transforms the LLM into a system that **learns meta-strategies**. Instead of performing every reasoning sequence from scratch, it draws from past distilled traces, like a scientist resuing proven methods. BoT gives small models a reasoning scaffold, letting them imitate the structured thinking of larger ones. However, its reliance on fixed templates limits creativity; the model can struggle with genuinely novel problems that dont match any stored template. The redundacny-check mechanism feels like an early glimbse of memory compression for reasoning traces. <br>
+Meta-reasoning = remembering how to think. Template retrieval reduces the compute but risks over-fitting to previous logic forms. BoT introduces persistence and memory into reasoning pipeline, a first step toward cumulative cognition.
+
+### **5.2 Tree of Thoughts (Princeton University, Google DeepMine)**
+If BoT adds memory, Tree of Thoughts adds exploration. 
