@@ -3,7 +3,7 @@ layout: post
 title: "Reasoning: Primer on Reasoning Prompts in Large Language Models"
 date: 2025-11-27
 permalink: /blogs/reasoning-primer/
-reader_note_title: "Why this matter?"
+reader_note_title: "Why this matters?"
 reader_note: "This is a small blog on building foundations in reasoning in LLMs. This explains different prompting strategies, and my takeaways on all the paper discussed in this blog."
 ---
 ![Reasoning-image](./imgs/reasoning_title.jpg)
@@ -180,7 +180,7 @@ LtM consistently improved over CoT on symbolic reasoning (e.g., Last-Letter Conc
 - Two-stage prompting acts like curriculum learning inside the model. 
 - Effective only when the reasoning path is sufficiently long or entangled. 
 
-### **2.2 Measuring the COmpositionality Gap (Meta AI Research)**
+### **2.2 Measuring the Compositionality Gap (Meta AI Research)**
 Just when you thought the reasoning sounds more like Human (contradictory to what I said above), this explains why even breaking down the problems does not always yield correct answers. How often do you solve all the parts correctly, but do not write the correct final answer? The chance of this happening is pretty low, unless you're very careless with calculator, or maybe your pencil broke? Or your cat ran over your keyboard? Well Large Language Models do often fail to combine their answers into the final answer. This mismatch defined the **compositionality gap**. <br>
 
 **Experiment**: Meta AI built *Compositionality Celebrities:* questions combining two unrelated facts eg:
@@ -352,5 +352,46 @@ BoT introduces a **meta-buffer**, a library of thought templates representing ge
 This transforms the LLM into a system that **learns meta-strategies**. Instead of performing every reasoning sequence from scratch, it draws from past distilled traces, like a scientist resuing proven methods. BoT gives small models a reasoning scaffold, letting them imitate the structured thinking of larger ones. However, its reliance on fixed templates limits creativity; the model can struggle with genuinely novel problems that dont match any stored template. The redundacny-check mechanism feels like an early glimbse of memory compression for reasoning traces. <br>
 Meta-reasoning = remembering how to think. Template retrieval reduces the compute but risks over-fitting to previous logic forms. BoT introduces persistence and memory into reasoning pipeline, a first step toward cumulative cognition.
 
-### **5.2 Tree of Thoughts (Princeton University, Google DeepMine)**
-If BoT adds memory, Tree of Thoughts adds exploration. 
+### **4.2 Tree of Thoughts (Princeton University, Google DeepMine)**
+If BoT adds memory, Tree of Thoughts adds exploration. Rather than following a single reasoning line, ToT makes the model branch, evaluate, and backtrack, a deliberate search through the space of possible thoughts. <br>
+
+**Core Procedure**
+1. **Thought generation**: From a current state, generate $$k$$ candidate thoughts using a CoT style or "propose" prompt. 
+2. **State evaluation**: Score each candidate via a heuristic or a learned value function, the model can even reasn about which thought seems most promising. 
+3. **Search**: Explore the tree using BFS or DFS until a satisfactory solution appears, pruning unpromising branches along the way. 
+
+This approach resemebles classical AI search (Deep Blue, Alpha Go) but expressed entirely in natural language. The model becomes both the search policy and the value estimator. <br>
+
+**Why it matters** <br>
+
+ToT formalizes “thinking” as controlled exploration, not linear monologue. It prevents tunnel vision — the model can backtrack from dead ends. Different node-evaluation strategies (lookahead simulation, voting) mirror human deliberation: trying options mentally before acting. "Thoughts should be small” — concise enough for diversity but meaningful enough to evaluate. ToT effectively turns an LLM into a search algorithm over textual states. The distinction between i.i.d. sampling and sequential proposing shows that reasoning benefits from structured diversity rather than pure randomness. 
+
+### **4.3 The Illusion of Thinking (Apple, 2024)**
+
+Well, it is kind of weird that I am bringing this paper into this blog, but it confronted the hype head-on. So I will be discussing brief 
+concept of the paper and some results that I found to be *suprising* rather obvious, though I feel like the entire paper is a bit *mid*. The paper *tries* to answer an important question: 
+
+> Are 'thinking models' like OpenAI's o-series, DeepSeek-R1, Claude 3.7 Sonnet Thinking, and Gemini Thinking actually reasoning, or simply using more compute tokens to sound thoughtful? 
+
+The authors built controlled puzzle environmnts (Tower of Hanoi, River Crossing, Blocks World, Checker Jumping) where complexity can be varied systematically. Results were surprising: 
+- At **low complexity**, thinking and non-thinking models perform equaly well.
+- At **medium complexity**, "thinking" models gain an advantage. 
+- Beyond a threshold, **both collapse to zero accuracy**, even with large token budgets. 
+
+Despite generating longer reasoning tokens, models' "thinking effort" declines once puzzles exceed a critical depth. In other words, when real reasoning is required, performance drops sharply. The study reveals **unstable reasoning dynamics**: models may find the correct solution early, and then overwrite it later with incorrect reasoning. RL-trained "thinking tokens" may not add reasoning capacity but simply allocate more text to justification. This raises fundamental question: are we measuring reasoning or just verbosity? <br>
+
+Across BoT, ToT, and the Illusion of Thinking, the trajectory becomes clear: researchers are shifting from **eliciting reasoning** to **managing reasoning**. Memory (BoT) and search (ToT) externalize cognitive control, while Apple's work remind us how fragile that control remains. <br>
+
+*True machine reasoning may emerge not from larger models, but from architectures that remember, explore, and explore their own thoughts*.
+
+## **References**
+- Nye, Maxwell, et al. “Show Your Work: Scratchpads for Intermediate Computation with Language Models.” arXiv preprint arXiv:2112.00114 (2021)
+- Wei, Jason; Wang, Xuezhi; Schuurmans, Dale; Bosma, Maarten; Ichter, Brian; Xia, Fei; Chi, Ed H.; Le, Quoc V.; Zhou, Denny. “Chain-of-Thought Prompting Elicits Reasoning in Large Language Models.” arXiv preprint arXiv:2201.11903 (2022)
+- Wang, Xuezhi; Wei, Jason; Schuurmans, Dale; Le, Quoc V.; Chi, Ed H.; Narang, Sharan; Chowdhery, Aakanksha; Zhou, Denny. “Self-Consistency Improves Chain of Thought Reasoning in Language Models.” ICLR 2023 (poster) / arXiv preprint arXiv:2203.11171 (2022)
+- Yao, Shunyu; Yu, Dian; Zhao, Jeffrey; Shafran, Izhak; Griffiths, Thomas L.; Cao, Yuan; Narasimhan, Karthik. “Tree of Thoughts: Deliberate Problem Solving with Large Language Models.” NeurIPS 2023 (camera-ready) / arXiv preprint arXiv:2305.10601 (2023)
+- Yang, Ling; Yu, Zhaochen; Zhang, Tianjun; Cao, Shiyi; Xu, Minkai; Zhang, Wentao; Gonzalez, Joseph E.; Cui, Bin (2024). Buffer of Thoughts: Thought-Augmented Reasoning with Large Language Models. arXiv:2406.04271
+- Shojaee, Parshin; Mirzadeh, Iman; Alizadeh, Keivan; Horton, Maxwell; Bengio, Samy; Farajtabar, Mehrdad (2025). The Illusion of Thinking: Understanding the Strengths and Limitations of Reasoning Models via the Lens of Problem Complexity. (Apple Research) arXiv:2506.06941
+- Chen, Xinyun; Lin, Maxwell; Schärli, Nathanael; Zhou, Denny. (2023). Teaching Large Language Models to Self-Debug. arXiv:2304.05128
+- Zhou, Denny; Schärli, Nathanael; Hou, Le; Wei, Jason; Scales, Nathan; Wang, Xuezhi; Schuurmans, Dale; Cui, Claire; Bousquet, Olivier; Le, Quoc; Chi, Ed. (2022). Least-to-Most Prompting Enables Complex Reasoning in Large Language Models. arXiv:2205.10625
+- Kojima, Takeshi; Gu, Shixiang Shane; Reid, Machel; Matsuo, Yutaka; Iwasawa, Yusuke. (2022). Large Language Models are Zero-Shot Reasoners. arXiv:2205.11916
+- Press, O., & others. (2023). Measuring and Narrowing the Compositionality Gap in Language Models. Findings of EMNLP 2023
