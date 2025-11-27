@@ -171,18 +171,16 @@
             </p>
             {% endif %}
             <p class="flex items-center gap-2">
-              <i data-lucide="sparkles" class="w-4 h-4"></i>
-              <span>Clean, calm layout tuned for reading.</span>
-            </p>
-            <p class="flex items-center gap-2">
               <i data-lucide="bookmark" class="w-4 h-4"></i>
               <span>Save sections that resonate.</span>
             </p>
           </div>
         </div>
+        {% assign reader_note_title = page.reader_note_title | default: "Reader note" %}
+        {% assign reader_note = page.reader_note | default: "Each section is spaced for focus, similar to Hugging Face’s clean editorial feel." %}
         <div class="rounded-2xl p-6 text-white shadow-lg bg-gradient-to-br from-sky-600 to-indigo-700">
-          <p class="text-sm uppercase tracking-[0.12em] font-semibold mb-2 opacity-90">Reader note</p>
-          <p class="text-base leading-relaxed">Each section is spaced for focus, similar to Hugging Face’s clean editorial feel.</p>
+          <p class="text-sm uppercase tracking-[0.12em] font-semibold mb-2 opacity-90">{{ reader_note_title }}</p>
+          <p class="text-base leading-relaxed">{{ reader_note }}</p>
         </div>
       </aside>
     </div>
