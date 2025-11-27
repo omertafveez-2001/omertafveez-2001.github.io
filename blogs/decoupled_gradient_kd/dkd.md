@@ -3,8 +3,8 @@ layout: post
 title: "Bringing Balance Back into Logit Distillation: Decoupled Gradient Knowledge Distillation"
 date: 2025-10-26
 permalink: /blogs/decoupled_gradient_kd/
-reader_note_title: "About this article"
-reader_note: "This article is based on my research project 'Decoupled Gradient Knowledge Distillation' with Dr. Muhammad Tahir, at LUMS, during my undergraduate studies.
+reader_note_title: "About this Project"
+reader_note: "This article is based on my research project 'Decoupled Gradient Knowledge Distillation' with Dr. Muhammad Tahir, at LUMS, during my undergraduate studies."
 ---
 ![gradients](./imgs/gradient.png)
 In recent times, knowledge distillation has become a go-to technique for transferring the “wisdom” of a large, well-trained teacher model into a smaller, more efficient student model. The question we ask: how best to transfer not just “what” the teacher predicts but also “how” it reasons?  

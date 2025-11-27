@@ -4,7 +4,7 @@ title: "Reasoning: Primer on Reasoning Prompts in Large Language Models"
 date: 2025-11-27
 permalink: /blogs/reasoning-primer/
 reader_note_title: "Why this matter?"
-reader_note: "This is a small blog on building foundations in reasoning in LLMs. This explains different prompting strategies, and my takeaways on all the paper discussed in this blog.
+reader_note: "This is a small blog on building foundations in reasoning in LLMs. This explains different prompting strategies, and my takeaways on all the paper discussed in this blog."
 ---
 ![Reasoning-image](./imgs/reasoning_title.jpg)
 <p style="text-align: center;">
