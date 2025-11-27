@@ -32,7 +32,7 @@
     }
     .blog-prose {
       max-width: 72ch;
-      color: #e2e8f0;
+      color: #ffffff;
     }
     .blog-prose,
     .blog-prose p,
@@ -42,7 +42,7 @@
     .blog-prose h1,
     .blog-prose h2,
     .blog-prose h3 {
-      color: #f8fafc;
+      color: #ffffff;
       letter-spacing: -0.02em;
       font-weight: 700;
     }
@@ -54,19 +54,19 @@
       padding-left: 1.25rem;
       background: #0f172a;
       border-radius: 14px;
-      color: #e2e8f0;
+      color: #ffffff;
       font-weight: 600;
     }
     .blog-prose a {
-      color: #38bdf8;
+      color: #ffffff;
       font-weight: 700;
       text-decoration: none;
-      border-bottom: 1px solid rgba(56, 189, 248, 0.35);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.4);
     }
     .blog-prose pre,
     .blog-prose code {
       background: #0b1220;
-      color: #e5e7eb;
+      color: #ffffff;
       border-radius: 14px;
       box-shadow: 0 12px 38px rgba(8, 47, 73, 0.35);
     }
@@ -84,7 +84,7 @@
       padding: 0.4rem 0.9rem;
       border-radius: 999px;
       background: rgba(56, 189, 248, 0.12);
-      color: #e0f2fe;
+      color: #ffffff;
       font-weight: 700;
       border: 1px solid rgba(56, 189, 248, 0.3);
     }
@@ -97,7 +97,7 @@
   </style>
 </head>
 
-<body class="subpixel-antialiased leading-none tracking-tight relative m-0 p-0 font-['Hanken_Grotesk'] bg-[#0a0f1d] text-[#e2e8f0]">
+<body class="subpixel-antialiased leading-none tracking-tight relative m-0 p-0 font-['Hanken_Grotesk'] bg-[#0a0f1d] text-white">
 
   <nav class="floating-nav">
     <a href="/index.html" class="nav-item">
@@ -122,19 +122,19 @@
       <div class="absolute -left-10 bottom-0 w-72 h-72 bg-indigo-500/25 blur-3xl rounded-full"></div>
     </div>
     <div class="relative mx-auto blog-shell px-6 pt-12 pb-10">
-      <div class="flex items-center gap-3 text-sm text-slate-200 font-semibold">
-        <a href="/blogs.html" class="inline-flex items-center gap-2 rounded-full bg-white/10 border border-white/10 px-4 py-2 shadow-sm hover:-translate-y-[1px] hover:bg-white/15 transition">
+      <div class="flex items-center gap-3 text-sm text-white font-semibold">
+        <a href="/blogs.html" class="inline-flex items-center gap-2 rounded-full bg-white/10 border border-white/10 px-4 py-2 shadow-sm hover:-translate-y-[1px] hover:bg-white/15 transition text-white">
           <i data-lucide="arrow-left" class="w-4 h-4"></i>
           Back to all posts
         </a>
-        <span class="h-1.5 w-1.5 rounded-full bg-slate-500"></span>
-        <span class="uppercase tracking-[0.18em] text-[0.7rem] text-slate-300">Omer Tafveez</span>
+        <span class="h-1.5 w-1.5 rounded-full bg-slate-200"></span>
+        <span class="uppercase tracking-[0.18em] text-[0.7rem] text-white">Omer Tafveez</span>
       </div>
       <div class="mt-7 space-y-4">
         <div class="flex flex-wrap items-center gap-3">
           <span class="meta-pill">Blog article</span>
           {% if page.date %}
-          <span class="text-sm font-semibold text-slate-200 flex items-center gap-2">
+          <span class="text-sm font-semibold text-white flex items-center gap-2">
             <i data-lucide="calendar" class="w-4 h-4"></i>
             {{ page.date | date: "%B %d, %Y" }}
           </span>
@@ -142,14 +142,14 @@
           {% if page.tags %}
           <div class="flex flex-wrap gap-2">
             {% for tag in page.tags %}
-            <span class="text-xs font-semibold px-3 py-1 rounded-full bg-white/10 border border-white/10 text-slate-100">{{ tag }}</span>
+            <span class="text-xs font-semibold px-3 py-1 rounded-full bg-white/10 border border-white/10 text-white">{{ tag }}</span>
             {% endfor %}
           </div>
           {% endif %}
         </div>
-        <h1 class="text-4xl md:text-5xl font-semibold tracking-tight text-slate-50 leading-tight">{{ page.title }}</h1>
+        <h1 class="text-4xl md:text-5xl font-semibold tracking-tight text-white leading-tight">{{ page.title }}</h1>
         {% if page.subtitle %}
-        <p class="text-lg text-slate-200 max-w-3xl">{{ page.subtitle }}</p>
+        <p class="text-lg text-white max-w-3xl">{{ page.subtitle }}</p>
         {% endif %}
       </div>
     </div>
@@ -162,8 +162,8 @@
       </article>
       <aside class="hidden lg:flex flex-col gap-4 sticky top-24 self-start">
         <div class="aside-card p-6">
-          <p class="text-sm font-semibold text-slate-100 mb-3">About this article</p>
-          <div class="space-y-2 text-sm text-slate-200">
+          <p class="text-sm font-semibold text-white mb-3">About this article</p>
+          <div class="space-y-2 text-sm text-white">
             {% if page.date %}
             <p class="flex items-center gap-2">
               <i data-lucide="clock" class="w-4 h-4"></i>
