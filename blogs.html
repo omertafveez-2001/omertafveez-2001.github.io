@@ -4,63 +4,70 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Omer Tafveez - Blogs</title>
-    <!-- Tailwind CSS CDN -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Bricolage Grotesque Font -->
-    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@300;400;500;600;700&display=swap"
-        rel="stylesheet">
-    <!-- Hanken Grotesk Font (used as primary/inter) -->
+    <title>Omer Tafveez - Writing</title>
     <link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:ital,wght@0,100..900;1,100..900&display=swap"
         rel="stylesheet">
-    <!-- Lucide Icons -->
-    <script src="https://unpkg.com/lucide@latest"></script>
-    <!-- style.css-->
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body class="page">
-    <header class="site-header">
-        <div class="shell nav-bar">
-            <div class="brand">Omer Tafveez</div>
-            <nav class="primary-nav">
-                <a href="index.html">About</a>
-                <a href="index.html#research">Research</a>
-                <a href="blogs.html">Blog</a>
-                <a href="academic-cv.html">CV</a>
-                <a href="index.html#projects">Projects</a>
+    <div class="center-wrap">
+
+        <header class="site-top">
+            <img src="./imgs/profile.png" alt="Omer Tafveez" class="profile-photo">
+            <h1 class="site-name">Omer Tafveez</h1>
+            <p class="site-sub">M.S. Information Science &middot; University of Michigan</p>
+            <nav class="top-links">
+                <a href="index.html">Home</a>
+                <span class="sep">/</span>
+                <a href="academic-cv.html" target="_blank">Resume</a>
+                <span class="sep">/</span>
+                <a href="https://scholar.google.com/citations?user=c-uRNsUAAAAJ&hl=en" target="_blank">Google Scholar</a>
+                <span class="sep">/</span>
+                <a href="https://github.com/omertafveez-2001" target="_blank">GitHub</a>
+                <span class="sep">/</span>
+                <a href="https://www.linkedin.com/in/omer-tafveez-7399761a4/" target="_blank">LinkedIn</a>
+                <span class="sep">/</span>
+                <a href="https://x.com/omertafveez" target="_blank">Twitter</a>
+                <span class="sep">/</span>
+                <a href="mailto:omertaf@umich.edu">Email</a>
             </nav>
-        </div>
-    </header>
+        </header>
 
-    <main class="shell content">
-        <section class="content-section">
-            <h2>Writing</h2>
-            <p>Notes and essays on ML research, reasoning prompts, and practical lessons from building and evaluating models.</p>
-        </section>
+        <main class="site-content">
+            <section class="content-section">
+                <h2><b>Writing</b></h2>
+                <p style="color: var(--muted); font-size: 0.9rem; margin-bottom: 1.5rem;">Notes and essays on ML research, reasoning, and practical lessons from building and evaluating models.</p>
 
-        <section class="content-section">
-            <div class="blog-list">
-                <article class="blog-list-item">
-                    <div class="blog-meta">Oct 26, 2025</div>
-                    <h3><a href="/blogs/decoupled_gradient_kd/">Decoupled Gradient Knowledge Distillation: Enhancing OOD Generalization</a></h3>
-                    <p>How functional gradient independence between target and non-target classes improves teacher fidelity, feature compaction, and robustness on OOD data.</p>
-                    <a class="read-link" href="/blogs/decoupled_gradient_kd/">Read article</a>
-                </article>
+                <div class="blog-entries">
 
-                <article class="blog-list-item">
-                    <div class="blog-meta">Oct 26, 2025</div>
-                    <h3><a href="/blogs/reasoning-primer/">Reasoning: Primer on Reasoning Prompts in Large Language Models</a></h3>
-                    <p>A quick dive into reasoning prompt structures, how they influence chain-of-thought behavior, and ideas to push the literature forward.</p>
-                    <a class="read-link" href="/blogs/reasoning-primer/">Read article</a>
-                </article>
-            </div>
-        </section>
-    </main>
+                    <article class="blog-entry">
+                        <div class="blog-entry-meta">
+                            <span class="news-date">Oct 2025</span>
+                        </div>
+                        <div class="blog-entry-body">
+                            <a class="blog-entry-title" href="/blogs/decoupled_gradient_kd/">Decoupled Gradient Knowledge Distillation: Enhancing OOD Generalization</a>
+                            <p class="blog-entry-desc">How functional gradient independence between target and non-target classes improves teacher fidelity, feature compaction, and robustness on OOD data.</p>
+                            <a class="blog-read-link" href="/blogs/decoupled_gradient_kd/">Read article &rarr;</a>
+                        </div>
+                    </article>
 
-    <script>
-        lucide.createIcons();
-    </script>
+                    <article class="blog-entry">
+                        <div class="blog-entry-meta">
+                            <span class="news-date">Oct 2025</span>
+                        </div>
+                        <div class="blog-entry-body">
+                            <a class="blog-entry-title" href="/blogs/reasoning-primer/">Reasoning: Primer on Reasoning Prompts in Large Language Models</a>
+                            <p class="blog-entry-desc">A quick dive into reasoning prompt structures, how they influence chain-of-thought behavior, and ideas to push the literature forward.</p>
+                            <a class="blog-read-link" href="/blogs/reasoning-primer/">Read article &rarr;</a>
+                        </div>
+                    </article>
+
+                </div>
+            </section>
+        </main>
+
+    </div>
 </body>
 
 </html>

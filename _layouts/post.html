@@ -4,194 +4,243 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>{{ page.title }}</title>
-  <script src="https://cdn.tailwindcss.com?plugins=typography"></script>
-  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
-  <script id="MathJax-script" async
-    src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
-  </script>
-
 
   <!-- Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
 
-  <!-- Lucide Icons -->
-  <script src="https://unpkg.com/lucide@latest"></script>
+  <!-- MathJax -->
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 
-  <!-- Custom Styles -->
+  <!-- Styles -->
   <link rel="stylesheet" href="/style.css">
   <style>
-    /* Blog-specific polish inspired by Hugging Face (light edition) */
-    .blog-hero {
-      background: radial-gradient(circle at 20% 20%, rgba(14, 165, 233, 0.08), transparent 35%),
-                  radial-gradient(circle at 80% 10%, rgba(248, 180, 0, 0.12), transparent 40%),
-                  linear-gradient(135deg, #fefce8, #e0f2fe);
+    .post-wrap {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 2.5rem 1.25rem 5rem;
     }
-    .blog-shell {
-      max-width: 1100px;
-    }
-    .blog-prose {
-      max-width: 72ch;
-      color: #0f172a;
-    }
-    .blog-prose,
-    .blog-prose p,
-    .blog-prose li {
-      line-height: 1.7;
-    }
-    .blog-prose h1,
-    .blog-prose h2,
-    .blog-prose h3 {
-      color: #0f172a;
-      letter-spacing: -0.02em;
-      font-weight: 700;
-    }
-    .blog-prose h2 {
-      margin-top: 2.5rem;
-    }
-    .blog-prose blockquote {
-      border-left: 4px solid #0ea5e9;
-      padding-left: 1.25rem;
-      background: #f1f5f9;
-      border-radius: 12px;
-      color: #0f172a;
-      font-weight: 600;
-    }
-    .blog-prose a {
-      color: #0ea5e9;
-      font-weight: 700;
-      text-decoration: none;
-      border-bottom: 1px solid rgba(14, 165, 233, 0.35);
-    }
-    .blog-prose pre,
-    .blog-prose code {
-      background: #0f172a;
-      color: #e5e7eb;
-      border-radius: 14px;
-      box-shadow: 0 10px 30px rgba(15, 23, 42, 0.25);
-    }
-    .blog-prose pre {
-      padding: 1.1rem 1.2rem;
-    }
-    .blog-prose img {
-      border-radius: 16px;
-      box-shadow: 0 18px 50px rgba(15, 23, 42, 0.18);
-    }
-    .meta-pill {
+
+    .post-back {
       display: inline-flex;
       align-items: center;
-      gap: 0.4rem;
-      padding: 0.4rem 0.9rem;
-      border-radius: 999px;
-      background: rgba(14, 165, 233, 0.12);
-      color: #0369a1;
-      font-weight: 700;
-      border: 1px solid rgba(14, 165, 233, 0.2);
+      gap: 0.35rem;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--muted);
+      text-decoration: none;
+      margin-bottom: 2rem;
+      transition: color 0.15s;
     }
-    .aside-card {
-      border: 1px solid #e2e8f0;
-      background: #fff;
-      border-radius: 20px;
-      box-shadow: 0 18px 35px rgba(15, 23, 42, 0.08);
+
+    .post-back:hover {
+      color: var(--ink);
+    }
+
+    .post-header {
+      margin-bottom: 2rem;
+      padding-bottom: 1.5rem;
+      border-bottom: 1px solid #ebebeb;
+    }
+
+    .post-date {
+      display: inline-block;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+      background: var(--ink);
+      color: #fff;
+      padding: 0.18rem 0.55rem;
+      border-radius: 4px;
+      margin-bottom: 0.75rem;
+    }
+
+    .post-title {
+      font-size: 1.75rem !important;
+      font-weight: 800;
+      line-height: 1.25;
+      color: var(--ink);
+      margin-bottom: 0.75rem;
+      padding-bottom: 0 !important;
+    }
+
+    .post-reader-note {
+      margin-top: 1rem;
+      padding: 0.9rem 1.1rem;
+      border-left: 3px solid var(--ink);
+      background: #f9f9f9;
+      border-radius: 0 6px 6px 0;
+    }
+
+    .post-reader-note-label {
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: #888;
+      margin-bottom: 0.3rem;
+    }
+
+    .post-reader-note p {
+      font-size: 0.9rem;
+      color: var(--muted);
+      margin: 0;
+      line-height: 1.55;
+    }
+
+    .post-body {
+      font-size: 0.975rem;
+      line-height: 1.75;
+      color: #222;
+    }
+
+    .post-body p {
+      margin-bottom: 1.1rem;
+      color: #333;
+      line-height: 1.75;
+    }
+
+    .post-body h2 {
+      font-size: 1.2rem !important;
+      font-weight: 800;
+      color: var(--ink);
+      margin-top: 2rem;
+      margin-bottom: 0.6rem;
+      padding-bottom: 0 !important;
+    }
+
+    .post-body h3 {
+      font-size: 1rem !important;
+      font-weight: 700;
+      color: var(--ink);
+      margin-top: 1.5rem;
+      margin-bottom: 0.4rem;
+    }
+
+    .post-body h4 {
+      font-size: 0.95rem !important;
+      font-weight: 700;
+      color: var(--ink);
+      margin-top: 1.25rem;
+      margin-bottom: 0.35rem;
+    }
+
+    .post-body a {
+      color: var(--accent);
+      text-decoration: underline;
+      text-decoration-thickness: 1px;
+      text-underline-offset: 2px;
+    }
+
+    .post-body blockquote {
+      border-left: 3px solid #ddd;
+      padding-left: 1rem;
+      margin-left: 0;
+      color: #555;
+      font-style: italic;
+    }
+
+    .post-body img {
+      max-width: 100%;
+      border-radius: 8px;
+      border: 1px solid #e5e5e5;
+      display: block;
+      margin: 1.5rem auto;
+    }
+
+    .post-body pre {
+      background: #0f172a;
+      color: #e5e7eb;
+      border-radius: 8px;
+      padding: 1rem 1.1rem;
+      overflow-x: auto;
+      font-size: 0.875rem;
+    }
+
+    .post-body code {
+      background: #f3f4f6;
+      color: #111;
+      padding: 0.1rem 0.35rem;
+      border-radius: 4px;
+      font-size: 0.875em;
+    }
+
+    .post-body pre code {
+      background: none;
+      color: inherit;
+      padding: 0;
+    }
+
+    .post-body table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.875rem;
+      margin: 1.25rem 0;
+    }
+
+    .post-body th {
+      background: #f5f5f5;
+      font-weight: 700;
+      text-align: left;
+      padding: 0.5rem 0.75rem;
+      border: 1px solid #e5e5e5;
+    }
+
+    .post-body td {
+      padding: 0.45rem 0.75rem;
+      border: 1px solid #e5e5e5;
+    }
+
+    .post-body ul, .post-body ol {
+      padding-left: 1.4rem;
+      margin-bottom: 1rem;
+    }
+
+    .post-body li {
+      margin-bottom: 0.35rem;
+      line-height: 1.65;
+    }
+
+    .scroll-watcher-bar {
+      height: 2px;
+      position: fixed;
+      top: 0;
+      z-index: 1000;
+      background: var(--ink);
+      width: 100%;
+      transform-origin: left;
+      transform: scaleX(0);
+      animation: scroll-watcher-bar linear;
+      animation-timeline: scroll();
+      animation-duration: auto;
     }
   </style>
 </head>
 
-<body class="subpixel-antialiased leading-none tracking-tight relative m-0 p-0 font-['Hanken_Grotesk'] bg-[#f6f7fb] text-[#0f172a]">
-
-  <nav class="floating-nav">
-    <a href="/index.html" class="nav-item">
-      <i data-lucide="user" class="w-6 h-6"></i>
-      <span class="tooltip">Home</span>
-    </a>
-    <a href="/projects.html" class="nav-item">
-      <i data-lucide="folder-open" class="w-6 h-6"></i>
-      <span class="tooltip">Projects</span>
-    </a>
-    <a href="/blogs.html" class="nav-item active">
-      <i data-lucide="book-open" class="w-6 h-6"></i>
-      <span class="tooltip">Blogs</span>
-    </a>
-  </nav>
-
+<body class="page">
   <div class="scroll-watcher-bar"></div>
 
-  <header class="relative blog-hero">
-    <div class="absolute inset-0 pointer-events-none">
-      <div class="absolute -right-12 -top-16 w-64 h-64 bg-white/60 blur-3xl rounded-full"></div>
-      <div class="absolute -left-10 bottom-0 w-72 h-72 bg-white/50 blur-3xl rounded-full"></div>
-    </div>
-    <div class="relative mx-auto blog-shell px-6 pt-12 pb-10">
-      <div class="flex items-center gap-3 text-sm text-slate-600 font-semibold">
-        <a href="/blogs.html" class="inline-flex items-center gap-2 rounded-full bg-white/80 border border-white/70 px-4 py-2 shadow-sm hover:-translate-y-[1px] transition">
-          <i data-lucide="arrow-left" class="w-4 h-4"></i>
-          Back to all posts
-        </a>
-        <span class="h-1.5 w-1.5 rounded-full bg-slate-400"></span>
-        <span class="uppercase tracking-[0.18em] text-[0.7rem] text-slate-500">Omer Tafveez</span>
+  <div class="post-wrap">
+
+    <a href="/blogs.html" class="post-back">&#8592; All posts</a>
+
+    <header class="post-header">
+      {% if page.date %}
+      <span class="post-date">{{ page.date | date: "%b %Y" }}</span>
+      {% endif %}
+      <h1 class="post-title">{{ page.title }}</h1>
+      {% if page.reader_note %}
+      <div class="post-reader-note">
+        <p class="post-reader-note-label">{{ page.reader_note_title | default: "Note" }}</p>
+        <p>{{ page.reader_note }}</p>
       </div>
-      <div class="mt-7 space-y-4">
-        <div class="flex flex-wrap items-center gap-3">
-          <span class="meta-pill">Blog article</span>
-          {% if page.date %}
-          <span class="text-sm font-semibold text-slate-700 flex items-center gap-2">
-            <i data-lucide="calendar" class="w-4 h-4"></i>
-            {{ page.date | date: "%B %d, %Y" }}
-          </span>
-          {% endif %}
-          {% if page.tags %}
-          <div class="flex flex-wrap gap-2">
-            {% for tag in page.tags %}
-            <span class="text-xs font-semibold px-3 py-1 rounded-full bg-white/80 border border-slate-200 text-slate-700">{{ tag }}</span>
-            {% endfor %}
-          </div>
-          {% endif %}
-        </div>
-        <h1 class="text-4xl md:text-5xl font-semibold tracking-tight text-slate-900 leading-tight">{{ page.title }}</h1>
-        {% if page.subtitle %}
-        <p class="text-lg text-slate-700 max-w-3xl">{{ page.subtitle }}</p>
-        {% endif %}
-      </div>
+      {% endif %}
+    </header>
+
+    <div class="post-body">
+      {{ content }}
     </div>
-  </header>
 
-  <main class="relative -mt-6 pb-20">
-    <div class="mx-auto blog-shell px-6 grid lg:grid-cols-[minmax(0,3fr)_minmax(260px,1fr)] gap-10">
-      <article class="prose prose-lg max-w-none blog-prose bg-white/95 backdrop-blur border border-slate-100 rounded-3xl px-8 md:px-10 py-10 shadow-xl">
-        {{ content }}
-      </article>
-      <aside class="hidden lg:flex flex-col gap-4 sticky top-24 self-start">
-        <div class="aside-card p-6">
-          <p class="text-sm font-semibold text-slate-700 mb-3">About this article</p>
-          <div class="space-y-2 text-sm text-slate-600">
-            {% if page.date %}
-            <p class="flex items-center gap-2">
-              <i data-lucide="clock" class="w-4 h-4"></i>
-              <span>Published {{ page.date | date: "%B %d, %Y" }}</span>
-            </p>
-            {% endif %}
-            <p class="flex items-center gap-2">
-              <i data-lucide="bookmark" class="w-4 h-4"></i>
-              <span>Save sections that resonate.</span>
-            </p>
-          </div>
-        </div>
-        {% assign reader_note_title = page.reader_note_title | default: "Reader note" %}
-        {% assign reader_note = page.reader_note | default: "Each section is spaced for focus, similar to Hugging Face’s clean editorial feel." %}
-        <div class="rounded-2xl p-6 text-white shadow-lg bg-gradient-to-br from-sky-600 to-indigo-700">
-          <p class="text-sm uppercase tracking-[0.12em] font-semibold mb-2 opacity-90">{{ reader_note_title }}</p>
-          <p class="text-base leading-relaxed">{{ reader_note }}</p>
-        </div>
-      </aside>
-    </div>
-  </main>
-
-  <!--Empty Footer-->
-  <!--Same color as the body-->
-  <footer class="bg-transparent py-6"></footer>
-
-  <script>
-    lucide.createIcons();
-  </script>
+  </div>
 </body>
 </html>

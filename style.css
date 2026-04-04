@@ -887,6 +887,68 @@ html {
     }
 }
 
+/* ── Blog listing entries ── */
+.blog-entries {
+    display: flex;
+    flex-direction: column;
+}
+
+.blog-entry {
+    display: flex;
+    gap: 1rem;
+    align-items: flex-start;
+    padding: 1.1rem 0;
+    border-bottom: 1px solid #ebebeb;
+}
+
+.blog-entry:first-child {
+    border-top: 1px solid #ebebeb;
+}
+
+.blog-entry-meta {
+    flex-shrink: 0;
+    padding-top: 0.1rem;
+}
+
+.blog-entry-body {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+    min-width: 0;
+}
+
+.blog-entry-title {
+    font-weight: 700;
+    font-size: 1rem;
+    color: var(--ink);
+    text-decoration: none;
+    line-height: 1.4;
+}
+
+.blog-entry-title:hover {
+    text-decoration: underline;
+    text-underline-offset: 2px;
+}
+
+.blog-entry-desc {
+    color: var(--muted);
+    font-size: 0.875rem;
+    line-height: 1.55;
+    margin: 0;
+}
+
+.blog-read-link {
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: var(--accent);
+    text-decoration: none;
+    margin-top: 0.1rem;
+}
+
+.blog-read-link:hover {
+    text-decoration: underline;
+}
+
 /* Center MathJax equations */
 .prose mjx-container[jax="CHTML"][display="true"] {
   display: flex;
