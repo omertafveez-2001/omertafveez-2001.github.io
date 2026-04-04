@@ -19,80 +19,46 @@
     <link rel="stylesheet" href="style.css">
 </head>
 
-<body class="subpixel-antialiased leading-none tracking-tight relative m-0 p-0">
-    <!-- Floating Navigation Menu -->
-    <nav class="floating-nav">
-        <a href="index.html" class="nav-item">
-            <i data-lucide="user" class="w-6 h-6"></i>
-            <span class="tooltip">Home</span>
-        </a>
-        <a href="projects.html" class="nav-item">
-            <i data-lucide="folder-open" class="w-6 h-6"></i>
-            <span class="tooltip">Projects</span>
-        </a>
-        <a href="blogs.html" class="nav-item active">
-            <i data-lucide="book-open" class="w-6 h-6"></i>
-            <span class="tooltip">Blogs</span>
-        </a>
-    </nav>
+<body class="page">
+    <header class="site-header">
+        <div class="shell nav-bar">
+            <div class="brand">Omer Tafveez</div>
+            <nav class="primary-nav">
+                <a href="index.html">About</a>
+                <a href="index.html#research">Research</a>
+                <a href="blogs.html">Blog</a>
+                <a href="academic-cv.html">CV</a>
+                <a href="index.html#projects">Projects</a>
+            </nav>
+        </div>
+    </header>
 
-    <div class="scroll-watcher-bar"></div>
-
-    <main class="pb-16">
-        <section class="page-shell pt-16 md:pt-20">
-            <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-4">
-                <div>
-                    <p class="text-sm font-semibold text-gray-500 uppercase tracking-wide">Writing</p>
-                    <h1 class="text-4xl md:text-5xl font-extrabold text-gray-900 custom-heading leading-tight">
-                        Technical Blogs
-                    </h1>
-                    <p class="text-lg text-gray-700 mt-3 max-w-3xl">
-                        Notes and essays on ML research, reasoning prompts, and practical lessons from building and evaluating models.
-                    </p>
-                </div>
-            </div>
+    <main class="shell content">
+        <section class="content-section">
+            <h2>Writing</h2>
+            <p>Notes and essays on ML research, reasoning prompts, and practical lessons from building and evaluating models.</p>
         </section>
 
-        <section class="page-shell py-10">
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <article class="card blog-card p-6 flex flex-col gap-3">
-                    <p class="text-sm text-gray-500">Oct 26, 2025</p>
-                    <h2 class="text-2xl font-bold text-gray-900 custom-heading">
-                        Decoupled Gradient Knowledge Distillation: Enhancing OOD Generalization
-                    </h2>
-                    <p class="text-gray-700 leading-relaxed">
-                        How functional gradient independence between target and non-target classes improves teacher fidelity, feature compaction,
-                        and robustness on OOD data.
-                    </p>
-                    <a href="/blogs/decoupled_gradient_kd/"
-                        class="accent-btn text-sm self-start">
-                        Read Full Article <i data-lucide="arrow-right" class="w-4 h-4"></i>
-                    </a>
+        <section class="content-section">
+            <div class="blog-list">
+                <article class="blog-list-item">
+                    <div class="blog-meta">Oct 26, 2025</div>
+                    <h3><a href="/blogs/decoupled_gradient_kd/">Decoupled Gradient Knowledge Distillation: Enhancing OOD Generalization</a></h3>
+                    <p>How functional gradient independence between target and non-target classes improves teacher fidelity, feature compaction, and robustness on OOD data.</p>
+                    <a class="read-link" href="/blogs/decoupled_gradient_kd/">Read article</a>
                 </article>
 
-                <article class="card blog-card p-6 flex flex-col gap-3">
-                    <p class="text-sm text-gray-500">Oct 26, 2025</p>
-                    <h2 class="text-2xl font-bold text-gray-900 custom-heading">
-                        Reasoning: Primer on Reasoning Prompts in Large Language Models
-                    </h2>
-                    <p class="text-gray-700 leading-relaxed">
-                        A quick dive into reasoning prompt structures, how they influence chain-of-thought behavior, and ideas to push the literature forward.
-                    </p>
-                    <a href="/blogs/reasoning-primer/"
-                        class="accent-btn text-sm self-start">
-                        Read Full Article <i data-lucide="arrow-right" class="w-4 h-4"></i>
-                    </a>
+                <article class="blog-list-item">
+                    <div class="blog-meta">Oct 26, 2025</div>
+                    <h3><a href="/blogs/reasoning-primer/">Reasoning: Primer on Reasoning Prompts in Large Language Models</a></h3>
+                    <p>A quick dive into reasoning prompt structures, how they influence chain-of-thought behavior, and ideas to push the literature forward.</p>
+                    <a class="read-link" href="/blogs/reasoning-primer/">Read article</a>
                 </article>
             </div>
         </section>
     </main>
 
-    <footer class="py-8">
-        <div class="footer-empty"></div>
-    </footer>
-
     <script>
-        // Initialize Lucide icons
         lucide.createIcons();
     </script>
 </body>

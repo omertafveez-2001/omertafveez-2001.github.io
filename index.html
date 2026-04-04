@@ -5,312 +5,134 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Omer Tafveez</title>
-    <!-- Tailwind CSS CDN -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Bricolage Grotesque Font -->
-    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@300;400;500;600;700&display=swap"
+    <link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:ital,wght@0,100..900;1,100..900&display=swap"
         rel="stylesheet">
-    <!-- Inter Font -->
-    <link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
-    <!-- Lucide Icons (for professional icons) -->
-    <script src="https://unpkg.com/lucide@latest"></script>
-    <!-- Custom CSS -->
     <link rel="stylesheet" href="style.css">
 </head>
 
-<body class="subpixel-antialiased leading-none tracking-tight relative m-0 p-0">
-    <!-- Floating Navigation Menu -->
-    <nav class="floating-nav">
-        <a href="index.html" class="nav-item active">
-            <i data-lucide="user" class="w-6 h-6"></i>
-            <span class="tooltip">Home</span>
-        </a>
-        <a href="projects.html" class="nav-item">
-            <i data-lucide="folder-open" class="w-6 h-6"></i>
-            <span class="tooltip">Projects</span>
-        </a>
-        <a href="blogs.html" class="nav-item">
-            <i data-lucide="book-open" class="w-6 h-6"></i>
-            <span class="tooltip">Blogs</span>
-        </a>
-    </nav>
+<body class="page">
+    <div class="center-wrap">
 
-    <div class="scroll-watcher-bar"></div>
+        <header class="site-top">
+            <img src="./imgs/profile.png" alt="Omer Tafveez" class="profile-photo">
+            <h1 class="site-name">Omer Tafveez</h1>
+            <p class="site-sub">M.S. Information Science &middot; University of Michigan</p>
+            <nav class="top-links">
+                <a href="academic-cv.html" target="_blank">Resume</a>
+                <span class="sep">/</span>
+                <a href="https://scholar.google.com/citations?user=c-uRNsUAAAAJ&hl=en" target="_blank">Google Scholar</a>
+                <span class="sep">/</span>
+                <a href="https://github.com/omertafveez-2001" target="_blank">GitHub</a>
+                <span class="sep">/</span>
+                <a href="https://www.linkedin.com/in/omer-tafveez-7399761a4/" target="_blank">LinkedIn</a>
+                <span class="sep">/</span>
+                <a href="https://x.com/omertafveez" target="_blank">Twitter</a>
+                <span class="sep">/</span>
+                <a href="blogs.html">Blog</a>
+                <span class="sep">/</span>
+                <a href="mailto:omertaf@umich.edu">Email</a>
+            </nav>
+        </header>
 
-    <main class="pb-16">
-        <!-- Hero -->
-        <section class="page-shell pt-16 md:pt-20">
-            <div class="grid md:grid-cols-[1.15fr,0.9fr] gap-10 items-center">
-                <div class="space-y-5">
-                    <div>
-                        <div class="gradient-bar mb-4"></div>
-                        <h1 class="text-4xl md:text-5xl font-black text-gray-900 custom-heading leading-tight">
-                            Omer Tafveez
-                        </h1>
-                    </div>
-                    <p class="text-lg md:text-xl text-gray-700 leading-relaxed max-w-2xl">
-                        Masters student at the <span class="font-semibold text-gray-900">University of Michigan</span> focusing on
-                        Reasoning, AI Safety, and Model Interpretability in Large Language Models. I am currently working at the <b>The Launch Lab</b> under Dr. Lu Wang.
-                        Previously, in my undergraduate, I was advised by Dr. Muhammad Tahir at <b>CITY @ LUMS</b> and Dr. Agha Ali Raza at <b>CSaLT</b>, where I worked 
-                        on developing an efficient Grouped Query Attention, Decoupled Gradient Knowledge Distillation, and Steering Weights in
-                        Vision Models using Sparse Autoencoders (FitNets).
-                    </p>
-                    <div class="flex flex-wrap gap-3">
-                        <a href="resume.html" target="_blank" class="accent-btn">
-                            <i data-lucide="file-text"></i> Resume
-                        </a>
-                        <a href="academic-cv.html" target="_blank" class="ghost-btn">
-                            <i data-lucide="file-text"></i> Academic CV
-                        </a>
-                        <a href="https://scholar.google.com/citations?user=c-uRNsUAAAAJ&hl=en" target="_blank"
-                            class="ghost-btn">
-                            <img alt="Google Scholar" src="https://www.shaon.dev/logos/google-scholar.svg" class="w-5 h-5 object-contain"> Scholar
-                        </a>
-                        <a href="mailto:omertaf@umich.edu" class="ghost-btn">
-                            <i data-lucide="mail"></i> omertaf@umich.edu
-                        </a>
-                    </div>
-                </div>
-
-                <div class="flex flex-col items-center md:items-start gap-4">
-                    <img src="./imgs/profile.jpeg" alt="About Me"
-                        class="w-72 h-72 rounded-2xl object-cover border border-gray-200 shadow-md">
-                    <div class="text-center md:text-left">
-                        <p class="text-sm uppercase tracking-wide text-gray-500 font-semibold">Currently</p>
-                        <p class="text-xl font-semibold text-gray-900">M.S. Information Science</p>
-                        <p class="text-gray-600">University of Michigan · Ann Arbor</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Research Interests -->
-        <section id="research" class="page-shell py-12 md:py-16">
-            <div class="flex items-start md:items-center justify-between mb-8">
-                <div>
-                    <p class="text-sm font-semibold text-gray-500 uppercase tracking-wide">Research Pillars</p>
-                    <h2 class="text-3xl md:text-4xl font-extrabold text-gray-900 custom-heading section-title">What I explore</h2>
-                </div>
-                <a href="projects.html" class="hidden md:inline-flex ghost-btn">View projects</a>
-            </div>
-            <div class="space-y-4 text-lg text-gray-700 leading-relaxed">
+        <main class="site-content">
+            <section id="about" class="content-section">
+                <h2><b>About me</b></h2>
                 <p>
-                    My research primarily revolves around understanding Language Models (LLMs) using interpretability techniques under reasoning and safety lenses. I also share interests in model compression, especially knowledge distillation.
-                    My goal is to contrinbute to the development of methods that help us understand AI systems better. 
+                    I am a Masters student at the <a href="https://www.si.umich.edu/">University of Michigan</a> working
+                    on reasoning, AI safety, and model interpretability for large language models. I currently work with
+                    Dr. Lu Wang at <a href="https://launch.eecs.umich.edu/">The Launch Lab</a>.
                 </p>
+                <p>
+                    Previously, I completed my B.S. in Economics-Mathematics and Computer Science at LUMS, advised by
+                    Dr. Muhammad Tahir at <b>CITY @ LUMS</b> and Dr. Agha Ali Raza at <b>CSaLT</b>. Projects spanned
+                    grouped query attention, decoupled gradient knowledge distillation, and steering weights in vision
+                    models via sparse autoencoders.
+                </p>
+                <p>
+                    My aim is to build methods that make AI systems more interpretable and reliable, and to study how
+                    aligned reasoning behavior emerges in modern models.
+                </p>
+            </section>
 
-            </div>
-        </section>
+            <section id="news" class="content-section">
+                <h2><b>News</b></h2>
+                <ul class="news-list">
+                    <li class="news-item"><span class="news-date">Oct 2025</span><span class="news-text">Joined the <a href="https://launch.eecs.umich.edu/">Launch Lab</a> with Dr. Lu Wang to explore reasoning, safety, and alignment.</span></li>
+                    <li class="news-item"><span class="news-date">Sept 2025</span><span class="news-text">Graduate Student Instructor for SI671: Data Mining and Methods.</span></li>
+                    <li class="news-item"><span class="news-date">Aug 2025</span><span class="news-text">Started the M.S. in Information Science at the University of Michigan.</span></li>
+                    <li class="news-item"><span class="news-date">June 2025</span><span class="news-text">Completed B.S. in Economics-Mathematics and Computer Science at LUMS.</span></li>
+                    <li class="news-item"><span class="news-date">Nov 2024</span><span class="news-text">Joined CITY @ LUMS under Dr. Muhammad Tahir focusing on model compression and interpretability.</span></li>
+                    <li class="news-item"><span class="news-date">June 2024</span><span class="news-text">Research Assistant at <a href="https://www.c-salt.org/">CSaLT</a> with Dr. Agha Ali Raza on generative AI and algorithms.</span></li>
+                </ul>
+            </section>
 
-        <!-- News -->
-        <section class="page-shell pb-12">
-            <div class="flex items-center justify-between mb-8">
-                <div>
-                    <p class="text-sm font-semibold text-gray-500 uppercase tracking-wide">Updates</p>
-                    <h3 class="text-3xl font-extrabold text-gray-900 custom-heading">News & Highlights</h3>
-                </div>
-            </div>
-            <div class="card p-6 md:p-8">
-                <div class="timeline space-y-5">
-                    <div class="timeline-item">
-                        <p class="text-gray-700"><strong>[Oct. 2025]</strong> Joined the <a href="https://launch.eecs.umich.edu/" class="text-indigo-600 font-semibold">Launch Lab</a> with Dr. Lu Wang to explore reasoning, safety, and alignment.</p>
-                    </div>
-                    <div class="timeline-item">
-                        <p class="text-gray-700"><strong>[Sept. 2025]</strong> Graduate Student Instructor for SI671: Data Mining and Methods.</p>
-                    </div>
-                    <div class="timeline-item">
-                        <p class="text-gray-700"><strong>[Aug. 2025]</strong> Started the M.S. in Information Science at the University of Michigan.</p>
-                    </div>
-                    <div class="timeline-item">
-                        <p class="text-gray-700"><strong>[June. 2025]</strong> Completed B.S. in Economics-Mathematics and Computer Science at LUMS.</p>
-                    </div>
-                    <div class="timeline-item">
-                        <p class="text-gray-700"><strong>[Nov. 2024]</strong> Joined CITY @ LUMS under Dr. Muhammad Tahir focusing on model compression and interpretability.</p>
-                    </div>
-                    <div class="timeline-item">
-                        <p class="text-gray-700"><strong>[June. 2024]</strong> Research Assistant at <a href="https://www.c-salt.org/" class="text-indigo-600 font-semibold">CSaLT</a> with Dr. Agha Ali Raza on generative AI and algorithms.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
+            <section id="research" class="content-section">
+                <h2><b>Research</b></h2>
+                <div class="research-list">
 
-        <!-- Skills -->
-        <section id="skills" class="page-shell pb-12">
-            <div class="flex items-start md:items-center justify-between mb-8">
-                <div>
-                    <p class="text-sm font-semibold text-gray-500 uppercase tracking-wide">Tooling</p>
-                    <h3 class="text-3xl font-extrabold text-gray-900 custom-heading">Programming Stack</h3>
-                </div>
-            </div>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 stacked-cards">
-                <div class="card p-6">
-                    <h3 class="text-xl font-semibold text-gray-900 mb-4 flex items-center gap-2">
-                        <i data-lucide="code" class="icon w-6 h-6"></i> Programming
-                    </h3>
-                    <div class="flex flex-wrap">
-                        <span class="skill-tag">Python</span>
-                        <span class="skill-tag">R</span>
-                        <span class="skill-tag">SQL</span>
-                        <span class="skill-tag">MATLAB</span>
-                        <span class="skill-tag">JavaScript</span>
-                        <span class="skill-tag">TypeScript</span>
-                        <span class="skill-tag">HTML/CSS</span>
-                        <span class="skill-tag">PHP</span>
-                        <span class="skill-tag">C++</span>
-                        <span class="skill-tag">C</span>
-                        <span class="skill-tag">Dart</span>
-                        <span class="skill-tag">Bash</span>
-                        <span class="skill-tag">Haskell</span>
-                    </div>
-                </div>
-                <div class="card p-6">
-                    <h3 class="text-xl font-semibold text-gray-900 mb-4 flex items-center gap-2">
-                        <i data-lucide="layers" class="icon w-6 h-6"></i> ML Frameworks
-                    </h3>
-                    <div class="flex flex-wrap">
-                        <span class="skill-tag">PyTorch</span>
-                        <span class="skill-tag">CUDA</span>
-                        <span class="skill-tag">TensorFlow</span>
-                        <span class="skill-tag">Keras</span>
-                        <span class="skill-tag">scikit-learn</span>
-                        <span class="skill-tag">CVXPY</span>
-                        <span class="skill-tag">Statsmodels</span>
-                        <span class="skill-tag">SciPy</span>
-                        <span class="skill-tag">Transformers</span>
-                        <span class="skill-tag">Weights & Biases</span>
-                        <span class="skill-tag">LangChain</span>
-                        <span class="skill-tag">HuggingFace</span>
-                        <span class="skill-tag">NLTK</span>
-                        <span class="skill-tag">SAELens</span>
-                        <span class="skill-tag">Neuronpedia</span>
-                        <span class="skill-tag">LeapLabs</span>
-                    </div>
-                </div>
-                <div class="card p-6">
-                    <h3 class="text-xl font-semibold text-gray-900 mb-4 flex items-center gap-2">
-                        <i data-lucide="database" class="icon w-6 h-6"></i> Data & Tools
-                    </h3>
-                    <div class="flex flex-wrap">
-                        <span class="skill-tag">NumPy</span>
-                        <span class="skill-tag">Pandas</span>
-                        <span class="skill-tag">GeoPandas</span>
-                        <span class="skill-tag">BeautifulSoup</span>
-                        <span class="skill-tag">OracleDB</span>
-                        <span class="skill-tag">MongoDB</span>
-                        <span class="skill-tag">Matplotlib</span>
-                        <span class="skill-tag">Seaborn</span>
-                        <span class="skill-tag">Git</span>
-                    </div>
-                </div>
-                <div class="card p-6">
-                    <h3 class="text-xl font-semibold text-gray-900 mb-4 flex items-center gap-2">
-                        <i data-lucide="cpu" class="icon w-6 h-6"></i> Development Frameworks
-                    </h3>
-                    <div class="flex flex-wrap">
-                        <span class="skill-tag">Node.js</span>
-                        <span class="skill-tag">Express</span>
-                        <span class="skill-tag">React</span>
-                        <span class="skill-tag">Tailwind</span>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Experience & Education -->
-        <section id="experience" class="page-shell pb-12">
-            <div class="flex items-start md:items-center justify-between mb-8">
-                <div>
-                    <p class="text-sm font-semibold text-gray-500 uppercase tracking-wide">Trajectory</p>
-                    <h3 class="text-3xl font-extrabold text-gray-900 custom-heading">Experience & Education</h3>
-                </div>
-            </div>
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
-                <div class="stacked-cards space-y-4">
-                    <div class="card p-6">
-                        <div class="flex items-start gap-4">
-                            <img src="./imgs/lipton.png" alt="Lipton Logo" class="w-12 h-12 object-contain">
-                            <div class="flex-1">
-                                <h4 class="text-xl font-bold text-gray-900 flex items-center justify-between">Data Science Intern · Lipton Teas & Infusion <span class="text-sm font-semibold text-gray-600 ml-2">Jul 2023</span></h4>
-                                <p class="text-gray-700 mt-2">Karachi, Pakistan</p>
-                                <ul class="list-disc list-inside text-gray-700 mt-3 space-y-1">
-                                    <li>Built a route scheduling system replacing fixed delivery paths across <strong>7 warehouses</strong> and <strong>256 distributors</strong>.</li>
-                                    <li>EDA on delivery logs surfaced <strong class="text-purple-700">~20% idle time</strong> and <strong class="text-purple-700">~30% underutilized capacity</strong>.</li>
-                                    <li>Used K-Means clustering and an <strong>XGBoost regressor (R² ≈ 0.87)</strong> for dynamic daily routing.</li>
-                                </ul>
-                            </div>
+                    <div class="research-item">
+                        <img src="imgs/reward_hacking.png" alt="Countdown-Code" class="research-thumb">
+                        <div class="research-body">
+                            <p class="research-title">Countdown-Code: A Testbed for Studying The Emergence and Generalization of Reward Hacking in RLVR</p>
+                            <p class="research-venue"><em>1st Workshop on SPOT (Scaling Post-training for LLMs), ICLR 2026</em></p>
+                            <p class="research-authors">Muhammad Khalifa*, Zohaib Khan*, <span class="author-me">Omer Tafveez</span>, Hao Peng, Lu Wang</p>
+                            <p class="research-desc">Introduces a controlled benchmark for studying how reward hacking emerges and generalizes in reinforcement learning with verifiable rewards. Uses a code-generation variant of the Countdown task to isolate conditions under which models learn to game reward signals rather than solve the underlying problem — offering a reproducible testbed for studying alignment failures in reasoning models.</p>
+                        </div>
+                        <div class="research-btns">
+                            <a href="https://arxiv.org/pdf/2603.07084" target="_blank" class="btn-filled">Paper</a>
                         </div>
                     </div>
-                    <div class="card p-6">
-                        <div class="flex items-start gap-4">
-                            <img src="./imgs/toyota.png" alt="Toyota Logo" class="w-12 h-12 object-contain">
-                            <div class="flex-1">
-                                <h4 class="text-xl font-bold text-gray-900 flex items-center justify-between">Data Science Intern · Toyota <span class="text-sm font-semibold text-gray-600 ml-2">Jun 2022 - Jul 2022</span></h4>
-                                <p class="text-gray-700 mt-2">Karachi, Pakistan</p>
-                                <ul class="list-disc list-inside text-gray-700 mt-3 space-y-1">
-                                    <li>Modeled economic drivers with Ridge Regression reaching <strong class="text-purple-700">87.3%</strong> accuracy.</li>
-                                    <li>Identified key sales drivers through Decision Trees to address underperforming vehicles.</li>
-                                    <li>Improved forecast accuracy by <strong class="text-purple-700">18%</strong> via EMA and differencing validated with ACF/ADF.</li>
-                                </ul>
-                            </div>
+
+                    <div class="research-item">
+                        <img src="imgs/reasoning.png" alt="Plasticity vs. Rigidity" class="research-thumb">
+                        <div class="research-body">
+                            <p class="research-title">Plasticity vs. Rigidity: The Impact of Low-Rank Adapters on Reasoning on a Micro-Budget</p>
+                            <p class="research-venue"><em>EACL Student Research Workshop 2026</em></p>
+                            <p class="research-authors">Zohaib Khan, <span class="author-me">Omer Tafveez</span>, Zoha Hayat Bhatti</p>
+                            <p class="research-desc">Investigates whether small language models (&le;1.5B parameters) can develop strong mathematical reasoning under severe compute constraints — a single A40 GPU for under 24 hours — using RLVR and LoRA. Finds that adapter rank is the critical variable: low-rank adapters fail to unlock plasticity, while high-rank adapters (r=256) enable significant gains in standard instruction-tuned models. Best model achieves 40.0% Pass@1 and 70.0% Pass@16 on AIME 24. Heavily math-optimized models, however, degrade under noisy RL updates.</p>
+                        </div>
+                        <div class="research-btns">
+                            <a href="https://arxiv.org/abs/2601.06677" target="_blank" class="btn-filled">Paper</a>
                         </div>
                     </div>
-                </div>
-                <div class="stacked-cards space-y-4">
-                    <div class="card p-6">
-                        <div class="flex items-start gap-4">
-                            <img src="./imgs/michigan.png" alt="Michigan Logo" class="w-14 h-14 object-contain">
-                            <div class="flex-1">
-                                <h4 class="text-xl font-bold text-gray-900 flex items-center justify-between">University of Michigan, Ann Arbor <span class="text-sm font-semibold text-gray-600 ml-2">Aug 2025 - May 2027</span></h4>
-                                <p class="text-gray-700 mt-1">M.S. Information Science - Big Data Analytics</p>
-                                <p class="text-gray-600 mt-1">Specialising in Machine Learning and Data Science</p>
-                            </div>
+
+                    <div class="research-item">
+                        <img src="imgs/dkd.png" alt="Decoupled Gradient Knowledge Distillation" class="research-thumb">
+                        <div class="research-body">
+                            <p class="research-title">Decoupled Gradient Knowledge Distillation</p>
+                            <p class="research-authors"><span class="author-me">Omer Tafveez*</span>, Muhammad Khaquan*</p>
+                            <p class="research-desc">An extension of Decoupled KD that introduces a gradient-MSE coupling term between the target- and non-target-class loss branches. Maximizing this term forces the two branches to produce distinct training signals — preventing overconfidence, enforcing teacher logit fidelity, and producing more compact intra-class representations. Outperforms baseline DKD in 10 of 14 distillation settings across CIFAR-100 and ImageNet.</p>
+                        </div>
+                        <div class="research-btns">
+                            <a href="https://github.com/omertafveez-2001/Decoupled-Gradient-Knowledge-Distilation" target="_blank" class="btn-filled">Code</a>
+                            <a href="/blogs/decoupled_gradient_kd/" class="btn-outline">Read Article</a>
                         </div>
                     </div>
-                    <div class="card p-6">
-                        <div class="flex items-start gap-4">
-                            <img src="./imgs/lums-logo.png" alt="LUMS Logo" class="w-14 h-14 object-contain">
-                            <div class="flex-1">
-                                <h4 class="text-xl font-bold text-gray-900 flex items-center justify-between">Lahore University of Management Sciences <span class="text-sm font-semibold text-gray-600 ml-2">Aug 2021 - May 2025</span></h4>
-                                <p class="text-gray-700 mt-1">B.S. Economics-Mathematics, Computer Science</p>
-                                <p class="text-gray-600 mt-1">Specialising in Machine Learning and Econometrics</p>
-                                <p class="text-gray-600 mt-1">Advisors: Dr. Agha Ali Raza, Dr. Muhammad Tahir</p>
-                            </div>
+
+                    <div class="research-item">
+                        <img src="imgs/dgqa.png" alt="Key-Driven Grouped Query Attention" class="research-thumb">
+                        <div class="research-body">
+                            <p class="research-title">Key-Driven Grouped Query Attention</p>
+                            <p class="research-authors">Zohaib Khan*, Muhammad Khaquan*, <span class="author-me">Omer Tafveez</span>, Burhanuddin Samiwala, Agha Ali Raza</p>
+                            <p class="research-desc">Proposes key-norm-driven variants of Grouped Query Attention (KDGQA, DGQA, PGQA) that replace static query grouping with adaptive allocation based on key head norm ratios. Evaluated on vision transformers across CIFAR-10/100, Food101, and Tiny ImageNet — ViT-L with DGQA achieves up to 8% accuracy gains over standard GQA.</p>
+                        </div>
+                        <div class="research-btns">
+                            <a href="https://arxiv.org/abs/2408.08454" target="_blank" class="btn-filled">Paper</a>
+                            <a href="https://github.com/omertafveez-2001/key-driven-gqa" target="_blank" class="btn-outline">Code</a>
                         </div>
                     </div>
+
                 </div>
-            </div>
-        </section>
+            </section>
 
-        <!-- Contact -->
-        <section id="contact" class="page-shell pb-12">
-            <div class="card glass p-6 md:p-8 text-center">
-                <p class="text-lg text-gray-700 mb-4">Open to collaborations, research discussions, and building together.</p>
-                <div class="flex justify-center items-center space-x-4 flex-wrap gap-3">
-                    <a href="https://www.linkedin.com/in/omer-tafveez-7399761a4/" target="_blank"
-                        class="accent-btn">
-                        <i data-lucide="linkedin"></i> LinkedIn
-                    </a>
-                    <a href="https://github.com/omertafveez-2001" target="_blank"
-                        class="ghost-btn">
-                        <i data-lucide="github"></i> GitHub
-                    </a>
-                    <a href="https://x.com/omertafveez" target="_blank"
-                        class="ghost-btn">
-                        <i data-lucide="twitter"></i> X (Twitter)
-                    </a>
-                </div>
-            </div>
-        </section>
-    </main>
+            <section id="contact" class="content-section">
+                <h2><b>Contact</b></h2>
+                <p>Open to collaborations, research discussions, and building together. Email is best: <a
+                        href="mailto:omertaf@umich.edu">omertaf@umich.edu</a>.</p>
+            </section>
+        </main>
 
-    <footer class="py-8">
-        <div class="footer-empty"></div>
-    </footer>
-
-    <script>
-        // Initialize Lucide icons
-        lucide.createIcons();
-    </script>
+    </div>
 </body>
 
 </html>
