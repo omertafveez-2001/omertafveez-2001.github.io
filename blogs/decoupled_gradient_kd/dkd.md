@@ -76,7 +76,6 @@ A secondary hypothesis is that this mechanism should be more effective in networ
 
 The central empirical finding supporting our hypothesis is the gradient norm dynamics throughout training. We track the gradient norms of TCKD and NCKD separately for both DKD and DGKD on ResNet50→ResNet18, CIFAR-100.
 
-![gradient norm](./imgs/gradient.png)
 
 In DKD, both the target-class and non-target-class gradient norms decay together and collapse to near-zero by epoch 14 — the distillation signal effectively extinguishes. In DGKD, the target-class gradient norm starts significantly higher (~0.15 vs ~0.075) and remains elevated throughout training, sustaining a meaningful learning signal well into late training. The non-target norm also starts higher and decays more gradually.
 
@@ -86,7 +85,7 @@ This is the mechanistic evidence for our hypothesis: **DGKD sustains gradient no
 
 A natural alternative explanation would be that our coupling term works by enforcing gradient orthogonality between TCKD and NCKD — forcing the two loss components to provide genuinely distinct directions in parameter space. We tested this directly by measuring the cosine similarity between $\nabla \mathcal{L}_{\text{TCKD}}$ and $\nabla \mathcal{L}_{\text{NCKD}}$ across training for both methods.
 
-![Gradient Flow Diagram](./imgs/cifar100_training_comparison.pdf)
+![Gradient Flow Diagram](./imgs/cifar100_training_comparison.jpeg)
 
 
 The similarity curves for DKD and DGKD are nearly indistinguishable — the gradients are already near-orthogonal in both cases throughout training. This rules out gradient orthogonality as the operative mechanism. The improvement is not about changing the *direction* of gradient interaction — it is purely about sustaining gradient *magnitude*.
