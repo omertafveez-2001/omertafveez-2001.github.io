@@ -1,13 +1,13 @@
 ---
 layout: post
-title: "Bringing Balance Back into Logit Distillation: Decoupled Gradient Knowledge Distillation"
+title: "Gradient Norm Collapse in Logit Distillation: Diagnosis and a Coupling-Based Remedy"
 date: 2025-10-26
 permalink: /blogs/decoupled_gradient_kd/
 reader_note_title: "About this Project"
 reader_note: "This article is based on my research project 'Decoupled Gradient Knowledge Distillation' with Dr. Muhammad Tahir, at LUMS, during my undergraduate studies."
 ---
 
-# Bringing Balance Back into Logit Distillation: Decoupled Gradient Knowledge Distillation
+# Gradient Norm Collapse in Logit Distillation: Diagnosis and a Coupling-Based Remedy
 
 ---
 
