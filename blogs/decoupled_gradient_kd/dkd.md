@@ -76,7 +76,7 @@ A secondary hypothesis is that this mechanism should be more effective in networ
 
 The central empirical finding supporting our hypothesis is the gradient norm dynamics throughout training. We track the gradient norms of TCKD and NCKD separately for both DKD and DGKD on ResNet50→ResNet18, CIFAR-100.
 
-<!-- INSERT GRAPH: Target vs Non-target gradient norms across training epochs (./imgs/gradient.png) -->
+![gradient norm](./imgs/gradient.png)
 
 In DKD, both the target-class and non-target-class gradient norms decay together and collapse to near-zero by epoch 14 — the distillation signal effectively extinguishes. In DGKD, the target-class gradient norm starts significantly higher (~0.15 vs ~0.075) and remains elevated throughout training, sustaining a meaningful learning signal well into late training. The non-target norm also starts higher and decays more gradually.
 
