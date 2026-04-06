@@ -15,7 +15,7 @@ reader_note: "This article is based on my research project 'Decoupled Gradient K
 
 Knowledge distillation (KD) has become a cornerstone technique for compressing large neural networks into smaller, deployable models. The canonical formulation — minimizing the KL divergence between teacher and student output distributions — is deceptively simple. Zhao et al. (2022) showed that this classical loss is actually a **coupled** formulation of two distinct objectives: Target Class Knowledge Distillation (TCKD), which transfers knowledge about prediction confidence on the correct class, and Non-Target Class Knowledge Distillation (NCKD), which transfers the "dark knowledge" embedded in the teacher's probability mass over wrong classes.
 
-Their key finding was that NCKD is the dominant driver of distillation performance, yet classical KD suppresses it — the NCKD term is weighted by $(1 - p_t^\mathcal{T})$, which shrinks precisely when the teacher is most confident and, by their argument, most informative. DKD addresses this by decoupling the two terms and introducing independent weights $\alpha$ and $\beta$.
+Their key finding was that NCKD is the dominant driver of distillation performance, yet classical KD suppresses it — the NCKD term is weighted by $(1 - p\_t^\mathcal{T})$, which shrinks precisely when the teacher is most confident and, by their argument, most informative. DKD addresses this by decoupling the two terms and introducing independent weights $\alpha$ and $\beta$.
 
 However, DKD leaves a deeper problem unaddressed. As the student converges toward the teacher's distribution, the KL divergence shrinks toward zero — and so do the gradients flowing from both TCKD and NCKD. **The distillation signal is self-extinguishing.** The better the student gets at mimicking the teacher, the less it learns from the teacher. This is not a DKD-specific failure — it is a fundamental property of any KL-based logit distillation loss. Our work is motivated by this observation: can we introduce a mechanism that actively sustains the distillation signal throughout training, rather than allowing it to decay?
 
@@ -50,8 +50,8 @@ $$
 $$
 
 where:
-- $\nabla_{z_i^{s_{tc}}} \ell_t$ is the gradient of the TCKD loss with respect to the student's target-class logit for sample $i$
-- $\nabla_{z_i^{s_{ntc}}} \ell_s$ is the gradient of the NCKD loss with respect to the student's non-target-class logits for sample $i$
+- $\nabla\_{z\_i^{s\_{tc}}} \ell\_t$ is the gradient of the TCKD loss with respect to the student's target-class logit for sample $i$
+- $\nabla\_{z\_i^{s\_{ntc}}} \ell\_s$ is the gradient of the NCKD loss with respect to the student's non-target-class logits for sample $i$
 - $\varepsilon$ is the MSE scale parameter, empirically set to 6
 
 The coupling term is **maximized** implicitly through the loss — by including it additively, the optimizer is encouraged to maintain large gradient differences between the two branches, which as we show below, has the effect of sustaining gradient norms throughout training.
@@ -83,18 +83,19 @@ This is the mechanistic evidence for our hypothesis: **DGKD sustains gradient no
 
 ### Gradient Similarity
 
-A natural alternative explanation would be that our coupling term works by enforcing gradient orthogonality between TCKD and NCKD — forcing the two loss components to provide genuinely distinct directions in parameter space. We tested this directly by measuring the cosine similarity between $\nabla \mathcal{L}_{\text{TCKD}}$ and $\nabla \mathcal{L}_{\text{NCKD}}$ across training for both methods.
-
-![Gradient Flow Diagram](./imgs/cifar100_training_comparison.jpeg)
+A natural alternative explanation would be that our coupling term works by enforcing gradient orthogonality between TCKD and NCKD — forcing the two loss components to provide genuinely distinct directions in parameter space. We tested this directly by measuring the cosine similarity between $\nabla \mathcal{L}\_{\text{TCKD}}$ and $\nabla \mathcal{L}\_{\text{NCKD}}$ across training for both methods.
 
 
 The similarity curves for DKD and DGKD are nearly indistinguishable — the gradients are already near-orthogonal in both cases throughout training. This rules out gradient orthogonality as the operative mechanism. The improvement is not about changing the *direction* of gradient interaction — it is purely about sustaining gradient *magnitude*.
 
-When the gradients are already orthogonal, maximizing $\|\nabla \ell_t - \nabla \ell_n\|^2 \approx \|\nabla \ell_t\|^2 + \|\nabla \ell_n\|^2$. The coupling term is therefore functioning as a **gradient magnitude amplifier** that is direction-neutral — boosting how strongly the student learns from both components without altering what it learns from each.
+When the gradients are already orthogonal, maximizing $\|\nabla \ell\_t - \nabla \ell\_n\|^2 \approx \|\nabla \ell\_t\|^2 + \|\nabla \ell\_n\|^2$. The coupling term is therefore functioning as a **gradient magnitude amplifier** that is direction-neutral — boosting how strongly the student learns from both components without altering what it learns from each.
 
 ---
 
 ## What Went Wrong? What Does the Study Entail Now?
+
+![Gradient Flow Diagram](./imgs/cifar100_training_comparison.jpeg)
+
 
 Our original results were obtained under non-standard training conditions: approximately 8 epochs, without warmup, without the DKD paper's recommended LR schedule (step decay at epochs 150, 180, 210), and with unverified hyperparameters. Under these conditions, no model converges and the reported accuracy numbers are not meaningful baselines relative to the published DKD results.
 
