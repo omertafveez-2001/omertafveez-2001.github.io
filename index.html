@@ -101,7 +101,7 @@
                         <div class="research-body">
                             <p class="research-title">Decoupled Gradient Knowledge Distillation</p>
                             <p class="research-authors"><span class="author-me">Omer Tafveez*</span>, Muhammad Khaquan*</p>
-                            <p class="research-desc">An extension of Decoupled KD that introduces a gradient-MSE coupling term between the target- and non-target-class loss branches. Maximizing this term forces the two branches to produce distinct training signals — preventing overconfidence, enforcing teacher logit fidelity, and producing more compact intra-class representations. Outperforms baseline DKD in 10 of 14 distillation settings across CIFAR-100 and ImageNet.</p>
+                            <p class="research-desc">KL-based distillation losses are self-extinguishing — as the student converges toward the teacher, gradients decay to near-zero and the distillation signal dies. DGKD addresses this by augmenting the DKD loss with a gradient-MSE coupling term between the TCKD and NCKD branches. Empirically, this functions as a gradient magnitude amplifier: DKD gradient norms collapse by epoch 14, while DGKD's remain elevated throughout training. The mechanism is direction-neutral — gradient similarity between the two branches is unchanged — purely sustaining signal strength. Results are preliminary pending full validation under standard training conditions.</p>
                         </div>
                         <div class="research-btns">
                             <a href="https://github.com/omertafveez-2001/Decoupled-Gradient-Knowledge-Distilation" target="_blank" class="btn-filled">Code</a>

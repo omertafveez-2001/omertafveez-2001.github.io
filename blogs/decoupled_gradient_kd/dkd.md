@@ -6,136 +6,127 @@ permalink: /blogs/decoupled_gradient_kd/
 reader_note_title: "About this Project"
 reader_note: "This article is based on my research project 'Decoupled Gradient Knowledge Distillation' with Dr. Muhammad Tahir, at LUMS, during my undergraduate studies."
 ---
-![gradients](./imgs/gradient.png)
-In recent times, knowledge distillation has become a go-to technique for transferring the “wisdom” of a large, well-trained teacher model into a smaller, more efficient student model. The question we ask: how best to transfer not just “what” the teacher predicts but also “how” it reasons?  
 
-In this blog post we present our work on **Decoupled Gradient Knowledge Distillation (DGKD)** — an implementation inspired by the paper [Decoupled Knowledge Distillation (Zhao et al., 2022)](https://arxiv.org/abs/2203.08679) — and share both the intuition, our modifications, and takeaways.
+# Bringing Balance Back into Logit Distillation: Decoupled Gradient Knowledge Distillation
 
-## 🧠 Background: Why "Decoupled" Knowledge Distillation
+---
 
-The original DKD paper shows that the standard KD loss (e.g., the KL divergence between teacher and student logits) can be broken down into two parts:
+## Motivation
 
-- **TCKD (Target-Class Knowledge Distillation):** focuses on the predicted target class — how confident the teacher is on the “correct” class.  
-- **NCKD (Non-Target-Class Knowledge Distillation):** covers all other classes, i.e., the “dark knowledge” of how the teacher distributes probability mass among wrong classes.
+Knowledge distillation (KD) has become a cornerstone technique for compressing large neural networks into smaller, deployable models. The canonical formulation — minimizing the KL divergence between teacher and student output distributions — is deceptively simple. Zhao et al. (2022) showed that this classical loss is actually a **coupled** formulation of two distinct objectives: Target Class Knowledge Distillation (TCKD), which transfers knowledge about prediction confidence on the correct class, and Non-Target Class Knowledge Distillation (NCKD), which transfers the "dark knowledge" embedded in the teacher's probability mass over wrong classes.
 
-The key insights from the paper are:
-- The "dark knowledge" (NCKD) is very important for good student performance; yet in many classical KD formulations it gets supressed. 
-- By decoupling the two components, we gain more flexibility: we can can tune how much we emphasis TCKD vs NCKD. 
+Their key finding was that NCKD is the dominant driver of distillation performance, yet classical KD suppresses it — the NCKD term is weighted by $(1 - p_t^\mathcal{T})$, which shrinks precisely when the teacher is most confident and, by their argument, most informative. DKD addresses this by decoupling the two terms and introducing independent weights $\alpha$ and $\beta$.
 
-In short: we do not just want the student to "copy" the teacher's most-likely class, but also to learn the structure of confusion the teacher holds among the wrong answers. 
+However, DKD leaves a deeper problem unaddressed. As the student converges toward the teacher's distribution, the KL divergence shrinks toward zero — and so do the gradients flowing from both TCKD and NCKD. **The distillation signal is self-extinguishing.** The better the student gets at mimicking the teacher, the less it learns from the teacher. This is not a DKD-specific failure — it is a fundamental property of any KL-based logit distillation loss. Our work is motivated by this observation: can we introduce a mechanism that actively sustains the distillation signal throughout training, rather than allowing it to decay?
 
-## 🚀 Our Project: Implementation + Extension
-We built our codebase around the repository at github.com/omertafveez-2001/Decoupled-Gradient-Knowledge-Distillation
-, implementing the core DKD loss and then experimenting with a novel coupling mechanism between the two branches of the loss.
+---
 
-### What we did differently
-- Instead of letting TCKD and NCKD purely operate independently, we introduced a coupling term: the mean-squared error (MSE) between gradients of TCKD and NCKD with respect to the student logits (or student model parameters).
+## Theoretical Framework
 
-- Interestingly, when we maximize this gradient‐MSE term (i.e., encourage the gradients of TCKD and NCKD to diverge / be different), we observed better performance.
+Our approach is grounded in two bodies of work from convex optimization and deep learning theory.
 
-- The effect:
-    - The student’s target‐class logit confidence saturates (i.e., once it's confidently correct, further boosting confidence doesn’t shrink the loss further).
-    - The student is strongly penalised (via higher loss) when the student is correct but the teacher is not — i.e., the model is forced to stay loyal to the teacher’s logit structure, not just prediction accuracy.
-    - We observed faster “neural collapse” (class centres become tight, intra‐class variance shrinks) and more compact representations.
+**Neural Collapse and the MSE Loss Landscape.** Zhou et al. (2022) — *"On the Optimization Landscape of Neural Collapse under MSE Loss: Global Optimality with Unconstrained Features"* — provide a rigorous analysis of networks trained with Mean Squared Error loss under the unconstrained features model. Their central result is that the only global minimizers of the MSE loss correspond to the Neural Collapse solution: within-class features collapse to their class mean, class means form a Simplex Equiangular Tight Frame (ETF), and the linear classifier aligns with these means. Critically, they analyze a *rescaled* variant of MSE and show that rescaling sharpens saddle points, stabilizes the descent path, and accelerates convergence to the Neural Collapse solution. This has a direct implication: MSE, unlike cross-entropy or KL divergence, produces smooth, non-vanishing gradient contributions across all output dimensions simultaneously. Once a class probability approaches 1 under cross-entropy, gradient contributions from non-target classes effectively die. MSE does not exhibit this behavior.
 
-### Original Loss Function
+**Gradient Diversity in Multi-Objective Optimization.** A complementary line of work in multi-task learning — including PCGrad (Yu et al., 2020) and GradNorm (Chen et al., 2018) — establishes that when gradients from different loss components are collinear, they provide redundant optimization signal and one objective tends to dominate. Enforcing gradient diversity across loss components encourages the network to develop representations that serve both objectives independently. In our setting, the two objectives are TCKD and NCKD, and their gradient interaction throughout training directly governs how well the student internalizes both the target-class structure and the dark knowledge over non-target classes.
+
+---
+
+## Main Idea
+
+We propose **Decoupled Gradient Knowledge Distillation (DGKD)**, which augments the DKD loss with a coupling term that operates directly on the gradients of TCKD and NCKD with respect to the student logits. Rather than allowing the two loss components to interact only implicitly through shared parameters, we introduce an explicit regularizer that measures the divergence between their gradient signals.
+
+### Loss Formulation
+
+The standard DKD loss is:
+
 $$
-\text{KD} = \text{KL}(b^{\tau} || b^{s}) + (1-p_{t}^{\tau})\text{KL}(\hat{p}^{\tau} || \hat{p}^{s})
-$$
-<br> 
-where the first KL term is the similarity between the binary probabilities between teacher and student. This is called *Target Class Knowledge Distillation*. Meanwhile, the second KL term represents the similarity between the teacher's and student's probabilities among non-target class which is *Non-Target Class Knowledge Distillation*
-
-### <span style="color:green;">Updated</span> Loss Function
-$$
-\text{KD} = \text{KL}(b^{\tau} || b^{s}) + (1 - p_{t}^{\tau})\, \text{KL}(\hat{p}^{\tau} || \hat{p}^{s}) + \alpha \, \frac{1}{n} \sum_{i=1}^{n} \left\| \nabla_{z_i^{s_{tc}}} \ell_t - \nabla_{z_i^{s_{ntc}}} \ell_s \right\|_2^2
+\mathcal{L}_{\text{DKD}} = \alpha \cdot \mathcal{L}_{\text{TCKD}} + \beta \cdot \mathcal{L}_{\text{NCKD}}
 $$
 
-- $$\nabla_{z_i^{s}} \ell_t$$ is the student loss with respect to target class logits
-- $$\nabla_{z_i^{s_{ntc}}} \ell_s$$ is the student loss with respect to non target class logits.
+We extend this with a scaled MSE coupling term between the per-sample gradients of TCKD and NCKD with respect to the student's target-class and non-target-class logits respectively:
 
-### Why might this work?
-- By maximising the gradient‐MSE, we force TCKD and NCKD to provide distinct training signals rather than redundant ones. This drives the student to learn complementary features: one focusing on sharpening target‐class confidence, the other on modeling the non‐target distribution structure.
-- The saturation of the target‐class confidence prevents the student from becoming over‐confident (which often harms generalization).
-- The strong alignment with teacher logit structure helps the student internalize the teacher’s view of class‐relationships — not just the final correct label.
+$$
+\mathcal{L}_{\text{DGKD}} = \alpha \cdot \mathcal{L}_{\text{TCKD}} + \beta \cdot \mathcal{L}_{\text{NCKD}} + \frac{\varepsilon}{n} \sum_{i=1}^{n} \left\| \nabla_{z_i^{s_{tc}}} \ell_t - \nabla_{z_i^{s_{ntc}}} \ell_s \right\|_2^2
+$$
 
-### Why MSE (and specifically rescaled MSE) is surprisingly good? 
-Mean-Squared Error wasn’t my initial choice. I experimented with several entropy-based measures—including cosine similarity, KL-divergence, and Wasserstein distance—but none matched the stability and performance of MSE. My perspective shifted after reading [On the Optimization Landscape of Neural Collapse under MSE Loss: Global Optimality with Unconstrained Features](https://arxiv.org/pdf/2203.01238)
-, which provided a rigorous theoretical foundation explaining why MSE can be remarkably effective for classification tasks.
+where:
+- $\nabla_{z_i^{s_{tc}}} \ell_t$ is the gradient of the TCKD loss with respect to the student's target-class logit for sample $i$
+- $\nabla_{z_i^{s_{ntc}}} \ell_s$ is the gradient of the NCKD loss with respect to the student's non-target-class logits for sample $i$
+- $\varepsilon$ is the MSE scale parameter, empirically set to 6
 
-#### About the paper
-In their paper, they examine the behaviour of deep networks trained with the MSE loss on classification. Their key results provide theoretical and empirical motivations for using MSE and help explain why our approach is effective. 
-- They show that when a network is trained under unconstrained-features model with MSE loss, the only global minimisers correspond to the **Neural Collapse**: within-class features collapse to the class-mean, cleas means form a simplex equi-angular tight frame (ETF) and classifiers align with these means. 
-- They further analyse a rescaled version of MSE and show that rescaling improves the optimisation landscape: ie, it makes the saddle points sharper, the descent path more stable, and convergence to the NC solution faster. 
-- Empirically, they observe that classification models trained with MSE can perform on-par or even better than CE/BCE.
-- They note that MSE tends to produce faster neural collapse compared to CE. 
+The coupling term is **maximized** implicitly through the loss — by including it additively, the optimizer is encouraged to maintain large gradient differences between the two branches, which as we show below, has the effect of sustaining gradient norms throughout training.
 
-Here are the intuitive reasons why MSE or scaled MSE may offer advantages:
-- <u>*Smooth gradient structure*</u>: MSE uses squared-error between the logit output and the target vector. This produces continuous, smooth gradients for all output dimensions. In contrast BCE/CS emphasises the targt class heavily, and rapdidly drives the student to push the target probability near one and the others zero. The gradient contributions from non-target classes diminish fast. <br>
-As seen in our experiments, when we want non-target information to still matter, MSE's smoother gradient contributions help maintain signals from the non-target logits.
-- <u>*Encourgement of feature collapse and class-structure*</u>: The NC theory shows that MSE pushes features to collapse in a very clean geometric structure (simplex ETF). Because the loss equally penalises all coordinates of the output, the network is encouraged to treat all classes (target + non-target) in a balanced way. This leads to tighter clusters and maximal separation. <br>
-In our work we observed more compact intra-class clusters and faster neural collapse — this is unsurprising since we introduced a loss coupling (maximising gradient‐MSE) that encourages diversified gradients between the target‐ and non‐target branches. The foundation of that effect is arguably supported by the MSE landscape results.
-- <u>*Rescaling improves landscape and generalisation*</u>: Zhou et al. find that a rescaled MSE — e.g., multiplying the loss by a constant or adjusting the target vector scaling — improves convergence behaviour. This is because the magnitude of gradients and the curvature of the loss surface can be better controlled, reducing plateaus and sharp minima. <br>
-In our adaptation, by explicitly applying an MSE term between gradients (and effectively scaling it by a coupling coefficient ε) we are leveraging this notion of controlled magnitude and structured gradients. The fact our model performs well by maximising the gradient MSE aligns with the idea that certain directions in the gradient space should be emphasised (diverged) to aid representation learning.
+**Why scaled MSE specifically?** Motivated by Zhou et al. (2022), we experimented with cosine similarity, KL divergence, and Wasserstein distance as coupling measures. None matched the stability of MSE. The rescaling factor $\varepsilon$ controls the curvature of the coupling term's loss landscape — too small and it has no sustaining effect; too large and it destabilizes training. At $\varepsilon = 6$, the coupling term operates in the regime described by Zhou et al. where the landscape curvature is well-conditioned.
 
-### ✅ How this supports our methodological choice
-Because we introduced a coupling term that maximises the MSE between gradients of TCKD and NCKD, we are effectively:
+---
 
-- Keeping gradients from the two branches active and diverse, which matches the smooth and balanced gradient regime that MSE enables.
+## Hypothesis
 
-- Leveraging the faster neural collapse and improved geometry that MSE offers, which you observed in more compact intra‐class representations.
+We hypothesize that the primary failure mode of logit-based KD — including DKD — is **gradient norm collapse**: as the student converges toward the teacher's distribution, the KL-based losses produce vanishingly small gradients, and the distillation signal effectively dies before the student has fully internalized the teacher's representational structure.
 
-- Avoiding the overconfidence / flat gradient issues that can accompany CE/BCE loss for distillation (where once the student is confident, non‐target gradient signals vanish).
+Our coupling term addresses this by creating a tension between the TCKD and NCKD gradient streams. Formally, when both gradients decay symmetrically (as in DKD), their difference also shrinks — which reduces the coupling term's contribution to the loss — which the optimizer then corrects by increasing gradient magnitudes. This constitutes a **self-correcting mechanism against gradient norm collapse**, specific to the distillation setting.
 
-- Employing a scaled-MSE style approach (via the coupling hyper-parameter ε) that emphasises structural gradient differences rather than just output matching, echoing the rescaling insight of Zhou et al.
+A secondary hypothesis is that this mechanism should be more effective in networks with sufficient representational capacity to maintain orthogonal gradient subspaces for TCKD and NCKD simultaneously. In low-capacity networks, forcing gradient diversity in a compressed parameter space may cause destructive interference rather than complementary learning.
+
+---
+
+## Empirical Observations
+
+### Gradient Norm Dynamics
+
+The central empirical finding supporting our hypothesis is the gradient norm dynamics throughout training. We track the gradient norms of TCKD and NCKD separately for both DKD and DGKD on ResNet50→ResNet18, CIFAR-100.
+
+<!-- INSERT GRAPH: Target vs Non-target gradient norms across training epochs (./imgs/gradient.png) -->
+
+In DKD, both the target-class and non-target-class gradient norms decay together and collapse to near-zero by epoch 14 — the distillation signal effectively extinguishes. In DGKD, the target-class gradient norm starts significantly higher (~0.15 vs ~0.075) and remains elevated throughout training, sustaining a meaningful learning signal well into late training. The non-target norm also starts higher and decays more gradually.
+
+This is the mechanistic evidence for our hypothesis: **DGKD sustains gradient norms, DKD does not.**
+
+### Gradient Similarity
+
+A natural alternative explanation would be that our coupling term works by enforcing gradient orthogonality between TCKD and NCKD — forcing the two loss components to provide genuinely distinct directions in parameter space. We tested this directly by measuring the cosine similarity between $\nabla \mathcal{L}_{\text{TCKD}}$ and $\nabla \mathcal{L}_{\text{NCKD}}$ across training for both methods.
+
+![Gradient Flow Diagram](./imgs/cifar100_training_comparison.pdf)
 
 
+The similarity curves for DKD and DGKD are nearly indistinguishable — the gradients are already near-orthogonal in both cases throughout training. This rules out gradient orthogonality as the operative mechanism. The improvement is not about changing the *direction* of gradient interaction — it is purely about sustaining gradient *magnitude*.
 
-## 📊 Performance Comparison: Gradient-Decoupled KD vs. Decoupled KD
+When the gradients are already orthogonal, maximizing $\|\nabla \ell_t - \nabla \ell_n\|^2 \approx \|\nabla \ell_t\|^2 + \|\nabla \ell_n\|^2$. The coupling term is therefore functioning as a **gradient magnitude amplifier** that is direction-neutral — boosting how strongly the student learns from both components without altering what it learns from each.
 
-| Dataset                                 | Gradient-Decoupled KD | Decoupled KD |
-| --------------------------------------- | --------------------- | ------------ |
-| CIFAR-100 — ResNet50 → ResNet18         | **62.01%**            | 61.07%       |
-| CIFAR-100 — ViT-S → ResNet18            | **58.64%**            | 57.31%       |
-| CIFAR-100 — Self-Distillation ResNet18  | **62.35%**            | 61.53%       |
-| CIFAR-100 — Self-Distillation ResNet50  | 53.39%                | **54.31%**   |
-| CIFAR-100 — Self-Distillation ResNet101 | **55.94%**            | 48.99%       |
-| CIFAR-100 — ShuffleNetV2 → ResNet50     | 55.49%                | **56.48%**   |
-| CIFAR-100 — ShuffleNetV2 → ViT-S        | 55.56%                | **55.84%**   |
-| ImageNet — ResNet50 → ResNet18          | **48.42%**            | 45.48%       |
-| ImageNet — ResNet50 → ShuffleNet        | 44.90%                | **45.59%**   |
-| ImageNet — ViT-S → ResNet18             | **41.81%**            | 41.57%       |
-| ImageNet — ViT-S → ShuffleNet           | **39.74%**            | 39.42%       |
-| ImageNet — Self-Distillation ResNet101  | **30.49%**            | 0.50%        |
-| ImageNet — Self-Distillation ResNet50   | **48.09%**            | 48.06%       |
-| ImageNet — Self-Distillation ResNet18   | **48.29%**            | 46.40%       |
+---
 
-✅ Bold entries indicate the student outperforming the original DKD baseline <br>
-📌 DGKD improves on 10 out of 14 evaluated distillation settings
+## What Went Wrong? What Does the Study Entail Now?
 
-From the table above, we infered that our variant was not successful in ourperforming Decoupled KD in mobile networks or smaller CNN models such as ShuffleNetV2 and MobileNet, however it was still consistent across 10/14 experiments.
+Our original results were obtained under non-standard training conditions: approximately 8 epochs, without warmup, without the DKD paper's recommended LR schedule (step decay at epochs 150, 180, 210), and with unverified hyperparameters. Under these conditions, no model converges and the reported accuracy numbers are not meaningful baselines relative to the published DKD results.
 
-### 🔍 Key Observations & Takeaways
+When re-run under correct conditions — SGD with momentum 0.9, weight decay 5e-4, LR 0.05 with step decay, temperature 4, $\alpha=1.0$, $\beta=8.0$, 20-epoch warmup — DKD outperforms our method on an initial sanity check. This raises three distinct possibilities:
 
-From our experiments we noted:
+**1. The improvement was an artifact of unconverged training.** Our coupling term may help in the early training regime where gradient norms are rapidly changing, but provide no benefit — or actively hurt — once training stabilizes under a proper schedule.
 
-- **Loss behaviour**: When the student’s target class logit is sufficiently confident (say probability 0.9 vs teacher 0.8) the overall loss doesn’t shrink further, i.e., it plateaus instead of chasing infinite confidence.
+**2. The scale parameter $\varepsilon=6$ was tuned to the broken setup.** The optimal coupling strength under short-horizon training may differ substantially from the optimal under full training. This is a likely explanation given that the parameter was found empirically without cross-validation under standard conditions.
 
-- **Teacher vs student mismatch penalty**: If the student predicts correctly but the teacher was less confident (or wrong) the coupling term spikes the loss. That means we’re enforcing fidelity to teacher’s distribution even when accuracy is achieved.
+**3. The mechanism is real but operates at a different scale.** The gradient norm sustenance we observe may still be occurring under proper training, but the benefit may be smaller than the noise introduced by a suboptimally-scaled coupling term.
 
-- **Representation compactness**: We saw that intra‐class features became more tightly clustered in embedding space compared to baseline KD methods, implying better generalization and faster convergence.
+Distinguishing between these requires a systematic seed experiment and scale sweep under proper training conditions, which is the current focus of ongoing work.
 
-### Logits Comparison between Teacher & DKD vs Teacher & Decoupled Gradient KD
-![Gradient Flow Diagram](./imgs/logits_graphs.jpeg)
+---
 
-We computed the Mean Squared Distance between teacher and the variants. The metrics are as follows:
-- Teacher and DKD: 43.884
-- Teacher and DGKD: 34.666
+## Limitations
 
-So our logits were significantly closer. 
+**Hyperparameter sensitivity.** The coupling term introduces a single additional parameter $\varepsilon$, but performance degrades both above and below $\varepsilon=6$ in our original experimental setup. This sensitivity to a single hyperparameter is the primary obstacle to claiming a robust mechanism rather than a tuned configuration.
+
+**No theoretical derivation of the optimal scale.** We do not have an analytical characterization of why $\varepsilon=6$ is optimal, or how the optimal scale should vary with architecture, learning rate, or temperature. Zhou et al.'s landscape results suggest the optimal scale relates to the curvature of the loss surface, but connecting this to our inter-gradient coupling term formally remains open.
+
+**Capacity dependence.** Our secondary hypothesis — that the mechanism fails in low-capacity networks because they cannot maintain orthogonal gradient subspaces — is consistent with the failure pattern on ShuffleNetV2 and MobileNet.
+
+---
 
 ## Future Work
-- Disect the loss function and complete its derivation to further develop the understanding of the model's architectural differences (benefits and disadvantages). In doing so, it is highly important to understand the role of Non Target Class and Target Class Logits in this space.
 
-- Continue the experimentation across more complex datasets in image classification: Animal10, and OOD Generalization (Scrambled, Noisy)
+- **Theoretical derivation of the optimal scale.** Connecting the optimal $\varepsilon$ to properties of the training dynamics — loss magnitude, learning rate, temperature — would convert an empirical finding into a principled design choice and substantially strengthen the contribution.
 
-- Continue the experimentations across object detection datasets: MS COCO
+- **Formal characterization of gradient norm collapse.** Proving that KL-based distillation losses produce gradient norms that decay at a rate proportional to the KL divergence reduction, and showing that the coupling term provides a provable lower bound on gradient norm magnitude, would constitute the theoretical core of a publishable result.
+
+- **Extension to broader architectures and datasets.** Validation on ImageNet at full training, MS-COCO object detection, and architectures beyond the ResNet family is necessary before any general claims can be made.
+
+- **Applying the coupling term to vanilla KD.** If the mechanism is gradient norm sustenance rather than a DKD-specific fix, the coupling term should improve vanilla KD as well. This experiment would distinguish a general KD improvement from a DKD-specific one and is a strong test of the core hypothesis.
