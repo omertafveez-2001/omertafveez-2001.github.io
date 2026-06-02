@@ -227,14 +227,25 @@
             // Tab switching
             const btns = document.querySelectorAll('.tab-btn');
             const panels = document.querySelectorAll('.tab-panel');
+
+            function activateTab(name) {
+                const target = document.querySelector(`.tab-btn[data-tab="${name}"]`);
+                if (!target) return;
+                btns.forEach(b => b.classList.remove('active'));
+                panels.forEach(p => p.classList.remove('active'));
+                target.classList.add('active');
+                document.getElementById('tab-' + name).classList.add('active');
+            }
+
             btns.forEach(btn => {
-                btn.addEventListener('click', () => {
-                    btns.forEach(b => b.classList.remove('active'));
-                    panels.forEach(p => p.classList.remove('active'));
-                    btn.classList.add('active');
-                    document.getElementById('tab-' + btn.dataset.tab).classList.add('active');
-                });
+                btn.addEventListener('click', () => activateTab(btn.dataset.tab));
             });
+
+            // Activate tab from URL hash (e.g. /#blogs)
+            const hash = window.location.hash.slice(1);
+            if (hash && document.querySelector(`.tab-btn[data-tab="${hash}"]`)) {
+                activateTab(hash);
+            }
 
             // Lightbox
             const lightbox = document.getElementById('lightbox');
