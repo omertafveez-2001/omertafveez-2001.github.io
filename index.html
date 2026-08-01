@@ -70,12 +70,19 @@
             </div>
 
             <div class="tab-panel" id="tab-research">
+                <div class="research-filters" aria-label="Research categories">
+                    <button class="research-filter-btn active" data-category="workshops" type="button">Workshops</button>
+                    <button class="research-filter-btn" data-category="conference" type="button">Conference</button>
+                    <button class="research-filter-btn" data-category="article" type="button">Article</button>
+                    <button class="research-filter-btn" data-category="preprints" type="button">Preprints</button>
+                </div>
+                <p class="research-empty" id="research-empty" hidden>No papers in this category yet.</p>
                 <div class="research-list">
 
-                    <div class="research-entry">
+                    <div class="research-entry" data-category="workshops">
                         <div class="research-item">
                             <div class="research-body">
-                                <span class="research-venue">ICLR 2026 &middot; SPOT Workshop</span>
+                                <span class="research-venue">ICLR 2026 &middot; Scaling Post Training of LLMs Workshop</span>
                                 <p class="research-title">Countdown-Code: A Testbed for Studying The Emergence and Generalization of Reward Hacking in RLVR</p>
                                 <p class="research-authors">Muhammad Khalifa*, Zohaib Khan*, <span class="author-me">Omer Tafveez</span>, Hao Peng, Lu Wang</p>
                                 <p class="research-desc">A controlled benchmark isolating conditions under which models learn to game reward signals rather than solve the underlying problem — a reproducible testbed for studying alignment failures in reasoning models.</p>
@@ -93,10 +100,10 @@
                         </details>
                     </div>
 
-                    <div class="research-entry">
+                    <div class="research-entry" data-category="workshops">
                         <div class="research-item">
                             <div class="research-body">
-                                <span class="research-venue">EACL Student Research Workshop 2026</span>
+                                <span class="research-venue">European Chapter of the Association for Computational Linguistics Student Research Workshop 2026</span>
                                 <p class="research-title">Plasticity vs. Rigidity: The Impact of Low-Rank Adapters on Reasoning on a Micro-Budget</p>
                                 <p class="research-authors">Zohaib Khan, <span class="author-me">Omer Tafveez</span>, Zoha Hayat Bhatti</p>
                                 <p class="research-desc">Investigates whether small LMs (&le;1.5B) can develop strong mathematical reasoning under severe compute constraints. Adapter rank is the critical variable — high-rank LoRA (r=256) achieves 40.0% Pass@1 on AIME 24.</p>
@@ -114,7 +121,7 @@
                         </details>
                     </div>
 
-                    <div class="research-entry">
+                    <div class="research-entry" data-category="article">
                         <div class="research-item">
                             <div class="research-body">
                                 <span class="research-venue">Article</span>
@@ -136,7 +143,7 @@
                         </details>
                     </div>
 
-                    <div class="research-entry">
+                    <div class="research-entry" data-category="preprints">
                         <div class="research-item">
                             <div class="research-body">
                                 <span class="research-venue">Preprint</span>
@@ -246,6 +253,33 @@
             if (hash && document.querySelector(`.tab-btn[data-tab="${hash}"]`)) {
                 activateTab(hash);
             }
+
+            // Research filters
+            const researchFilterBtns = document.querySelectorAll('.research-filter-btn');
+            const researchEntries = document.querySelectorAll('.research-entry');
+            const researchEmpty = document.getElementById('research-empty');
+
+            function activateResearchCategory(category) {
+                let visibleCount = 0;
+
+                researchFilterBtns.forEach(btn => {
+                    btn.classList.toggle('active', btn.dataset.category === category);
+                });
+
+                researchEntries.forEach(entry => {
+                    const isVisible = entry.dataset.category === category;
+                    entry.hidden = !isVisible;
+                    if (isVisible) visibleCount += 1;
+                });
+
+                researchEmpty.hidden = visibleCount !== 0;
+            }
+
+            researchFilterBtns.forEach(btn => {
+                btn.addEventListener('click', () => activateResearchCategory(btn.dataset.category));
+            });
+
+            activateResearchCategory('workshops');
 
             // Lightbox
             const lightbox = document.getElementById('lightbox');
