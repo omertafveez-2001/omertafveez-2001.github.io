@@ -7,6 +7,8 @@
     <title>Omer Tafveez</title>
     <link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:ital,wght@0,100..900;1,100..900&display=swap"
         rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 
@@ -14,9 +16,31 @@
     <div class="center-wrap">
 
         <header class="site-top">
-            <img src="./imgs/profile.png" alt="Omer Tafveez" class="profile-photo">
-            <h1 class="site-name">Omer Tafveez</h1>
-            <p class="site-sub">M.S. Information Science &middot; University of Michigan</p>
+            <div class="hero-grid">
+                <div class="hero-identity">
+                    <p class="site-kicker">Research Profile</p>
+                    <img src="./imgs/profile.png" alt="Omer Tafveez" class="profile-photo">
+                </div>
+                <div class="hero-main">
+                    <h1 class="site-name">Omer Tafveez</h1>
+                    <p class="site-sub">M.S. Information Science &middot; University of Michigan</p>
+                    <p class="hero-summary">I work on reasoning, interpretability, and alignment for language models, with an emphasis on understanding model behavior.</p>
+                    <div class="hero-facts" aria-label="Profile details">
+                        <div class="hero-fact">
+                            <span class="hero-fact-label">Focus</span>
+                            <span class="hero-fact-value">LLM reasoning, AI safety, interpretability</span>
+                        </div>
+                        <div class="hero-fact">
+                            <span class="hero-fact-label">Current</span>
+                            <span class="hero-fact-value">Launch Lab with Lu Wang</span>
+                        </div>
+                        <div class="hero-fact">
+                            <span class="hero-fact-label">Mode</span>
+                            <span class="hero-fact-value">Research, teaching, collaboration</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
             <nav class="icon-links">
                 <a href="academic-cv.html" target="_blank" title="Resume" class="icon-link">
                     <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
@@ -49,6 +73,13 @@
             </nav>
 
             <div class="tab-panel active" id="tab-about">
+                <div class="working-panel">
+                    <p class="working-panel-label">Currently Working On</p>
+                    <ul class="working-panel-list">
+                        <li><strong>Approximating a Test-Time Computation: The Geometry of Self-Evaluation Under Low-Rank Adaptation:</strong> Using low-rank adaptation as a mechanistic interpretability tool to study the geometry of self-evaluation.</li>
+                        <li><strong>Do models seek safety evidence before acting:</strong> Building SAFE, a benchmark for whether frontier models proactively seek safety-relevant evidence before acting, and how that behavior changes with cost, severity, probability, and information structure.</li>
+                    </ul>
+                </div>
                 <p class="about-p">
                     I'm an M.S. student at the <a href="https://www.si.umich.edu/">University of Michigan</a>, working with Dr. Lu Wang at <a href="https://launch.eecs.umich.edu/">The Launch Lab</a>.
                 </p>
