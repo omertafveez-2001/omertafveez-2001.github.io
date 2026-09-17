@@ -1,13 +1,14 @@
 # SAFE figure provenance
 
-All six figures are from the paper and its public code repository. Each repository PDF was visually matched to the corresponding figure in [arXiv v1](https://arxiv.org/pdf/2609.17865v1).
+Six figures are from the paper and its public code repository. Each repository PDF was visually matched to the corresponding figure in [arXiv v1](https://arxiv.org/pdf/2609.17865v1). The additional inspection-percentage graph from the repository was explicitly requested for this page; it is not assigned a paper figure number. Its left panel uses scenario majority votes and its right panel uses individual rollouts, as verified in `main_experiment/scripts/utils.py` (`plot_decision_distribution`).
 
-Source repository commit: `a099eb8323e5d826cf6b8b4e4cefbfdab0e69d9e`. No repository clone was created. Only the selected figure PDFs were downloaded for inspection and rendering.
+Source repository commit: `a099eb8323e5d826cf6b8b4e4cefbfdab0e69d9e`. No repository clone was created. Figure PDFs were downloaded individually for inspection and rendering; the plotting code was read separately to verify the inspection-percentage graph's aggregation.
 
 Web assets are lossless WebP renders of the original PDFs, produced with Poppler at a 2400-pixel longest edge. There is no cropping, redrawing, recoloring, or alteration of labels or data. Figures retain their paper numbering; Figure 1 and `imgs/Safe.png` are not used on this page.
 
 | Web asset | Paper figure / PDF page | Original PDF | Original PDF SHA-256 |
 | --- | --- | --- | --- |
+| `inspection-percentage.webp` | Additional repository graph; rates discussed in §§3.2–4 | [main_experiment/graphs/inspect/inspection_distribution_percentage.pdf](https://github.com/omertafveez-2001/Do-Models-Seek-Safety-Evidence/blob/a099eb8323e5d826cf6b8b4e4cefbfdab0e69d9e/main_experiment/graphs/inspect/inspection_distribution_percentage.pdf) | `67533cd4cc3a34e3158f804878945e2fd681c585e1a78aabd3c46b73fa9b146f` |
 | `severity-probability.webp` | Figure 2 / page 5 | [main_experiment/graphs/post/decision_rates_by_severity.pdf](https://github.com/omertafveez-2001/Do-Models-Seek-Safety-Evidence/blob/a099eb8323e5d826cf6b8b4e4cefbfdab0e69d9e/main_experiment/graphs/post/decision_rates_by_severity.pdf) | `8ad702b9de99a3e7666ae429bdaa180144677d74d16ff01de5dbbd738d378cb1` |
 | `inspection-cost.webp` | Figure 3 / page 5 | [main_experiment/graphs/inspect/rate_curves_by_cost.pdf](https://github.com/omertafveez-2001/Do-Models-Seek-Safety-Evidence/blob/a099eb8323e5d826cf6b8b4e4cefbfdab0e69d9e/main_experiment/graphs/inspect/rate_curves_by_cost.pdf) | `b4c6cac04c56607ce3ac4cad070a2f3b867f645fbd01bb410ec28b8def95f71f` |
 | `post-inspection.webp` | Figure 4 / page 5 | [main_experiment/graphs/post/post_decision_distribution_percentage.pdf](https://github.com/omertafveez-2001/Do-Models-Seek-Safety-Evidence/blob/a099eb8323e5d826cf6b8b4e4cefbfdab0e69d9e/main_experiment/graphs/post/post_decision_distribution_percentage.pdf) | `064e92411e9b8d4e599747db55275be600488d7f1f230873dcfa97c1ca15f8c7` |

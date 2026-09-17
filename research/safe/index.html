@@ -89,7 +89,14 @@
                 <section id="acquisition" class="article-section">
                     <p class="section-eyebrow">03 / Choosing to inspect</p>
                     <h2>Severity and cost strongly shape evidence seeking</h2>
-                    <p>Opus 4.8 inspects nearly by default. At the other end, o3 skips in a majority of cases, while GPT-5.5 and Sonnet 4.6 follow more conditional inspection policies. All four models inspect more as potential severity increases.</p>
+                    <p>Opus 4.8 inspects nearly by default, in <strong>96.3% of rollouts</strong>. Sonnet 4.6 inspects in <strong>72.3%</strong> and GPT-5.5 in <strong>68.4%</strong>, while o3 inspects in <strong>48.3%</strong> and skips in a majority of cases. These rates describe the Offered Report channel.</p>
+                    <figure class="paper-figure" id="inspection-rates">
+                        <a class="figure-image" href="./figures/inspection-percentage.webp" target="_blank" rel="noopener" data-figure="Inspection rates · Offered Report" aria-label="Enlarge inspection-rate percentages">
+                            <img src="./figures/inspection-percentage.webp" width="2400" height="923" alt="Inspection, skip, and unclear percentages for four models. Left: majority vote across each scenario’s five runs. Right: individual rollouts, with inspection rates of 68.4% for GPT-5.5, 48.3% for o3, 96.3% for Opus 4.8, and 72.3% for Sonnet 4.6." loading="lazy" decoding="async">
+                        </a>
+                        <figcaption><span class="figure-label">Overall inspection rates</span> Offered Report decisions, aggregated by scenario majority vote (left) and by individual rollout (right). The text above uses the rollout rates. This additional graph is from the code repository. <a href="https://github.com/omertafveez-2001/Do-Models-Seek-Safety-Evidence/blob/a099eb8323e5d826cf6b8b4e4cefbfdab0e69d9e/main_experiment/graphs/inspect/inspection_distribution_percentage.pdf" target="_blank" rel="noopener noreferrer">Source figure ↗</a></figcaption>
+                    </figure>
+                    <p>All four models inspect more as potential severity increases. The differences in their overall rates therefore reflect distinct responses to the same controlled decision factors.</p>
                     <p>Probability has a smaller aggregate effect. Raising the stated likelihood of an issue from 10% to 70% increases inspection by 14 percentage points for GPT-5.5, 13 for o3, and 21 for Sonnet 4.6. Opus 4.8 remains near ceiling. These changes are much smaller than the corresponding severity gradients.</p>
                     <figure class="paper-figure" id="figure-2">
                         <a class="figure-image" href="./figures/severity-probability.webp" target="_blank" rel="noopener" data-figure="Figure 2 · Severity and probability" aria-label="Enlarge Figure 2: severity and probability">
