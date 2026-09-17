@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Do Frontier Models Seek Safety Evidence Before Acting? · Omer Tafveez</title>
+    <meta name="description" content="SAFE studies whether frontier models seek safety evidence before deployment, what shapes that decision, and whether their explanations reflect those influences.">
+    <link rel="canonical" href="https://omertafveez-2001.github.io/research/safe/">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Do Frontier Models Seek Safety Evidence Before Acting?">
+    <meta property="og:description" content="A closer look at evidence acquisition, retrieval costs, and the explanations frontier models give for their decisions.">
+    <meta property="og:url" content="https://omertafveez-2001.github.io/research/safe/">
+    <link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:ital,wght@0,100..900;1,100..900&family=Source+Serif+4:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../../style.css">
+    <link rel="stylesheet" href="./project.css">
+    <script src="./project.js" defer></script>
+</head>
+<body class="page project-page">
+    <a class="skip-link" href="#main-content">Skip to content</a>
+    <div class="project-wrap">
+        <nav class="project-topbar" aria-label="Site navigation">
+            <a href="../../index.html#research">← Omer Tafveez <span>/ Research</span></a>
+            <span class="project-edition">Research project</span>
+        </nav>
+
+        <header class="project-header">
+            <p class="project-kicker">SAFE <span>/</span> Safety-Aware Fact-Seeking Evaluation</p>
+            <h1>Do Frontier Models Seek Safety Evidence Before Acting?</h1>
+            <p class="project-deck">Before a model can respond to a safety concern, it may have to choose to find out. SAFE studies that first decision.</p>
+            <div class="project-byline">
+                <p><a href="../../index.html">Omer Tafveez</a><span>University of Michigan</span></p>
+                <p class="project-date">Preprint <span>September 2026</span></p>
+            </div>
+            <div class="project-links" aria-label="Paper resources">
+                <a class="resource-link primary" href="https://arxiv.org/pdf/2609.17865" target="_blank" rel="noopener noreferrer">Read the paper <span aria-hidden="true">↗</span></a>
+                <a class="resource-link" href="https://github.com/omertafveez-2001/Do-Models-Seek-Safety-Evidence" target="_blank" rel="noopener noreferrer">Code &amp; data <span aria-hidden="true">↗</span></a>
+                <a class="resource-link" href="#citation">Cite this work <span aria-hidden="true">↓</span></a>
+            </div>
+        </header>
+
+        <div class="project-layout">
+            <aside class="project-sidebar">
+                <nav aria-label="On this page">
+                    <p class="sidebar-label">On this page</p>
+                    <a href="#question"><span>01</span> The question</a>
+                    <a href="#benchmark"><span>02</span> The benchmark</a>
+                    <a href="#acquisition"><span>03</span> Choosing to inspect</a>
+                    <a href="#response"><span>04</span> After inspection</a>
+                    <a href="#cost-obligation"><span>05</span> Cost &amp; obligation</a>
+                    <a href="#explanations"><span>06</span> Decisions &amp; explanations</a>
+                    <a href="#scope"><span>07</span> Scope &amp; limitations</a>
+                    <a href="#citation"><span>08</span> Citation</a>
+                </nav>
+            </aside>
+
+            <main id="main-content" class="project-article">
+                <section id="question" class="article-section">
+                    <p class="section-eyebrow">01 / The question</p>
+                    <h2>Does the model choose to look?</h2>
+                    <p>Many safety evaluations put the relevant risk directly in a model’s context. In deployment, a model may first need to open an audit, search project records, or request a check. A model can respond cautiously to a known problem while still choosing to act without acquiring the evidence that would reveal it.</p>
+                    <p>SAFE separates these two decisions: <strong>whether to acquire safety evidence</strong>, and <strong>what to do after a finding is revealed</strong>. It also tests a hypothesis inspired by research on human information avoidance: does learning become less attractive when knowing creates a duty to act?</p>
+                    <div class="takeaway">
+                        <p class="section-eyebrow">Central finding</p>
+                        <p>Evidence seeking varies substantially across models. Severity and retrieval cost strongly influence inspection, while stated probability has a smaller aggregate effect. The explanations models give only partly reflect what changes their decisions.</p>
+                    </div>
+                </section>
+
+                <section id="benchmark" class="article-section">
+                    <p class="section-eyebrow">02 / The benchmark</p>
+                    <h2>Two decisions, measured separately</h2>
+                    <p>Each scenario places a model in a professional deployment role. At <strong>Stage 1</strong>, it can inspect optional safety evidence or skip inspection and deploy. Models that inspect enter <strong>Stage 2</strong>: they receive a concrete finding and choose to halt deployment, proceed, or apply partial mitigation.</p>
+                    <dl class="study-facts">
+                        <div><dt>Scenarios</dt><dd>900</dd></div>
+                        <div><dt>Domains</dt><dd>5</dd></div>
+                        <div><dt>Models</dt><dd>4</dd></div>
+                        <div><dt>Rollouts / scenario / model</dt><dd>5</dd></div>
+                    </dl>
+                    <p>The study evaluates <strong>GPT-5.5, o3, Claude Opus 4.8, and Claude Sonnet 4.6</strong> across healthcare, financial fraud, content moderation, cybersecurity, and drug discovery. The full factorial design crosses these domains with three probabilities, four severity levels, five cost conditions, and three evidence channels.</p>
+                    <dl class="benchmark-variables">
+                        <div><dt>Probability</dt><dd>A 10%, 40%, or 70% stated likelihood of uncovering an issue.</dd></div>
+                        <div><dt>Severity</dt><dd>Negligible, low, medium, or high; the level also determines the finding revealed after inspection.</dd></div>
+                        <div><dt>Retrieval cost</dt><dd>0, 10, 30, or 60 points, plus a separate procedural condition in which requesting evidence may trigger review and cancellation.</dd></div>
+                        <div><dt>Evidence channel</dt><dd>A report directly offered, a named report to search for, or diffuse background records that might contain relevant evidence.</dd></div>
+                    </dl>
+                    <p>The stated payoffs are held fixed: +100 for successful deployment, −150 for post-launch failure, and 0 for halting or cancellation. Each decision includes a short rationale. The primary metric is the fraction of rollouts choosing to inspect; subsequent actions are measured among inspected cases.</p>
+                    <p class="source-note">Main results below use the Offered Report channel unless stated otherwise. <a href="https://arxiv.org/html/2609.17865v1#S3">Paper §3</a></p>
+                </section>
+
+                <section id="acquisition" class="article-section">
+                    <p class="section-eyebrow">03 / Choosing to inspect</p>
+                    <h2>Severity and cost strongly shape evidence seeking</h2>
+                    <p>Opus 4.8 inspects nearly by default. At the other end, o3 skips in a majority of cases, while GPT-5.5 and Sonnet 4.6 follow more conditional inspection policies. All four models inspect more as potential severity increases.</p>
+                    <p>Probability has a smaller aggregate effect. Raising the stated likelihood of an issue from 10% to 70% increases inspection by 14 percentage points for GPT-5.5, 13 for o3, and 21 for Sonnet 4.6. Opus 4.8 remains near ceiling. These changes are much smaller than the corresponding severity gradients.</p>
+                    <figure class="paper-figure" id="figure-2">
+                        <a class="figure-image" href="./figures/severity-probability.webp" target="_blank" rel="noopener" data-figure="Figure 2 · Severity and probability" aria-label="Enlarge Figure 2: severity and probability">
+                            <img src="./figures/severity-probability.webp" width="2400" height="1122" alt="Eight line plots comparing inspection, halt, proceed, and partial-mitigation rates. Inspection rises steeply with severity, but changes much less across probability levels." loading="lazy" decoding="async">
+                        </a>
+                        <figcaption><span class="figure-label">Paper figure 2</span> Severity (top) and probability (bottom). The first column measures inspection across rollouts; the other columns measure actions among inspected cases. Probability labels low, medium, and high correspond to 10%, 40%, and 70%. <a href="https://arxiv.org/pdf/2609.17865v1#page=5" target="_blank" rel="noopener noreferrer">View in paper ↗</a></figcaption>
+                    </figure>
+                    <p>Ordinary retrieval costs suppress inspection, most strongly for GPT-5.5, o3, and Sonnet 4.6. The “extreme” condition changes the structure of the decision: requesting evidence can trigger mandatory review and possible cancellation. Its rebound in inspection should therefore be read separately from the numeric cost trend.</p>
+                    <figure class="paper-figure" id="figure-3">
+                        <a class="figure-image" href="./figures/inspection-cost.webp" target="_blank" rel="noopener" data-figure="Figure 3 · Inspection cost" aria-label="Enlarge Figure 3: inspection cost">
+                            <img src="./figures/inspection-cost.webp" width="2400" height="592" alt="Four model-specific plots show inspection generally falling as numeric cost increases and rising again in the distinct extreme procedural condition. Opus stays close to ceiling." loading="lazy" decoding="async">
+                        </a>
+                        <figcaption><span class="figure-label">Paper figure 3</span> Free, low, medium, and high represent costs of 0, 10, 30, and 60 points. “Extreme” is a separate procedural manipulation. <a href="https://arxiv.org/pdf/2609.17865v1#page=5" target="_blank" rel="noopener noreferrer">View in paper ↗</a></figcaption>
+                    </figure>
+                </section>
+
+                <section id="response" class="article-section">
+                    <p class="section-eyebrow">04 / After inspection</p>
+                    <h2>Looking and halting are distinct behaviors</h2>
+                    <p>The model that inspects most often does not halt most often afterward. Opus 4.8 halts in 53.0% of its inspected cases, compared with 74.1% for Sonnet 4.6 and 70.6% for o3. These are conditional rates: each model’s inspected cases can include a different mix of findings.</p>
+                    <p>To assess the downstream action, SAFE also evaluates whether it fits the revealed finding. Negligible issues permit proceeding; low-severity issues support partial mitigation; medium and high severity call for a halt. On halt-required cases, GPT-5.5 chooses to halt in 93.8% of inspected cases, o3 in 88.0%, and both Claude models in 100%.</p>
+                    <figure class="paper-figure" id="figure-4">
+                        <a class="figure-image" href="./figures/post-inspection.webp" target="_blank" rel="noopener" data-figure="Figure 4 · Post-inspection decisions" aria-label="Enlarge Figure 4: post-inspection decisions">
+                            <img src="./figures/post-inspection.webp" width="2400" height="692" alt="Grouped bars show the mix of post-inspection actions on the left and the rate of the expected action for halt-required, negligible, and low-severity findings on the right." loading="lazy" decoding="async">
+                        </a>
+                        <figcaption><span class="figure-label">Paper figure 4</span> The action distribution (left) and agreement with the expected action for the revealed finding (right) answer different questions. A higher overall halt rate alone does not establish better downstream decisions. <a href="https://arxiv.org/pdf/2609.17865v1#page=5" target="_blank" rel="noopener noreferrer">View in paper ↗</a></figcaption>
+                    </figure>
+                </section>
+
+                <section id="cost-obligation" class="article-section">
+                    <p class="section-eyebrow">05 / Cost &amp; obligation</p>
+                    <h2>What makes knowing less attractive?</h2>
+                    <p>A separate experiment crosses free versus costly retrieval with three consequence framings: no obligation, a remediation obligation with possible delay or cancellation, and a remediation obligation without the cancellation clause. It uses the Evidence Discovery template and a targeted set of 50 scenarios.</p>
+                    <p>With free retrieval and no obligation, all four models inspect in 100% of cases. Adding a 60-point retrieval cost reduces inspection to <strong>33% for GPT-5.5, 18% for o3, 72% for Opus 4.8, and 32% for Sonnet 4.6</strong>.</p>
+                    <p>The duty to remediate has a different effect from a threat to the deployment payoff. Under free retrieval, obligation with possible cancellation lowers o3’s inspection to 40%; removing the cancellation clause while retaining the duty raises it to 86%. For GPT-5.5 and Opus 4.8, obligation language can even increase inspection when retrieval is costly.</p>
+                    <figure class="paper-figure" id="figure-6">
+                        <a class="figure-image" href="./figures/cost-obligation.webp" target="_blank" rel="noopener" data-figure="Figure 6 · Cost and obligation" aria-label="Enlarge Figure 6: cost and obligation">
+                            <img src="./figures/cost-obligation.webp" width="2400" height="833" alt="Inspection rates across six cost and obligation conditions on the left, with matched scenario changes on the right. Retrieval cost produces broad decreases; obligation effects depend on model and cancellation framing." loading="lazy" decoding="async">
+                        </a>
+                        <figcaption><span class="figure-label">Paper figure 6</span> Aggregate condition rates and matched scenario comparisons in the targeted decomposition. These selected scenarios are not a population sample; the free baseline is at ceiling. <a href="https://arxiv.org/pdf/2609.17865v1#page=7" target="_blank" rel="noopener noreferrer">View in paper ↗</a></figcaption>
+                    </figure>
+                    <p>Together, these comparisons point primarily to retrieval friction and payoff consequences as drivers of avoidance. They weaken a simple account in which models avoid evidence because learning would create a remediation duty. They do not establish what internal motivation produced a decision.</p>
+                </section>
+
+                <section id="explanations" class="article-section">
+                    <p class="section-eyebrow">06 / Decisions &amp; explanations</p>
+                    <h2>What changes a decision may go unmentioned</h2>
+                    <p>Models with very different inspection policies often describe their choices in similar expected-value terms. To test which factors actually affect behavior, the paper edits one factor at a time in selected cases and checks both the new decision and whether the explanation acknowledges the change.</p>
+                    <p>Removing retrieval cost flips selected skip decisions to inspection in 91–100% of cases across models; raising severity does so in 79–100%. Raising probability produces smaller flip rates for GPT-5.5, o3, and Sonnet 4.6, with Opus 4.8 an exception at 66%.</p>
+                    <figure class="paper-figure" id="figure-7">
+                        <a class="figure-image" href="./figures/counterfactual-decisions.webp" target="_blank" rel="noopener" data-figure="Figure 7 · Counterfactual decisions" aria-label="Enlarge Figure 7: counterfactual decisions">
+                            <img src="./figures/counterfactual-decisions.webp" width="2400" height="1174" alt="Counterfactual flip rates by intervention and original rationale label, with 95% Wilson intervals. Cost removal and increased severity frequently change selected skip decisions to inspection." loading="lazy" decoding="async">
+                        </a>
+                        <figcaption><span class="figure-label">Paper figure 7</span> Changes in the prespecified direction for behaviorally selected diagnostic cases. Error bars are 95% Wilson intervals; denominators vary by intervention and model (paper Table 3). Opus has no eligible obligation-removal cases. These rates are not benchmark-wide treatment effects. <a href="https://arxiv.org/pdf/2609.17865v1#page=7" target="_blank" rel="noopener noreferrer">View in paper ↗</a></figcaption>
+                    </figure>
+                    <p>Evidence framing illustrates the gap between behavior and explanation. Replacing diffuse evidence with a report-discovery frame flips 48–80% of selected decisions near the inspection boundary, but the change is acknowledged in only 20–68% of explanations. Across the broader benchmark, channel effects are more modest: 74–97% of matched environments remain unchanged.</p>
+                    <p>Probability shows the reverse pattern. Sonnet 4.6 acknowledges a probability increase in 92–97% of explanations, yet changes its decision in only 30% of selected cases. Mentioning a factor is therefore not a reliable measure of its influence.</p>
+                    <figure class="paper-figure" id="figure-8">
+                        <a class="figure-image" href="./figures/rationale-acknowledgement.webp" target="_blank" rel="noopener" data-figure="Figure 8 · Acknowledgement of edits" aria-label="Enlarge Figure 8: acknowledgement of edits">
+                            <img src="./figures/rationale-acknowledgement.webp" width="2400" height="925" alt="Acknowledgement rates for each edited factor, comparing rule-based and Gemini annotations. Cost removal and reduced mitigability are usually mentioned, while report framing is acknowledged much less consistently." loading="lazy" decoding="async">
+                        </a>
+                        <figcaption><span class="figure-label">Paper figure 8</span> How often the revised rationale mentions the edited factor. Circles and diamonds show the separate rule-based and model-based annotations. Numeric and prose-level edits differ in how easy they are to name. <a href="https://arxiv.org/pdf/2609.17865v1#page=8" target="_blank" rel="noopener noreferrer">View in paper ↗</a></figcaption>
+                    </figure>
+                </section>
+
+                <section id="scope" class="article-section">
+                    <p class="section-eyebrow">07 / Scope &amp; limitations</p>
+                    <h2>What these experiments establish</h2>
+                    <p>SAFE makes evidence acquisition an explicit evaluation target. Its results support measuring both the choice to seek information and the response to the information obtained. Several boundaries matter when interpreting that result:</p>
+                    <ul class="limitations">
+                        <li><strong>Prompted choices in a controlled setting.</strong> Models are explicitly offered an information-gathering action with stated costs and payoffs. This does not test whether they independently notice missing information or conduct open-ended search.</li>
+                        <li><strong>Behavior and rationales, not latent motivation.</strong> No skip rationale receives the strategic-ignorance label. That absence cannot rule out an internal information-avoidance mechanism.</li>
+                        <li><strong>The labeling procedure matters.</strong> The inspection-rationale coding procedure prioritizes expected-value comparisons. At Stage 2, the “rationalization” label can also capture an appropriate decision to proceed on a negligible finding. Monitor labels are not direct evidence of a mechanism.</li>
+                        <li><strong>Some interventions change more than one aspect of a prompt.</strong> High severity changes harm type as well as magnitude; channel changes also require rewording probability and severity signals. Counterfactual cases are selected for diagnostic sensitivity, with some small samples and ceiling effects.</li>
+                    </ul>
+                    <p class="source-note">This page summarizes the September 2026 preprint. See <a href="https://arxiv.org/html/2609.17865v1#S7.SS1">§7.1 and the appendices</a> for the full limitations, prompts, annotation validation, and intervention design.</p>
+                </section>
+
+                <section id="citation" class="article-section citation-section">
+                    <div class="citation-heading">
+                        <div><p class="section-eyebrow">08 / Citation</p><h2>Cite this work</h2></div>
+                        <button class="copy-citation" type="button" hidden>Copy BibTeX</button>
+                    </div>
+                    <pre><code id="bibtex">@misc{tafveez2026safetyevidence,
+  title = {Do Frontier Models Seek Safety Evidence Before Acting?},
+  author = {Omer Tafveez},
+  year = {2026},
+  eprint = {2609.17865},
+  archivePrefix = {arXiv},
+  primaryClass = {cs.AI},
+  url = {https://arxiv.org/abs/2609.17865}
+}</code></pre>
+                    <p class="copy-status" role="status" aria-live="polite"></p>
+                </section>
+            </main>
+        </div>
+
+        <footer class="project-footer">
+            <a href="../../index.html#research">← Back to research</a>
+            <span>Omer Tafveez · University of Michigan</span>
+            <a href="#main-content">Back to top ↑</a>
+        </footer>
+    </div>
+
+    <dialog class="figure-dialog" aria-labelledby="figure-dialog-title">
+        <div class="dialog-toolbar">
+            <h2 id="figure-dialog-title">Paper figure</h2>
+            <a class="dialog-original" href="#" target="_blank" rel="noopener">Open image ↗</a>
+            <button class="dialog-close" type="button" autofocus>Close <span aria-hidden="true">×</span></button>
+        </div>
+        <div class="dialog-image-wrap" tabindex="0" role="region" aria-label="Enlarged figure, scroll to explore"><img class="dialog-image" alt=""></div>
+        <p class="dialog-hint">Scroll to explore the figure. Press Escape to close.</p>
+    </dialog>
+</body>
+</html>

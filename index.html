@@ -120,10 +120,32 @@
                 <p class="research-empty" id="research-empty" hidden>No papers in this category yet.</p>
                 <div class="research-list">
 
+                    <div class="research-entry" data-category="preprints">
+                        <div class="research-item">
+                            <div class="research-body">
+                                <span class="research-venue"><time datetime="2026-09">Sept 2026</time> &middot; Preprint</span>
+                                <p class="research-title">Do Frontier Models Seek Safety Evidence Before Acting?</p>
+                                <p class="research-authors"><span class="author-me">Omer Tafveez</span></p>
+                                <p class="research-desc">Introduces SAFE, a controlled benchmark testing whether frontier models seek safety-relevant evidence before deployment decisions. Evidence acquisition responds strongly to severity and retrieval cost, while stated risk probability has much weaker influence.</p>
+                                <div class="research-btns">
+                                    <a href="https://arxiv.org/abs/2609.17865" target="_blank" rel="noopener noreferrer" class="btn-filled">Paper</a>
+                                    <a href="research/safe/index.html" class="btn-outline">Project page</a>
+                                </div>
+                            </div>
+                        </div>
+                        <details class="research-fig">
+                            <summary>↳ fig.</summary>
+                            <div class="research-fig-inner">
+                                <img src="imgs/Safe.png" alt="SAFE safety evidence-seeking benchmark figure" class="fig-expandable">
+                                <p class="fig-hint">click to enlarge</p>
+                            </div>
+                        </details>
+                    </div>
+
                     <div class="research-entry" data-category="workshops conference">
                         <div class="research-item">
                             <div class="research-body">
-                                <span class="research-venue">EMNLP 2026 &middot; Main Conference (accepted)<br>ICLR 2026 &middot; Scaling Post Training of LLMs Workshop</span>
+                                <span class="research-venue"><time datetime="2026-08">Aug 2026</time> &middot; EMNLP 2026 &middot; Main Conference (accepted)<br>ICLR 2026 &middot; Scaling Post Training of LLMs Workshop</span>
                                 <p class="research-title">Countdown-Code: A Testbed for Studying The Emergence and Generalization of Reward Hacking in RLVR</p>
                                 <p class="research-authors">Muhammad Khalifa*, Zohaib Khan*, <span class="author-me">Omer Tafveez</span>, Hao Peng, Lu Wang</p>
                                 <p class="research-desc">A controlled benchmark isolating conditions under which models learn to game reward signals rather than solve the underlying problem — a reproducible testbed for studying alignment failures in reasoning models.</p>
@@ -144,7 +166,7 @@
                     <div class="research-entry" data-category="workshops">
                         <div class="research-item">
                             <div class="research-body">
-                                <span class="research-venue">European Chapter of the Association for Computational Linguistics Student Research Workshop 2026</span>
+                                <span class="research-venue"><time datetime="2026-01">Jan 2026</time> &middot; European Chapter of the Association for Computational Linguistics Student Research Workshop 2026</span>
                                 <p class="research-title">Plasticity vs. Rigidity: The Impact of Low-Rank Adapters on Reasoning on a Micro-Budget</p>
                                 <p class="research-authors">Zohaib Khan, <span class="author-me">Omer Tafveez</span>, Zoha Hayat Bhatti</p>
                                 <p class="research-desc">Investigates whether small LMs (&le;1.5B) can develop strong mathematical reasoning under severe compute constraints. Adapter rank is the critical variable — high-rank LoRA (r=256) achieves 40.0% Pass@1 on AIME 24.</p>
@@ -165,7 +187,7 @@
                     <div class="research-entry" data-category="article">
                         <div class="research-item">
                             <div class="research-body">
-                                <span class="research-venue">Article</span>
+                                <span class="research-venue"><time datetime="2025-02">Feb 2025</time> &middot; Article</span>
                                 <p class="research-title">Decoupled Gradient Knowledge Distillation</p>
                                 <p class="research-authors"><span class="author-me">Omer Tafveez*</span>, Muhammad Khaquan*</p>
                                 <p class="research-desc">KL distillation losses self-extinguish as the student converges. DGKD augments the DKD loss with a gradient-MSE coupling term that sustains signal strength throughout training without altering gradient direction.</p>
@@ -187,7 +209,7 @@
                     <div class="research-entry" data-category="preprints">
                         <div class="research-item">
                             <div class="research-body">
-                                <span class="research-venue">Preprint</span>
+                                <span class="research-venue"><time datetime="2024-08">Aug 2024</time> &middot; Preprint</span>
                                 <p class="research-title">Key-Driven Grouped Query Attention</p>
                                 <p class="research-authors">Zohaib Khan*, Muhammad Khaquan*, <span class="author-me">Omer Tafveez</span>, Burhanuddin Samiwala, Agha Ali Raza</p>
                                 <p class="research-desc">Adaptive query grouping via key head norm ratios. ViT-L with DGQA achieves up to 8% accuracy gains over standard GQA across CIFAR-10/100, Food101, and Tiny ImageNet.</p>
