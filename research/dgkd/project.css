@@ -1,0 +1,25 @@
+.project-header { padding-bottom: 36px; }
+.project-context { margin: 22px 0 0; font-size: 12px; }
+.research-note { display: grid; grid-template-columns: 188px minmax(0, 1fr); gap: 42px; padding: 24px 0; border-top: 1px solid var(--line-strong); }
+.research-note .section-eyebrow { margin: 4px 0 0; }
+.research-note > p:last-child { max-width: 710px; margin: 0; font: 400 19px/1.6 var(--serif); color: var(--ink); }
+.article-section h3 { margin: 30px 0 16px; font: 500 24px/1.35 var(--serif); letter-spacing: -.015em; }
+.loss-panel { margin: 25px 0; padding: 24px; border: 1px solid var(--line); background: var(--paper-2); }
+.loss-panel .section-eyebrow { margin-bottom: 16px; }
+.loss-equation { display: grid; gap: 20px; color: var(--ink); font: 400 24px/1.7 var(--serif); }
+.loss-equation sub, .loss-equation sup { font-size: .6em; }
+.inline-math { color: var(--ink); font-family: var(--serif); }
+.inline-math sub, .inline-math sup { font-size: .7em; }
+.article-section > p > strong:first-child { color: var(--ink); }
+.dialog-image { min-width: min(1000px, var(--figure-width, 1000px)); }
+@media (max-width: 960px) {
+    .research-note { grid-template-columns: 1fr; gap: 12px; }
+}
+@media (max-width: 560px) {
+    .project-byline { flex-wrap: wrap; }
+    .project-header h1 { font-size: 37px; }
+    .research-note > p:last-child { font-size: 18px; }
+    .loss-panel { padding: 18px 14px; }
+    .loss-equation { font-size: 19px; }
+    .article-section h3 { font-size: 22px; }
+}

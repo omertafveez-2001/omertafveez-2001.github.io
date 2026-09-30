@@ -4,7 +4,7 @@ Six figures are from the paper and its public code repository. Each repository P
 
 Source repository commit: `a099eb8323e5d826cf6b8b4e4cefbfdab0e69d9e`. No repository clone was created. Figure PDFs were downloaded individually for inspection and rendering; the plotting code was read separately to verify the inspection-percentage graph's aggregation.
 
-Web assets are lossless WebP renders of the original PDFs, produced with Poppler at a 2400-pixel longest edge. There is no cropping, redrawing, recoloring, or alteration of labels or data. Figures retain their paper numbering; Figure 1 and `imgs/Safe.png` are not used on this page.
+Web assets are lossless WebP renders of the original PDFs, produced with Poppler at a 2400-pixel longest edge. There is no cropping, redrawing, recoloring, or alteration of labels or data. Figures retain their paper numbering; Figure 1 and `imgs/safe-safety-evidence-benchmark.png` are not used on this page.
 
 | Web asset | Paper figure / PDF page | Original PDF | Original PDF SHA-256 |
 | --- | --- | --- | --- |

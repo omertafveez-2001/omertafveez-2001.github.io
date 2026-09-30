@@ -1,0 +1,22 @@
+.project-article code { font: .85em var(--mono); overflow-wrap: anywhere; }
+.equation { display: grid; gap: 12px; max-width: 710px; padding: 22px 24px; margin: 26px 0; border: 1px solid var(--line); background: var(--paper-2); color: var(--ink); font: 16px/1.8 var(--mono); overflow-wrap: anywhere; }
+.equation sub { font-size: .75em; }
+.figure-narrow { max-width: 520px; }
+.diagnostic-table-wrap { margin: 28px 0; overflow-x: auto; }
+.diagnostic-table { width: 100%; border-collapse: collapse; font-size: 13px; line-height: 1.75; text-align: left; }
+.diagnostic-table th, .diagnostic-table td { padding: 16px 14px; border-bottom: 1px solid var(--line); vertical-align: top; }
+.diagnostic-table thead { background: var(--paper-2); color: var(--ink); }
+.diagnostic-table th { font-weight: 600; }
+.diagnostic-table tbody th { white-space: nowrap; }
+.source-list { max-width: 710px; padding-left: 25px; font-size: 14px; line-height: 1.8; }
+.source-list li { padding-left: 7px; margin-bottom: 18px; }
+.source-list li::marker { color: var(--accent); font-family: var(--mono); }
+.source-list a { text-decoration: underline; text-underline-offset: 3px; }
+.source-list span { display: block; color: var(--muted); font-size: 12px; }
+.dialog-image { min-width: min(1000px, var(--figure-width, 1000px)); }
+@media (max-width: 560px) {
+    .equation { padding: 17px; font-size: 12px; }
+    .diagnostic-table { font-size: 12px; }
+    .diagnostic-table th, .diagnostic-table td { padding: 12px 8px; }
+    .diagnostic-table tbody th { white-space: normal; }
+}

@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Transformers for Time Series: A Statistical View · Omer Tafveez</title>
+    <meta name="description" content="Looking beyond forecast error: an Autoformer case study in decomposition, structural breaks, segment behavior, and statistical diagnostics.">
+    <link rel="canonical" href="https://omertafveez-2001.github.io/research/timeseries/">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Transformers for Time Series: A Statistical View">
+    <meta property="og:description" content="What does a good forecast error score tell us about the structure of a predicted series?">
+    <meta property="og:url" content="https://omertafveez-2001.github.io/research/timeseries/">
+    <meta property="og:image" content="https://omertafveez-2001.github.io/imgs/transformers-timeseries-statistical-view.png">
+    <link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:ital,wght@0,100..900;1,100..900&amp;family=Source+Serif+4:ital,wght@0,400;0,500;0,600;1,400&amp;family=IBM+Plex+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../../style.css">
+    <link rel="stylesheet" href="../safe/project.css">
+    <link rel="stylesheet" href="./project.css">
+    <script src="./project.js" defer></script>
+</head>
+<body class="page project-page">
+    <a class="skip-link" href="#main-content">Skip to content</a>
+    <div class="project-wrap">
+        <nav class="project-topbar" aria-label="Site navigation">
+            <a href="../../index.html#research">← Omer Tafveez <span>/ Research</span></a>
+            <span class="project-edition">Research article</span>
+        </nav>
+        <header class="project-header">
+            <p class="project-kicker">Time series <span>/</span> Think Before You Test</p>
+            <h1>Transformers for Time Series: A Statistical View</h1>
+            <p class="project-deck">A forecast can get the values approximately right while telling a different story about the data. What do we learn when we examine its structure?</p>
+            <div class="project-byline">
+                <p><a href="../../index.html">Omer Tafveez</a><span>University of Michigan</span></p>
+                <p>Research article<span><time datetime="2026-09">September 2026</time></span></p>
+            </div>
+            <div class="project-links" aria-label="Article resources">
+                <a class="resource-link primary" href="https://github.com/omertafveez-2001/Transformers-for-Timeseries-A-Statistical-View" target="_blank" rel="noopener noreferrer">Code &amp; analysis <span aria-hidden="true">↗</span></a>
+                <a class="resource-link" href="https://github.com/omertafveez-2001/Transformers-for-Timeseries-A-Statistical-View/blob/eb46a634c309312aff3721841beb81142d0dac4e/evaluations.ipynb" target="_blank" rel="noopener noreferrer">Evaluation notebook <span aria-hidden="true">↗</span></a>
+                <a class="resource-link" href="#findings">Read the findings <span aria-hidden="true">↓</span></a>
+            </div>
+        </header>
+        <div class="project-layout">
+            <aside class="project-sidebar">
+                <nav aria-label="On this page">
+                    <p class="sidebar-label">On this page</p>
+                    <a href="#question"><span>01</span> Beyond forecast error</a>
+                    <a href="#autoformer"><span>02</span> Inside Autoformer</a>
+                    <a href="#evaluation"><span>03</span> The evaluation</a>
+                    <a href="#breaks"><span>04</span> Locating breaks</a>
+                    <a href="#segments"><span>05</span> Between the breaks</a>
+                    <a href="#diagnostics"><span>06</span> Statistical diagnostics</a>
+                    <a href="#findings"><span>07</span> Findings &amp; next steps</a>
+                    <a href="#sources"><span>08</span> Sources</a>
+                </nav>
+            </aside>
+            <main id="main-content" class="project-article">
+                <section id="question" class="article-section">
+                    <p class="section-eyebrow">01 / The question</p>
+                    <h2>What does an accurate forecast preserve?</h2>
+                    <p>Forecast evaluation often starts with a single number: how far are the predictions from the observations? That is a useful question. But when a forecast feeds into an analysis of changing demand, stability, or trends, we also care about the patterns it preserves.</p>
+                    <p>Two forecasts can have similar average errors and behave differently around transitions. One may smooth over a change; another may place it too early. A score that averages across series and horizons can conceal those differences.</p>
+                    <p>In this project, I examine a pretrained <strong>Autoformer</strong> on hourly traffic data through several complementary views: scaled forecast error, detected breaks, segment lengths and slopes, and statistical tests on forecast samples. The aim is to make the evaluation more informative about what a model’s outputs can support.</p>
+                    <div class="takeaway">
+                        <p class="section-eyebrow">Central observation</p>
+                        <p>The saved run reports a mean MASE of 0.849. Yet matching the number of detected breaks does not guarantee matching their locations, and a composite statistical score needs careful interpretation before it can say anything about reliability.</p>
+                    </div>
+                </section>
+
+                <section id="autoformer" class="article-section">
+                    <p class="section-eyebrow">02 / The model</p>
+                    <h2>Decompose the series, then look for recurring delays</h2>
+                    <p>Autoformer brings two ideas from time-series analysis into a Transformer architecture: a moving-average decomposition and an Auto-Correlation mechanism. Decomposition separates a slowly varying component from the remainder. Repeating this operation inside the network lets the model progressively separate different patterns.</p>
+                    <div class="equation" aria-label="Trend equals a moving average of the padded input. The seasonal remainder equals input minus trend.">
+                        <span>X<sub>trend</sub> = AvgPool(Padding(X))</span>
+                        <span>X<sub>seasonal</sub> = X − X<sub>trend</sub></span>
+                    </div>
+                    <p>The remainder is called the seasonal component in the architecture, but subtracting a moving average does not isolate pure seasonality: shorter fluctuations and noise can remain. The decoder accumulates extracted trend components while processing the seasonal representation.</p>
+                    <figure class="paper-figure">
+                        <a class="figure-image" href="./figures/architecture.png" data-figure="Figure 1 / Architecture"><img src="./figures/architecture.png" width="1212" height="667" alt="Autoformer encoder and decoder with Auto-Correlation blocks, repeated series decomposition, and an accumulating trend path." loading="lazy" decoding="async"></a>
+                        <figcaption><span class="figure-label">Figure 1 / Architecture</span> Autoformer architecture reproduced in the project repository. Architecture credit: Haixu Wu, Jiehui Xu, Jianmin Wang, and Mingsheng Long, <a href="https://arxiv.org/abs/2106.13008">Autoformer (2021)</a>. <a href="https://github.com/omertafveez-2001/Transformers-for-Timeseries-A-Statistical-View/blob/eb46a634c309312aff3721841beb81142d0dac4e/imgs/autoformer_architecture.png" target="_blank" rel="noopener noreferrer">Source figure ↗</a></figcaption>
+                    </figure>
+                    <p>The second idea is to aggregate information at useful <strong>time delays</strong>. Ordinary self-attention connects individual positions. Auto-Correlation estimates which shifts align query and key patterns, selects strong delays, and combines shifted value sequences using normalized weights.</p>
+                    <p>FFT operations make the correlation calculation efficient: transform queries and keys, multiply one transform by the complex conjugate of the other, and transform back to obtain scores over delays. The selected delays then guide aggregation in the sequence domain. This gives the model a way to reuse recurring patterns.</p>
+                    <figure class="paper-figure figure-narrow">
+                        <a class="figure-image" href="./figures/autocorrelation.png" data-figure="Figure 2 / Auto-Correlation"><img src="./figures/autocorrelation.png" width="474" height="453" alt="Queries and keys pass through FFT and inverse FFT to identify top delays for time-delay aggregation of values." loading="lazy" decoding="async"></a>
+                        <figcaption><span class="figure-label">Figure 2 / Auto-Correlation</span> The query–key correlation supplies delay scores; shifted values supply the representations being combined. Diagram from the repository’s Autoformer explainer. <a href="https://github.com/omertafveez-2001/Transformers-for-Timeseries-A-Statistical-View/blob/eb46a634c309312aff3721841beb81142d0dac4e/imgs/autoformer_autocorrelation_only_attention.png" target="_blank" rel="noopener noreferrer">Source figure ↗</a></figcaption>
+                    </figure>
+                    <p class="source-note">Architecture background: <a href="https://arxiv.org/abs/2106.13008" target="_blank" rel="noopener noreferrer">Wu et al., Autoformer</a>. The forecasting experiment below uses an existing pretrained checkpoint.</p>
+                </section>
+
+                <section id="evaluation" class="article-section">
+                    <p class="section-eyebrow">03 / The evaluation</p>
+                    <h2>One forecast tensor, several questions</h2>
+                    <p>The evaluation loads the GluonTS traffic dataset and the <code>kashif/autoformer-traffic-hourly</code> checkpoint. The saved notebook contains 6,034 forecast entries, with 100 sampled future trajectories and a 24-step horizon for each entry.</p>
+                    <dl class="study-facts">
+                        <div><dt>Forecast entries</dt><dd>6,034</dd></div>
+                        <div><dt>Samples / entry</dt><dd>100</dd></div>
+                        <div><dt>Forecast steps</dt><dd>24</dd></div>
+                        <div><dt>Mean MASE</dt><dd>0.849</dd></div>
+                    </dl>
+                    <p>These are series/window entries: the pipeline describes 862 series evaluated over seven rolling windows. They are not 6,034 independent sensors. The different analyses also summarize the sample dimension differently.</p>
+                    <dl class="benchmark-variables">
+                        <div><dt>Forecast accuracy</dt><dd>The sample median at each horizon is compared with observed values using mean absolute scaled error (MASE).</dd></div>
+                        <div><dt>Break analysis</dt><dd>The sample mean is computed first. Every tenth forecast entry and its corresponding observation are retained before segmentation.</dd></div>
+                        <div><dt>Statistical tests</dt><dd>Normality and variance tests operate on forecast samples; the autocorrelation test operates on the 24-step mean forecast.</dd></div>
+                    </dl>
+                    <p>MASE divides forecast MAE by the mean absolute seasonal-naive differences in the historical data. The reported average of <strong>0.849</strong> is below that scaling reference. It does not establish that every series performs well, or that Autoformer beats a separately evaluated seasonal-naive forecast on the same test windows.</p>
+                    <p class="source-note">Numbers are from the <a href="https://github.com/omertafveez-2001/Transformers-for-Timeseries-A-Statistical-View/blob/eb46a634c309312aff3721841beb81142d0dac4e/evaluations.ipynb">saved evaluation notebook</a>; the procedure is in <a href="https://github.com/omertafveez-2001/Transformers-for-Timeseries-A-Statistical-View/blob/eb46a634c309312aff3721841beb81142d0dac4e/eval_pipeline.py">eval_pipeline.py</a>. This article analyzes that recorded run rather than reporting a new experiment.</p>
+                </section>
+
+                <section id="breaks" class="article-section">
+                    <p class="section-eyebrow">04 / Structural comparison</p>
+                    <h2>The same number of breaks, in different places</h2>
+                    <p>A structural break describes a change in a process, such as a shift in its mean. Here, the analysis applies binary segmentation with an L2 cost to both forecast and observed values. This cost favors segments whose values stay close to their segment mean.</p>
+                    <p>For each forecast horizon, the implementation considers one through five breakpoints and minimizes a penalized cost:</p>
+                    <div class="equation" aria-label="Selection score equals within-segment squared error plus K times the logarithm of n.">
+                        <span>score(K) = within-segment SSE + K log(n)</span>
+                    </div>
+                    <p>The repository calls this BIC selection. More precisely, it is a BIC-style penalty added to raw squared error; its balance depends on the scale of the signal. Also, <strong>zero breaks is not a candidate</strong>, so the procedure is required to select at least one.</p>
+                    <div class="takeaway">
+                        <p class="section-eyebrow">How to read the axes</p>
+                        <p>Each column below is a downsampled series/window entry. Each row is a forecast step. The code segments across entries at a fixed horizon, so these figures describe the ordering of a collection of forecasts—not a continuous timeline for one sensor.</p>
+                    </div>
+                    <figure class="paper-figure">
+                        <a class="figure-image" href="./figures/break-heatmap.png" data-figure="Figure 3 / Break locations"><img src="./figures/break-heatmap.png" width="1429" height="790" alt="Two heatmaps of 24 forecast horizons: red predicted break locations above blue observed break locations; several rows align while others differ substantially." loading="lazy" decoding="async"></a>
+                        <figcaption><span class="figure-label">Figure 3 / Break locations</span> Both matrices contain 24 breaks: one per horizon. “True” denotes breaks detected in the observations by the same algorithm, rather than independently labeled events. Original axis labels are retained; the horizontal axis indexes forecast entries. <a href="https://github.com/omertafveez-2001/Transformers-for-Timeseries-A-Statistical-View/blob/eb46a634c309312aff3721841beb81142d0dac4e/imgs/results/pred_breaks_hour.png" target="_blank" rel="noopener noreferrer">Source figure ↗</a></figcaption>
+                    </figure>
+                    <p>The notebook reports <strong>24 predicted and 24 observed breaks</strong>, with one at every horizon. Some locations line up closely, particularly in several early horizons. Others differ substantially, including horizons 6 and 15–18. Agreement in total count therefore hides differences in placement.</p>
+                    <p>Because every row selects the minimum allowed count, the result is not evidence that the forecasts detect too many breaks. A stronger comparison would allow an unbroken signal and examine how location agreement changes with the penalty and entry ordering.</p>
+                    <figure class="paper-figure">
+                        <a class="figure-image" href="./figures/horizon-overlays.png" data-figure="Figure 4 / Horizon-by-horizon view"><img src="./figures/horizon-overlays.png" width="2387" height="1572" alt="A grid of 24 panels overlays forecast and observed values, with vertical lines marking their separately detected break locations." loading="lazy" decoding="async"></a>
+                        <figcaption><span class="figure-label">Figure 4 / Horizon-by-horizon view</span> Forecasts are blue and observations red in this plot. Vertical lines mark the selected boundaries. Despite the original “Time” labels, the horizontal coordinate follows series/window entry order, rescaled by the downsampling factor. <a href="https://github.com/omertafveez-2001/Transformers-for-Timeseries-A-Statistical-View/blob/eb46a634c309312aff3721841beb81142d0dac4e/imgs/results/breaks_per_hour.png" target="_blank" rel="noopener noreferrer">Source figure ↗</a></figcaption>
+                    </figure>
+                    <p class="source-note">Implementation and candidate range: <a href="https://github.com/omertafveez-2001/Transformers-for-Timeseries-A-Statistical-View/blob/eb46a634c309312aff3721841beb81142d0dac4e/stats.py">stats.py</a>. Plot construction and axes: <a href="https://github.com/omertafveez-2001/Transformers-for-Timeseries-A-Statistical-View/blob/eb46a634c309312aff3721841beb81142d0dac4e/visualisations.py">visualisations.py</a>.</p>
+                </section>
+
+                <section id="segments" class="article-section">
+                    <p class="section-eyebrow">05 / Segment analysis</p>
+                    <h2>What happens between the boundaries?</h2>
+                    <p>Break locations determine the groups of values assigned to each segment. Comparing their lengths and fitted slopes gives another view of how the forecast and observation arrays differ.</p>
+                    <figure class="paper-figure">
+                        <a class="figure-image" href="./figures/segment-lengths.png" data-figure="Figure 5 / Segment lengths"><img src="./figures/segment-lengths.png" width="852" height="547" alt="Overlapping red and blue histograms with prominent observed segment-length concentrations near 180 and 420 entries." loading="lazy" decoding="async"></a>
+                        <figcaption><span class="figure-label">Figure 5 / Segment lengths</span> Lengths count downsampled entries between boundaries. With one break per horizon, each row contributes two lengths whose sum is the row length. <a href="https://github.com/omertafveez-2001/Transformers-for-Timeseries-A-Statistical-View/blob/eb46a634c309312aff3721841beb81142d0dac4e/imgs/results/segment_length_distr.png" target="_blank" rel="noopener noreferrer">Source figure ↗</a></figcaption>
+                    </figure>
+                    <p>The observed lengths concentrate around roughly 180 and 420 entries, while the forecast distribution spreads differently around those groups. These paired concentrations are related: moving a single boundary makes one segment longer and the other shorter. The plot reveals different boundary placements; it does not independently establish shorter-lived temporal regimes.</p>
+                    <figure class="paper-figure">
+                        <a class="figure-image" href="./figures/segment-trends.png" data-figure="Figure 6 / Segment slopes"><img src="./figures/segment-trends.png" width="842" height="547" alt="Forecast and observed segment-slope histograms concentrated near zero, with the observed distribution extending farther into both tails." loading="lazy" decoding="async"></a>
+                        <figcaption><span class="figure-label">Figure 6 / Segment slopes</span> Slopes are fitted within segments along the entry index. They are not temporal growth rates for an individual traffic series. <a href="https://github.com/omertafveez-2001/Transformers-for-Timeseries-A-Statistical-View/blob/eb46a634c309312aff3721841beb81142d0dac4e/imgs/results/segment_trend_dist.png" target="_blank" rel="noopener noreferrer">Source figure ↗</a></figcaption>
+                    </figure>
+                    <p>Both slope distributions concentrate near zero. In this figure, the observations have the more extreme tails, including a negative slope near −0.0005. The central overlap suggests some similarity in local shape across the ordered entries, but near-zero slopes alone do not establish stationarity or mean reversion.</p>
+                    <p class="source-note">The figures are reproduced as saved in the repository. Interpretations here follow the displayed distributions and the <a href="https://github.com/omertafveez-2001/Transformers-for-Timeseries-A-Statistical-View/blob/eb46a634c309312aff3721841beb81142d0dac4e/visualisations.py">segment-analysis implementation</a>.</p>
+                </section>
+
+                <section id="diagnostics" class="article-section">
+                    <p class="section-eyebrow">06 / Statistical diagnostics</p>
+                    <h2>Unpacking the “trust score”</h2>
+                    <p>The repository also combines three statistical diagnostics into a score between zero and one. Understanding it requires looking at both the test and the object being tested.</p>
+                    <div class="diagnostic-table-wrap" tabindex="0" role="region" aria-label="Statistical diagnostics table">
+                        <table class="diagnostic-table">
+                            <thead><tr><th scope="col">Diagnostic</th><th scope="col">What is tested</th><th scope="col">Score component</th></tr></thead>
+                            <tbody>
+                                <tr><th scope="row">Shapiro–Wilk</th><td>100 forecast samples at each of the 24 horizons</td><td>Fraction of horizons with p &gt; 0.05</td></tr>
+                                <tr><th scope="row">Levene</th><td>Sample distributions at each adjacent pair of horizons</td><td>Fraction of 23 pairs with p &gt; 0.05</td></tr>
+                                <tr><th scope="row">Ljung–Box</th><td>The 24-step mean forecast, using lag 10</td><td>1 if p &gt; 0.05; otherwise 0</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="equation" aria-label="Trust score equals the normality score plus variance score plus autocorrelation score, divided by three.">
+                        <span>score = (s<sub>normality</sub> + s<sub>variance</sub> + s<sub>autocorrelation</sub>) / 3</span>
+                    </div>
+                    <figure class="paper-figure">
+                        <a class="figure-image" href="./figures/trust-score.png" data-figure="Figure 7 / Composite diagnostic"><img src="./figures/trust-score.png" width="988" height="390" alt="Purple histogram of composite scores concentrated between 0.3 and 0.4, peaking near 0.37, with a sparse upper tail." loading="lazy" decoding="async"></a>
+                        <figcaption><span class="figure-label">Figure 7 / Composite diagnostic</span> Most recorded scores lie around 0.3–0.4. The original axis calls higher values “High Confidence,” but this score is not a calibrated confidence or correctness probability. <a href="https://github.com/omertafveez-2001/Transformers-for-Timeseries-A-Statistical-View/blob/eb46a634c309312aff3721841beb81142d0dac4e/imgs/results/trust_score.png" target="_blank" rel="noopener noreferrer">Source figure ↗</a></figcaption>
+                    </figure>
+                    <p>The distribution peaks around <strong>0.37</strong>. This is a descriptive summary of test outcomes. It is not a 37% probability that a forecast is correct, and it does not directly count how many of three assumptions a series satisfies: two components are fractions over multiple tests, while the third is binary.</p>
+                    <p>These tests also operate on <strong>forecast samples and levels, not forecast residuals</strong>. A forecast that captures seasonality can be autocorrelated for a good reason. Non-normal predictive samples or changing uncertainty across the horizon need not indicate a bad forecast. The relevant assumptions depend on the downstream method.</p>
+                    <p>A more targeted extension would inspect errors against observations, evaluate predictive-interval coverage, and report the three components separately. Failure to reject a null hypothesis at 0.05 is not proof that the null is true; sample size and test power also shape the result. The implementation additionally assigns zero when a test raises an exception, so numerical failures should be separated from statistical findings.</p>
+                    <p class="source-note">Exact score construction: <a href="https://github.com/omertafveez-2001/Transformers-for-Timeseries-A-Statistical-View/blob/eb46a634c309312aff3721841beb81142d0dac4e/stats.py">analyze_series and trust_score in stats.py</a>.</p>
+                </section>
+
+                <section id="findings" class="article-section">
+                    <p class="section-eyebrow">07 / Findings &amp; next steps</p>
+                    <h2>Evaluate the claim you want to make</h2>
+                    <ol class="major-findings">
+                        <li><strong>Average error is one part of the evaluation.</strong> The saved run’s MASE of 0.849 summarizes scaled point-forecast accuracy. It does not measure agreement in break locations, predictive uncertainty, or suitability for a downstream statistical analysis.</li>
+                        <li><strong>Counts can conceal structural differences.</strong> Both arrays yield one break per horizon, while the locations sometimes diverge markedly. The candidate range and the axis being segmented are essential to interpreting that result.</li>
+                        <li><strong>Segment statistics need a meaningful ordering.</strong> Lengths and slopes describe the current series/window index. Claims about temporal regime duration would require segmentation along each sensor’s chronology.</li>
+                        <li><strong>A diagnostic score needs a defined purpose.</strong> Combining test outcomes is convenient, but reliability requires a relationship to observed forecast errors, calibration, or a specified downstream task.</li>
+                    </ol>
+                    <p>The next experiment would preserve each series’ time axis, include a zero-break model, and test sensitivity to segmentation settings. Comparing Autoformer with seasonal-naive, autoregressive, and recurrent baselines under the same procedure would help establish which patterns are model-specific. Those comparisons are not established by the Autoformer run presented here.</p>
+                    <div class="takeaway">
+                        <p class="section-eyebrow">Conclusion</p>
+                        <p>Forecast evaluation becomes more useful when every statistic is tied to a clear question. Error, boundary placement, segment behavior, and predictive diagnostics each reveal something different—and each needs an interpretation that matches the data and procedure behind it.</p>
+                    </div>
+                </section>
+
+                <section id="sources" class="article-section">
+                    <p class="section-eyebrow">08 / Sources</p>
+                    <h2>Explore the analysis</h2>
+                    <p>This article revisits the project’s June 2025 analysis, using the README, saved notebook outputs, implementation, and original images. It focuses on the documented Autoformer experiment.</p>
+                    <ol class="source-list">
+                        <li><a href="https://github.com/omertafveez-2001/Transformers-for-Timeseries-A-Statistical-View/blob/eb46a634c309312aff3721841beb81142d0dac4e/README.md">Project README</a><span>Motivation, architecture notes, and original discussion.</span></li>
+                        <li><a href="https://github.com/omertafveez-2001/Transformers-for-Timeseries-A-Statistical-View/blob/eb46a634c309312aff3721841beb81142d0dac4e/evaluations.ipynb">Evaluation notebook</a><span>Recorded traffic-dataset run, MASE, tensor shapes, and break counts.</span></li>
+                        <li><a href="https://github.com/omertafveez-2001/Transformers-for-Timeseries-A-Statistical-View/blob/eb46a634c309312aff3721841beb81142d0dac4e/eval_pipeline.py">Forecasting and evaluation pipeline</a><span>Checkpoint, data loading, sample aggregation, and MASE calculation.</span></li>
+                        <li><a href="https://github.com/omertafveez-2001/Transformers-for-Timeseries-A-Statistical-View/blob/eb46a634c309312aff3721841beb81142d0dac4e/stats.py">Statistical analysis</a> and <a href="https://github.com/omertafveez-2001/Transformers-for-Timeseries-A-Statistical-View/blob/eb46a634c309312aff3721841beb81142d0dac4e/visualisations.py">visualizations</a><span>Segmentation, penalties, statistical tests, and figure construction.</span></li>
+                        <li><a href="https://arxiv.org/abs/2106.13008">Autoformer: Decomposition Transformers with Auto-Correlation for Long-Term Series Forecasting</a><span>Haixu Wu, Jiehui Xu, Jianmin Wang, and Mingsheng Long (2021). Original architecture paper.</span></li>
+                    </ol>
+                    <p class="source-note">Repository references are pinned to <a href="https://github.com/omertafveez-2001/Transformers-for-Timeseries-A-Statistical-View/commit/eb46a634c309312aff3721841beb81142d0dac4e">revision eb46a63</a>. All seven figure files are served locally with this article.</p>
+                </section>
+            </main>
+        </div>
+        <footer class="project-footer">
+            <a href="../../index.html#research">← Back to research</a>
+            <span>Omer Tafveez · University of Michigan</span>
+            <a href="#main-content">Back to top ↑</a>
+        </footer>
+    </div>
+    <dialog class="figure-dialog" aria-labelledby="figure-dialog-title">
+        <div class="dialog-toolbar">
+            <h2 id="figure-dialog-title">Article figure</h2>
+            <a class="dialog-original" href="#" target="_blank" rel="noopener noreferrer">Open image ↗</a>
+            <button class="dialog-close" type="button" autofocus>Close <span aria-hidden="true">×</span></button>
+        </div>
+        <div class="dialog-image-wrap" tabindex="0" role="region" aria-label="Enlarged figure, scroll to explore"><img class="dialog-image" alt=""></div>
+        <p class="dialog-hint">Scroll to explore the figure. Press Escape to close.</p>
+    </dialog>
+</body>
+</html>
