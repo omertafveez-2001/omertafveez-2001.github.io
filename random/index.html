@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="theme-color" content="#292b49">
+  <meta name="description" content="A little flower, made just for bro.">
+  <title>cutie</title>
+  <style>
+    * { box-sizing: border-box; }
+    :root { color-scheme: dark; --ink: #fff1f4; }
+    body { margin: 0; min-height: 100svh; background: #292b49; color: var(--ink); font-family: Georgia, 'Times New Roman', serif; }
+    .moon-sky { position: fixed; inset: 0; overflow: hidden; pointer-events: none; background: radial-gradient(ellipse at 50% 28%, #77739755, transparent 55%), linear-gradient(180deg, #20283f, #45415f 58%, #79617d); }
+    .moon-sky::after { content: ''; position: absolute; inset: 45% -30% -25%; background: radial-gradient(ellipse at 20% 80%, #b9a7ca40, transparent 45%), radial-gradient(ellipse at 80% 65%, #d5b1cb24, transparent 48%); filter: blur(30px); animation: clouds 25s ease-in-out infinite alternate; }
+    .moon-sky::before { content: ""; position: absolute; width: 2px; height: 2px; border-radius: 50%; box-shadow: 7vw 9vh 1px #f8eef1, 14vw 36vh 1px #f8eef1, 23vw 6vh 1px #f8eef1, 30vw 25vh 1px #f8eef1, 43vw 8vh 1px #f8eef1, 54vw 4vh 1px #f8eef1, 68vw 13vh 1px #f8eef1, 89vw 7vh 1px #f8eef1, 95vw 26vh 1px #f8eef1, 81vw 45vh 1px #f8eef1, 9vw 48vh 1px #f8eef1, 19vw 83vh 1px #f8eef1, 31vw 76vh 1px #f8eef1, 77vw 84vh 1px #f8eef1, 93vw 91vh 1px #f8eef1, 6vw 93vh 1px #f8eef1, 58vw 94vh 1px #f8eef1, 71vw 64vh 1px #f8eef1, 88vw 57vh 1px #f8eef1, 38vw 93vh 1px #f8eef1, 3vw 28vh 1px #f8eef1, 96vw 68vh 1px #f8eef1, 26vw 54vh 1px #f8eef1, 61vw 17vh 1px #f8eef1; opacity: .6; animation: twinkle 7s ease-in-out infinite; }
+    .moon { position: absolute; width: min(82vw, 66svh, 570px); left: 50%; top: max(24px, calc(50% - 310px)); overflow: visible; transform: translateX(-50%); filter: drop-shadow(0 0 35px #f4e5df50) drop-shadow(0 0 100px #d2c5f438); }
+    .star { position: absolute; width: var(--size, 13px); left: var(--x); top: var(--y); color: #fff0d6; opacity: .6; filter: drop-shadow(0 0 4px #f9dbb5); animation: twinkle 5s ease-in-out infinite; animation-delay: var(--delay, 0s); }
+    main { position: relative; min-height: 100svh; max-width: 760px; margin: auto; padding: 55px 24px 30px; text-align: center; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+    .garden { width: min(100%, 430px); margin: -5px 0 -15px; position: relative; }
+    .flower { filter: drop-shadow(0 3px 14px #1d17352e); display: block; width: 100%; height: auto; overflow: visible; }
+    .sway { transform-origin: 215px 472px; animation: sway 7s ease-in-out infinite; }
+    .blossom { transform-origin: 215px 192px; animation: arrive 1.8s cubic-bezier(.18,.7,.25,1) both; }
+    .glimmer { animation: twinkle 4s ease-in-out infinite; }
+    .glimmer:nth-child(2) { animation-delay: -1.7s; }
+    button { font-family: 'Avenir Next', Avenir, 'Segoe UI', sans-serif; cursor: pointer; border: 1px solid #e6c8e46b; background: #ead9ec20; color: #fff1f6; box-shadow: 0 5px 30px #17152a24; backdrop-filter: blur(12px); border-radius: 100px; padding: 14px 25px; font-size: 12px; letter-spacing: .055em; transition: background .2s, transform .2s; }
+    button:hover { background: #ead9ec38; transform: translateY(-2px); }
+    button:focus-visible { outline: 2px solid #f2d6ee; outline-offset: 5px; }
+    .note { max-width: 360px; margin: 22px auto 0; padding: 18px 22px; border: 1px solid #dcc9eb26; border-radius: 22px; background: #29253c9c; backdrop-filter: blur(16px); animation: note-in .7s ease both; }
+    .note[hidden] { display: none; }
+    .note p { font-size: 19px; line-height: 1.65; margin: 0; }
+    .note .signature { margin-top: 15px; font-size: 14px; font-style: italic; color: #e5d3e4; }
+    @keyframes clouds { from { transform: translateX(-4%); } to { transform: translateX(4%); } }
+    @keyframes twinkle { 0%,100% { opacity: .3; } 50% { opacity: .8; } }
+    @keyframes sway { 0%,100% { transform: rotate(-1.4deg); } 50% { transform: rotate(1.4deg); } }
+    @keyframes arrive { from { opacity: 0; transform: translateY(12px) scale(.87); } to { opacity: 1; transform: translateY(0) scale(1); } }
+    @keyframes note-in { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+    @media (max-width: 480px) { .garden { width: min(100%, 350px); } .moon { top: max(28px, calc(50% - 265px)); } }
+    @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation: none !important; transition: none !important; } }
+  </style>
+</head>
+<body>
+  <div class="moon-sky" aria-hidden="true">
+    <svg class="moon" viewBox="0 0 500 500">
+      <defs>
+        <radialGradient id="moonlight" cx=".38" cy=".3" r=".75"><stop stop-color="#fff9e9"/><stop offset=".55" stop-color="#eee5df"/><stop offset=".88" stop-color="#d4cbd8"/><stop offset="1" stop-color="#b9b2ca"/></radialGradient>
+        <radialGradient id="crater"><stop stop-color="#a6a0b2" stop-opacity=".25"/><stop offset=".7" stop-color="#bdb4c4" stop-opacity=".12"/><stop offset="1" stop-color="#fff6e8" stop-opacity=".12"/></radialGradient>
+        <clipPath id="moon-disc"><circle cx="250" cy="250" r="225"/></clipPath>
+        <filter id="moon-soft"><feGaussianBlur stdDeviation="5"/></filter>
+        <filter id="moon-grain"><feTurbulence type="fractalNoise" baseFrequency=".065" numOctaves="3" seed="9"/><feColorMatrix type="saturate" values="0"/><feComponentTransfer><feFuncA type="linear" slope=".12"/></feComponentTransfer></filter>
+      </defs>
+      <circle cx="250" cy="250" r="225" fill="url(#moonlight)"/>
+      <g clip-path="url(#moon-disc)">
+        <g fill="#a9a3b6" opacity=".16" filter="url(#moon-soft)">
+          <path d="M100 105Q155 62 195 100T228 175Q205 216 153 196T93 149Z"/>
+          <path d="M293 81Q370 71 401 132T363 222Q320 245 301 189T293 81Z"/>
+          <path d="M81 269Q140 228 185 269T236 353Q227 396 165 382T81 269Z"/>
+          <ellipse cx="332" cy="323" rx="39" ry="56" transform="rotate(-25 332 323)"/>
+        </g>
+        <circle cx="116" cy="138" r="32" fill="url(#crater)"/>
+        <circle cx="160" cy="106" r="19" fill="url(#crater)"/>
+        <circle cx="188" cy="173" r="29" fill="url(#crater)"/>
+        <circle cx="343" cy="131" r="43" fill="url(#crater)"/>
+        <circle cx="382" cy="186" r="23" fill="url(#crater)"/>
+        <circle cx="312" cy="207" r="16" fill="url(#crater)"/>
+        <circle cx="120" cy="294" r="35" fill="url(#crater)"/>
+        <circle cx="181" cy="338" r="25" fill="url(#crater)"/>
+        <circle cx="306" cy="337" r="31" fill="url(#crater)"/>
+        <circle cx="364" cy="368" r="21" fill="url(#crater)"/>
+        <circle cx="259" cy="400" r="28" fill="url(#crater)"/>
+        <circle cx="220" cy="258" r="14" fill="url(#crater)"/>
+        <circle cx="406" cy="270" r="18" fill="url(#crater)"/>
+        <circle cx="216" cy="75" r="12" fill="url(#crater)"/>
+        <circle cx="87" cy="213" r="11" fill="url(#crater)"/>
+        <circle cx="149" cy="398" r="14" fill="url(#crater)"/>
+        <rect x="20" y="20" width="460" height="460" filter="url(#moon-grain)" opacity=".55"/>
+      </g>
+      <circle cx="250" cy="250" r="224.5" fill="none" stroke="#fff4e9" stroke-opacity=".35"/>
+    </svg>
+    <svg class="star" style="--x:18%;--y:18%;--size:14px;--delay:-1s" viewBox="0 0 20 20"><path d="M10 1l2.2 6.8L19 10l-6.8 2.2L10 19l-2.2-6.8L1 10l6.8-2.2Z" fill="currentColor"/></svg>
+    <svg class="star" style="--x:75%;--y:31%;--size:11px;--delay:-3s" viewBox="0 0 20 20"><path d="M10 1l2.2 6.8L19 10l-6.8 2.2L10 19l-2.2-6.8L1 10l6.8-2.2Z" fill="currentColor"/></svg>
+    <svg class="star" style="--x:12%;--y:64%;--size:9px;--delay:-2s" viewBox="0 0 20 20"><path d="M10 1l2.2 6.8L19 10l-6.8 2.2L10 19l-2.2-6.8L1 10l6.8-2.2Z" fill="currentColor"/></svg>
+    <svg class="star" style="--x:86%;--y:74%;--size:15px;--delay:-4s" viewBox="0 0 20 20"><path d="M10 1l2.2 6.8L19 10l-6.8 2.2L10 19l-2.2-6.8L1 10l6.8-2.2Z" fill="currentColor"/></svg>
+    <svg class="star" style="--x:33%;--y:9%;--size:8px;--delay:-2.5s" viewBox="0 0 20 20"><path d="M10 1l2.2 6.8L19 10l-6.8 2.2L10 19l-2.2-6.8L1 10l6.8-2.2Z" fill="currentColor"/></svg>
+    <svg class="star" style="--x:63%;--y:89%;--size:9px;--delay:-0.5s" viewBox="0 0 20 20"><path d="M10 1l2.2 6.8L19 10l-6.8 2.2L10 19l-2.2-6.8L1 10l6.8-2.2Z" fill="currentColor"/></svg>
+  </div>
+  <main>
+    <div class="garden">
+      <svg class="flower" viewBox="0 0 430 500" role="img" aria-labelledby="flower-title flower-description">
+        <title id="flower-title">A moonlit pink peony</title>
+        <desc id="flower-description">A hand-drawn pearly pink flower in the moonlight with many delicate petals, a curved green stem, and finely veined leaves, gently swaying among little silver and golden stars.</desc>
+        <defs>
+          <linearGradient id="petal" x1="0" y1="0" x2=".7" y2="1" gradientUnits="objectBoundingBox"><stop stop-color="#fff0fa"/><stop offset=".43" stop-color="#d9add2"/><stop offset="1" stop-color="#875d96"/></linearGradient>
+          <linearGradient id="inner" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#f9dfef"/><stop offset=".55" stop-color="#cd9bc3"/><stop offset="1" stop-color="#815086"/></linearGradient>
+          <linearGradient id="leaf" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#b3c8c0"/><stop offset="1" stop-color="#536f77"/></linearGradient>
+          <radialGradient id="halo"><stop stop-color="#c8b9e6" stop-opacity=".2"/><stop offset="1" stop-color="#d6c8e9" stop-opacity="0"/></radialGradient>
+          <path id="p" d="M215 203 C192 195 157 155 163 118 C166 94 185 88 196 100 C202 81 225 83 233 99 C251 88 269 105 263 126 C258 159 236 190 215 203Z"/>
+          <path id="q" d="M215 196 C196 181 184 155 193 133 C198 121 208 122 214 129 C225 113 242 127 239 143 C236 165 225 182 215 196Z"/>
+        </defs>
+        <ellipse cx="215" cy="207" rx="181" ry="180" fill="url(#halo)"/>
+        <g fill="#e8d7ba" class="glimmer"><path d="M83 144 l2 7 7 2-7 2-2 7-2-7-7-2 7-2Z"/><circle cx="342" cy="242" r="2"/><circle cx="103" cy="291" r="1.6"/></g>
+        <g fill="#e8d7ba" class="glimmer"><path d="M333 111 l1.6 6 6 1.6-6 1.6-1.6 6-1.6-6-6-1.6 6-1.6Z"/><circle cx="121" cy="85" r="1.5"/><circle cx="312" cy="328" r="1.5"/></g>
+        <g class="sway">
+          <path d="M215 229 C197 289 241 354 210 470" fill="none" stroke="#8ca7a2" stroke-width="4" stroke-linecap="round"/>
+          <path d="M223 374 C178 367 133 343 126 301 C169 296 209 322 223 374Z" fill="url(#leaf)"/>
+          <path d="M224 337 C256 336 294 311 299 274 C259 275 232 301 224 337Z" fill="url(#leaf)"/>
+          <g fill="none" stroke="#dee9df" stroke-width=".9" opacity=".62"><path d="M220 369 Q164 330 132 306 M176 339 L166 311 M190 349 L154 347 M224 335 Q269 303 295 279 M251 315 L257 289 M264 305 L287 304"/></g>
+          <path d="M214 253 Q181 239 174 215 Q200 224 215 238 Q226 219 250 214 Q243 241 214 253" fill="#829d9c"/>
+          <g class="blossom" stroke="#a278ad" stroke-width=".65" stroke-opacity=".38" stroke-linejoin="round">
+            <g fill="url(#petal)">
+              <use href="#p" transform="rotate(0 215 192)"/><use href="#p" transform="rotate(40 215 192)"/><use href="#p" transform="rotate(80 215 192)"/><use href="#p" transform="rotate(120 215 192)"/><use href="#p" transform="rotate(160 215 192)"/><use href="#p" transform="rotate(200 215 192)"/><use href="#p" transform="rotate(240 215 192)"/><use href="#p" transform="rotate(280 215 192)"/><use href="#p" transform="rotate(320 215 192)"/>
+            </g>
+            <g fill="url(#inner)" transform="translate(215 192) scale(.77) rotate(20) translate(-215 -192)">
+              <use href="#p"/><use href="#p" transform="rotate(45 215 192)"/><use href="#p" transform="rotate(90 215 192)"/><use href="#p" transform="rotate(135 215 192)"/><use href="#p" transform="rotate(180 215 192)"/><use href="#p" transform="rotate(225 215 192)"/><use href="#p" transform="rotate(270 215 192)"/><use href="#p" transform="rotate(315 215 192)"/>
+            </g>
+            <g fill="url(#petal)" transform="translate(215 192) scale(.8) translate(-215 -192)">
+              <use href="#q"/><use href="#q" transform="rotate(60 215 192)"/><use href="#q" transform="rotate(120 215 192)"/><use href="#q" transform="rotate(180 215 192)"/><use href="#q" transform="rotate(240 215 192)"/><use href="#q" transform="rotate(300 215 192)"/>
+            </g>
+            <g fill="#d4b276" stroke="#fbe7bb" stroke-width="1.5"><ellipse cx="215" cy="190" rx="10" ry="8"/><path d="M209 188 l-3-7 M215 187 v-9 M220 188 l4-7 M208 193 l-5 3 M222 193 l5 2" fill="none" stroke-linecap="round"/></g>
+          </g>
+        </g>
+      </svg>
+    </div>
+    <button id="open-note" type="button" aria-expanded="false" aria-controls="note">here's something for ya</button>
+    <div class="note" id="note" hidden>
+      <p>You got this girl!</p>
+      <p class="signature">One little step at a time, bro. May Allah put ease in your day and peace in your heart. I'm cheering for you, always. ♡</p>
+    </div>
+  </main>
+  <script>
+    const button = document.getElementById('open-note');
+    const note = document.getElementById('note');
+    button.addEventListener('click', () => {
+      const isOpen = button.getAttribute('aria-expanded') === 'true';
+      button.setAttribute('aria-expanded', String(!isOpen));
+      note.hidden = isOpen;
+    });
+
+  </script>
+</body>
+</html>
