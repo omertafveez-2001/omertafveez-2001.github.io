@@ -16,6 +16,8 @@
     <link rel="stylesheet" href="../safe/project.css">
     <link rel="stylesheet" href="./project.css">
     <script src="./project.js" defer></script>
+    <script src="./charts-data.js" defer></script>
+    <script src="./charts.js" defer></script>
 </head>
 <body class="page project-page">
     <a class="skip-link" href="#main-content">Skip to content</a>
@@ -74,13 +76,13 @@
                         <span>X<sub>seasonal</sub> = X − X<sub>trend</sub></span>
                     </div>
                     <p>The remainder is called the seasonal component in the architecture, but subtracting a moving average does not isolate pure seasonality: shorter fluctuations and noise can remain. The decoder accumulates extracted trend components while processing the seasonal representation.</p>
-                    <figure class="paper-figure">
+                    <figure class="paper-figure" id="ts-architecture">
                         <a class="figure-image" href="./figures/architecture.png" data-figure="Figure 1 / Architecture"><img src="./figures/architecture.png" width="1212" height="667" alt="Autoformer encoder and decoder with Auto-Correlation blocks, repeated series decomposition, and an accumulating trend path." loading="lazy" decoding="async"></a>
                         <figcaption><span class="figure-label">Figure 1 / Architecture</span> Autoformer architecture reproduced in the project repository. Architecture credit: Haixu Wu, Jiehui Xu, Jianmin Wang, and Mingsheng Long, <a href="https://arxiv.org/abs/2106.13008">Autoformer (2021)</a>. <a href="https://github.com/omertafveez-2001/Transformers-for-Timeseries-A-Statistical-View/blob/eb46a634c309312aff3721841beb81142d0dac4e/imgs/autoformer_architecture.png" target="_blank" rel="noopener noreferrer">Source figure ↗</a></figcaption>
                     </figure>
                     <p>The second idea is to aggregate information at useful <strong>time delays</strong>. Ordinary self-attention connects individual positions. Auto-Correlation estimates which shifts align query and key patterns, selects strong delays, and combines shifted value sequences using normalized weights.</p>
                     <p>FFT operations make the correlation calculation efficient: transform queries and keys, multiply one transform by the complex conjugate of the other, and transform back to obtain scores over delays. The selected delays then guide aggregation in the sequence domain. This gives the model a way to reuse recurring patterns.</p>
-                    <figure class="paper-figure figure-narrow">
+                    <figure class="paper-figure" id="ts-autocorrelation">
                         <a class="figure-image" href="./figures/autocorrelation.png" data-figure="Figure 2 / Auto-Correlation"><img src="./figures/autocorrelation.png" width="474" height="453" alt="Queries and keys pass through FFT and inverse FFT to identify top delays for time-delay aggregation of values." loading="lazy" decoding="async"></a>
                         <figcaption><span class="figure-label">Figure 2 / Auto-Correlation</span> The query–key correlation supplies delay scores; shifted values supply the representations being combined. Diagram from the repository’s Autoformer explainer. <a href="https://github.com/omertafveez-2001/Transformers-for-Timeseries-A-Statistical-View/blob/eb46a634c309312aff3721841beb81142d0dac4e/imgs/autoformer_autocorrelation_only_attention.png" target="_blank" rel="noopener noreferrer">Source figure ↗</a></figcaption>
                     </figure>
@@ -120,13 +122,13 @@
                         <p class="section-eyebrow">How to read the axes</p>
                         <p>Each column below is a downsampled series/window entry. Each row is a forecast step. The code segments across entries at a fixed horizon, so these figures describe the ordering of a collection of forecasts—not a continuous timeline for one sensor.</p>
                     </div>
-                    <figure class="paper-figure">
+                    <figure class="paper-figure" id="ts-break-heatmap">
                         <a class="figure-image" href="./figures/break-heatmap.png" data-figure="Figure 3 / Break locations"><img src="./figures/break-heatmap.png" width="1429" height="790" alt="Two heatmaps of 24 forecast horizons: red predicted break locations above blue observed break locations; several rows align while others differ substantially." loading="lazy" decoding="async"></a>
                         <figcaption><span class="figure-label">Figure 3 / Break locations</span> Both matrices contain 24 breaks: one per horizon. “True” denotes breaks detected in the observations by the same algorithm, rather than independently labeled events. Original axis labels are retained; the horizontal axis indexes forecast entries. <a href="https://github.com/omertafveez-2001/Transformers-for-Timeseries-A-Statistical-View/blob/eb46a634c309312aff3721841beb81142d0dac4e/imgs/results/pred_breaks_hour.png" target="_blank" rel="noopener noreferrer">Source figure ↗</a></figcaption>
                     </figure>
                     <p>The notebook reports <strong>24 predicted and 24 observed breaks</strong>, with one at every horizon. Some locations line up closely, particularly in several early horizons. Others differ substantially, including horizons 6 and 15–18. Agreement in total count therefore hides differences in placement.</p>
                     <p>Because every row selects the minimum allowed count, the result is not evidence that the forecasts detect too many breaks. A stronger comparison would allow an unbroken signal and examine how location agreement changes with the penalty and entry ordering.</p>
-                    <figure class="paper-figure">
+                    <figure class="paper-figure" id="ts-horizon-overlays">
                         <a class="figure-image" href="./figures/horizon-overlays.png" data-figure="Figure 4 / Horizon-by-horizon view"><img src="./figures/horizon-overlays.png" width="2387" height="1572" alt="A grid of 24 panels overlays forecast and observed values, with vertical lines marking their separately detected break locations." loading="lazy" decoding="async"></a>
                         <figcaption><span class="figure-label">Figure 4 / Horizon-by-horizon view</span> Forecasts are blue and observations red in this plot. Vertical lines mark the selected boundaries. Despite the original “Time” labels, the horizontal coordinate follows series/window entry order, rescaled by the downsampling factor. <a href="https://github.com/omertafveez-2001/Transformers-for-Timeseries-A-Statistical-View/blob/eb46a634c309312aff3721841beb81142d0dac4e/imgs/results/breaks_per_hour.png" target="_blank" rel="noopener noreferrer">Source figure ↗</a></figcaption>
                     </figure>
@@ -137,12 +139,12 @@
                     <p class="section-eyebrow">05 / Segment analysis</p>
                     <h2>What happens between the boundaries?</h2>
                     <p>Break locations determine the groups of values assigned to each segment. Comparing their lengths and fitted slopes gives another view of how the forecast and observation arrays differ.</p>
-                    <figure class="paper-figure">
+                    <figure class="paper-figure" id="ts-segment-lengths">
                         <a class="figure-image" href="./figures/segment-lengths.png" data-figure="Figure 5 / Segment lengths"><img src="./figures/segment-lengths.png" width="852" height="547" alt="Overlapping red and blue histograms with prominent observed segment-length concentrations near 180 and 420 entries." loading="lazy" decoding="async"></a>
                         <figcaption><span class="figure-label">Figure 5 / Segment lengths</span> Lengths count downsampled entries between boundaries. With one break per horizon, each row contributes two lengths whose sum is the row length. <a href="https://github.com/omertafveez-2001/Transformers-for-Timeseries-A-Statistical-View/blob/eb46a634c309312aff3721841beb81142d0dac4e/imgs/results/segment_length_distr.png" target="_blank" rel="noopener noreferrer">Source figure ↗</a></figcaption>
                     </figure>
                     <p>The observed lengths concentrate around roughly 180 and 420 entries, while the forecast distribution spreads differently around those groups. These paired concentrations are related: moving a single boundary makes one segment longer and the other shorter. The plot reveals different boundary placements; it does not independently establish shorter-lived temporal regimes.</p>
-                    <figure class="paper-figure">
+                    <figure class="paper-figure" id="ts-segment-trends">
                         <a class="figure-image" href="./figures/segment-trends.png" data-figure="Figure 6 / Segment slopes"><img src="./figures/segment-trends.png" width="842" height="547" alt="Forecast and observed segment-slope histograms concentrated near zero, with the observed distribution extending farther into both tails." loading="lazy" decoding="async"></a>
                         <figcaption><span class="figure-label">Figure 6 / Segment slopes</span> Slopes are fitted within segments along the entry index. They are not temporal growth rates for an individual traffic series. <a href="https://github.com/omertafveez-2001/Transformers-for-Timeseries-A-Statistical-View/blob/eb46a634c309312aff3721841beb81142d0dac4e/imgs/results/segment_trend_dist.png" target="_blank" rel="noopener noreferrer">Source figure ↗</a></figcaption>
                     </figure>
@@ -167,7 +169,7 @@
                     <div class="equation" aria-label="Trust score equals the normality score plus variance score plus autocorrelation score, divided by three.">
                         <span>score = (s<sub>normality</sub> + s<sub>variance</sub> + s<sub>autocorrelation</sub>) / 3</span>
                     </div>
-                    <figure class="paper-figure">
+                    <figure class="paper-figure" id="ts-trust-score">
                         <a class="figure-image" href="./figures/trust-score.png" data-figure="Figure 7 / Composite diagnostic"><img src="./figures/trust-score.png" width="988" height="390" alt="Purple histogram of composite scores concentrated between 0.3 and 0.4, peaking near 0.37, with a sparse upper tail." loading="lazy" decoding="async"></a>
                         <figcaption><span class="figure-label">Figure 7 / Composite diagnostic</span> Most recorded scores lie around 0.3–0.4. The original axis calls higher values “High Confidence,” but this score is not a calibrated confidence or correctness probability. <a href="https://github.com/omertafveez-2001/Transformers-for-Timeseries-A-Statistical-View/blob/eb46a634c309312aff3721841beb81142d0dac4e/imgs/results/trust_score.png" target="_blank" rel="noopener noreferrer">Source figure ↗</a></figcaption>
                     </figure>

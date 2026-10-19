@@ -2,6 +2,39 @@
 .equation { display: grid; gap: 12px; max-width: 710px; padding: 22px 24px; margin: 26px 0; border: 1px solid var(--line); background: var(--paper-2); color: var(--ink); font: 16px/1.8 var(--mono); overflow-wrap: anywhere; }
 .equation sub { font-size: .75em; }
 .figure-narrow { max-width: 520px; }
+.ts-interactive { padding: 20px; }
+.ts-chart-title { margin: 0 0 18px; color: var(--ink); font: 500 21px/1.4 var(--serif); }
+.ts-plot { margin-top: 20px; min-width: 0; }
+.ts-svg { display: block; width: 100%; height: auto; }
+.ts-axis { font: 13px sans-serif; fill: #4b5d52; }
+.ts-svg-heading { font: 500 17px var(--serif); fill: var(--ink); }
+.ts-node-label { font: 15px var(--serif); fill: #172d25; }
+.ts-node { cursor: pointer; outline: none; }
+.ts-node[aria-pressed="true"] rect, .ts-node:focus rect { stroke: var(--accent); stroke-width: 3; }
+.ts-mark { cursor: pointer; outline: none; }
+.ts-mark:hover, .ts-mark:focus { stroke: #223c2d; stroke-width: 2; }
+.ts-hit { stroke: transparent; }
+.ts-mark:hover .ts-hit, .ts-mark:focus .ts-hit { stroke: #223c2d; stroke-width: 1; }
+.ts-readout { min-height: 4.5em; padding: 12px 14px; margin: 14px 0 10px; border-left: 2px solid var(--accent); background: var(--paper-2); font: 11px/1.7 var(--mono); color: var(--ink); }
+.ts-reading-note { margin: -6px 0 18px; font: 11px/1.7 var(--mono); color: var(--muted); }
+.ts-slider { display: inline-flex; align-items: center; gap: 7px; min-height: 40px; }
+.ts-slider input { width: 90px; accent-color: var(--accent); }
+.ts-zoom-value { width: 32px; }
+.ts-overlay-plot { position: relative; touch-action: pan-y; }
+.ts-overlay-svg { cursor: crosshair; user-select: none; }
+.ts-is-panning .ts-overlay-svg { cursor: grabbing; }
+.ts-overlay-tooltip { position: absolute; top: 14px; max-width: min(290px, 75%); padding: 10px 12px; background: #fffffff2; border: 1px solid var(--line-strong); box-shadow: 0 3px 15px #172d2515; font: 11px/1.8 var(--mono); color: var(--ink); pointer-events: none; }
+.ts-overlay-tooltip strong, .ts-overlay-tooltip small { display: block; }
+.ts-overlay-tooltip small { color: var(--muted); font-size: 9px; }
+.ts-interactive .chart-legend { margin-block: 8px; }
+@media (max-width: 560px) {
+    .ts-interactive { padding: 12px; }
+    .ts-diagram { width: 700px; max-width: none; }
+    .ts-plot:has(.ts-diagram) { overflow-x: auto; }
+    .ts-readout { font-size: 10px; }
+    .ts-chart-title { font-size: 19px; }
+    .ts-slider input { width: 75px; }
+}
 .diagnostic-table-wrap { margin: 28px 0; overflow-x: auto; }
 .diagnostic-table { width: 100%; border-collapse: collapse; font-size: 13px; line-height: 1.75; text-align: left; }
 .diagnostic-table th, .diagnostic-table td { padding: 16px 14px; border-bottom: 1px solid var(--line); vertical-align: top; }

@@ -60,6 +60,53 @@
 .major-findings li::marker { font-family: var(--mono); color: var(--accent); }
 #findings-conclusion .takeaway { margin-bottom: 20px; }
 .paper-figure { margin: 30px 0; }
+.interactive-figure { border: 1px solid var(--line); background: #fff; padding: 18px; }
+.chart-toolbar { display: flex; align-items: center; flex-wrap: wrap; gap: 10px; font: 11px/1.5 var(--mono); color: var(--ink); }
+.chart-toolbar select, .chart-download { max-width: 100%; min-height: 40px; border: 1px solid var(--line-strong); border-radius: 0; background: var(--paper); color: var(--ink); padding: 7px 9px; font: inherit; }
+.chart-toolbar select { flex: 1; min-width: 140px; }
+.chart-intervals { display: flex; align-items: center; gap: 5px; min-height: 40px; cursor: pointer; }
+.chart-intervals input { accent-color: var(--accent); }
+.chart-download { cursor: pointer; }
+.chart-hint { margin: 12px 0 22px; font-size: 11px; color: var(--muted); line-height: 1.7; }
+.chart-panels { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px 18px; }
+.chart-panels.single-panel { grid-template-columns: minmax(0, 1fr); }
+.chart-panel { min-width: 0; border-top: 1px solid var(--line); padding-top: 16px; }
+.chart-panel-wide { grid-column: 1 / -1; }
+.chart-panel h3 { margin: 0 0 8px; font: 500 17px/1.4 var(--serif); color: var(--ink); }
+.chart-plot { position: relative; }
+.interactive-svg { display: block; width: 100%; height: auto; overflow: visible; }
+.chart-gridline { stroke: #e5e5df; stroke-width: 1; }
+.chart-procedural { stroke: #aaa; stroke-dasharray: 4 5; }
+.chart-axis-label { font: 12px var(--sans, sans-serif); fill: #59645f; }
+.chart-empty { font: 15px sans-serif; fill: #59645f; }
+.chart-mark { cursor: pointer; outline: none; }
+.chart-mark:hover, .chart-mark:focus { stroke: #172d25; stroke-width: 2.5px; }
+.chart-tooltip { position: absolute; inset: auto 0 28% 0; z-index: 1; margin: 0 12px; padding: 10px 12px; border: 1px solid var(--line-strong); background: #f7f8f3f5; color: var(--ink); font: 11px/1.7 var(--mono); pointer-events: none; box-shadow: 0 3px 14px #162c2312; }
+.chart-legend { display: flex; flex-wrap: wrap; gap: 3px 8px; }
+.chart-series { display: inline-flex; align-items: center; gap: 6px; min-height: 36px; padding: 5px 3px; border: 0; background: transparent; color: var(--ink); font: 11px/1.4 var(--mono); text-align: left; cursor: pointer; }
+.chart-series[aria-pressed="false"] { opacity: .45; text-decoration: line-through; }
+.chart-swatch { display: inline-block; width: 10px; height: 10px; flex-shrink: 0; border-radius: 50%; border: 1px solid #0002; }
+.chart-swatch.diamond { transform: rotate(45deg); border-radius: 0; }
+.chart-note { margin: 9px 0 0; font-size: 10px; line-height: 1.65; color: var(--muted); }
+.chart-data { margin-top: 22px; border-top: 1px solid var(--line); }
+.chart-data summary, .chart-original summary { padding: 12px 0; font: 11px/1.6 var(--mono); cursor: pointer; color: var(--accent); }
+.chart-original { margin-top: 6px; }
+.chart-table-wrap { overflow-x: auto; margin-bottom: 18px; }
+.chart-data table { width: 100%; border-collapse: collapse; text-align: left; font: 11px/1.7 var(--mono); }
+.chart-data caption { text-align: left; font-weight: 600; padding: 12px 0; color: var(--ink); }
+.chart-data th, .chart-data td { padding: 8px; border-bottom: 1px solid var(--line); min-width: 90px; }
+.chart-data th { color: var(--ink); }
+.interactive-figure :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+.interactive-figure [hidden], .chart-panel[hidden] { display: none; }
+@media (min-width: 961px) and (max-width: 1150px), (max-width: 700px) {
+    .chart-panels { grid-template-columns: minmax(0, 1fr); }
+}
+@media (max-width: 560px) {
+    .interactive-figure { padding: 12px; }
+    .chart-toolbar select { width: calc(100% - 45px); }
+    .chart-series { min-height: 44px; }
+    .chart-hint { margin-bottom: 14px; }
+}
 .figure-image { display: block; padding: 16px; border: 1px solid var(--line); background: white; cursor: zoom-in; }
 .figure-image:hover { border-color: var(--accent); }
 .figure-image::after { content: 'Enlarge figure ↗'; display: block; margin-top: 12px; text-align: right; font: 10px/1.5 var(--mono); color: var(--accent); }
